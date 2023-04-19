@@ -5,6 +5,7 @@ import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-transla
 import { environment } from '@app-env/environment';
 import { CustomTranslateLoader } from '@app-core/loaders/custom-translate.loader';
 import { SharedModule } from '@app-shared/shared.module';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 registerLocaleData(localeEsAR, environment.defaultLanguage);
@@ -14,7 +15,9 @@ export function LoaderFactory() {
 }
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    FooterComponent
+  ],
   imports: [
     CommonModule,
     TranslateModule.forRoot({
@@ -25,7 +28,9 @@ export function LoaderFactory() {
     }),
     SharedModule
   ],
-  exports: [],
+  exports: [
+    FooterComponent
+  ],
   providers: [
     {
       provide: LOCALE_ID,
