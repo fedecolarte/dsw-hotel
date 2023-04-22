@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { BreakpointService } from './core/services/breakpoint.service';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +9,5 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'dsw-hotel';
 
-  constructor() {}
+  constructor(public breakpointService: BreakpointService) {}
 }

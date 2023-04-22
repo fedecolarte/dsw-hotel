@@ -7,6 +7,7 @@ import { CustomTranslateLoader } from '@app-core/loaders/custom-translate.loader
 import { SharedModule } from '@app-shared/shared.module';
 import { HeaderComponent } from './components/header/header.component';
 import { LayoutModule } from '@angular/cdk/layout';
+import { BreakpointService } from './services/breakpoint.service';
 
 registerLocaleData(localeEsAR, environment.defaultLanguage);
 
@@ -37,6 +38,7 @@ export function LoaderFactory() {
       provide: LOCALE_ID,
       useValue: environment.defaultLanguage
     },
+    BreakpointService
   ],
 })
 export class CoreModule {
