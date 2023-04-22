@@ -8,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   hotelLogo: string = '../../../../assets/images/temporal-logo.png'
+  isMenuCollapsed: boolean = true;
+  
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  collapseMenu(): void{
+    this.isMenuCollapsed = !this.isMenuCollapsed;
+  }
 }

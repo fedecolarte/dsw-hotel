@@ -1,24 +1,37 @@
-<nav class="navbar navbar-expand-lg header px-5">
-  <img [src]="hotelLogo" height="60px" width="60px">
-    <div class="container-fluid">
-      <div class="ms-auto" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item mx-2">
-            <a class="nav-link active" aria-current="page" href="#">Inicio</a>
-          </li>
-          <li class="nav-item mx-2">
-            <a class="nav-link" href="#">Reservas</a>
-          </li>
-          <li class="nav-item mx-2">
-            <a class="nav-link" href="#">Tipos de Habitación</a>
-          </li>
-          <li class="nav-item mx-2">
-            <a class="nav-link" href="#">Contacto</a>
-          </li>
-          <li class="nav-item ms-5"> 
-            <a class="nav-link sign-in" href="#">Ingresar</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+<nav class="navbar navbar-expand-md header">
+  <div class="container-fluid p-0">
+    <img class="ms-5" [src]="hotelLogo" height="60px" width="60px">
+      <span class="d-inline d-md-none material-icons-round txt-white me-5" type="button" (click)="collapseMenu()">menu</span>
+        <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
+          <ul class="ps-2 ms-md-auto pt-3 pt-md-0 navbar-nav burger-menu px-0 px-md-4 px-lg-5 d-flex" [ngClass]="isMenuCollapsed ? 'opacity-0' : 'opacity-1'">
+            <li class="nav-item mx-0 mx-lg-2">
+              <div class="d-flex align-items-center">
+                <span class="d-inline d-md-none material-symbols-rounded me-2">cottage</span>
+                <span class="nav-link active" aria-current="page" href="#">Inicio</span>
+              </div>
+            </li>
+            <li class="nav-item mx-0 mx-lg-2">
+              <div class="d-flex align-items-center">
+                <span class="d-inline d-md-none material-symbols-rounded me-2">luggage</span>
+                <a class="nav-link" href="#">Reservas</a>
+              </div>
+            </li>
+            <li class="nav-item mx-0 mx-lg-2">
+              <div class="d-flex align-items-center">
+                <span class="d-inline d-md-none material-symbols-rounded me-2">bed</span>
+                <a class="nav-link" href="#">Tipos de Habitación</a>
+              </div>
+            </li>
+            <li class="nav-item mx-0 mx-lg-2">
+              <div class="d-flex align-items-center">
+                <span class="d-inline d-md-none material-symbols-rounded me-2">contact_support</span>
+                <a class="nav-link" href="#">Contacto</a>
+            </div>
+            </li>
+            <li class="nav-item ms-0 ms-md-5 py-2 py-md-0"> 
+              <a class="nav-link sign-in bg-white" href="#">Ingresar</a>
+            </li>
+          </ul>
+        </div>
+  </div>
+</nav>
