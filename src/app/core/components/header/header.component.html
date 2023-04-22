@@ -3,7 +3,8 @@
     <img class="ms-5" [src]="hotelLogo" height="60px" width="60px">
       <span class="d-inline d-md-none material-icons-round txt-white me-5" type="button" (click)="collapseMenu()">menu</span>
         <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
-          <ul class="ps-2 ms-md-auto pt-3 pt-md-0 navbar-nav burger-menu px-0 px-md-4 px-lg-5 d-flex" [ngClass]="isMenuCollapsed ? 'opacity-0' : 'opacity-1'">
+          <ul class="ps-2 ms-md-auto pt-3 pt-md-0 navbar-nav burger-menu px-0 px-md-4 px-lg-5 d-flex" 
+          [ngClass]="(isMenuCollapsed && breakpointObserver.isMatched('(min-width: 768px)')) ? 'opacity-0' : 'opacity-1'">
             <li class="nav-item mx-0 mx-lg-2">
               <div class="d-flex align-items-center">
                 <span class="d-inline d-md-none material-symbols-rounded me-2">cottage</span>
