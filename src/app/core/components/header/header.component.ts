@@ -9,6 +9,27 @@ export class HeaderComponent implements OnInit {
 
   hotelLogo: string = '../../../../assets/images/temporal-logo.png'
   isMenuCollapsed: boolean = true;
+  tabs = [
+    {
+      name: 'Inicio',
+      icon: 'cottage',
+    },
+    {
+      name: 'Reservas',
+      icon: 'luggage'
+    },
+    {
+      name: 'Tipos de Habitación',
+      icon: 'bed'
+    },
+    {
+      name: 'Contacto',
+      icon: 'contact_support'
+    },
+    {
+      name: 'Ingresar'
+    }
+  ]
   
   constructor(public breakpointService: BreakpointService) { }
 
