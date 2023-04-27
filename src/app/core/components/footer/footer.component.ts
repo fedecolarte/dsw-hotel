@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
-  instagramLogo: string = '../../../../assets/images/instagram_icon.png'
-  facebookLogo: string = '../../../../assets/images/facebook_icon.png'
-  twitterLogo: string = '../../../../assets/images/twitter_icon.png'
-  youtubeLogo: string = '../../../../assets/images/youtube_icon.png'
+
+  logos = [
+     '../../../../assets/images/instagram_icon.png',
+     '../../../../assets/images/facebook_icon.png',
+     '../../../../assets/images/twitter_icon.png',
+     '../../../../assets/images/youtube_icon.png'
+  ]
+  
 
   constructor() { }
 
