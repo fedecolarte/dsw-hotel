@@ -1,4 +1,4 @@
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 
@@ -11,6 +11,5 @@ export class BreakpointService {
     public isDesktop$: Observable<boolean> = this.breakpointObserver.observe('(min-width: 768px)')
     .pipe(map(result => result.matches));
 
-    constructor(private breakpointObserver: BreakpointObserver) {
-    }
+    constructor(private breakpointObserver: BreakpointObserver) { }
 }
