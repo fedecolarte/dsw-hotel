@@ -6,7 +6,9 @@ import { environment } from '@app-env/environment';
 import { CustomTranslateLoader } from '@app-core/loaders/custom-translate.loader';
 import { SharedModule } from '@app-shared/shared.module';
 import { FooterComponent } from './components/footer/footer.component';
-
+import { HeaderComponent } from './components/header/header.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { BreakpointService } from './services/breakpoint.service';
 
 registerLocaleData(localeEsAR, environment.defaultLanguage);
 
@@ -16,9 +18,11 @@ export function LoaderFactory() {
 
 @NgModule({
   declarations: [
-    FooterComponent
+    FooterComponent,
+    HeaderComponent,
   ],
   imports: [
+    LayoutModule,
     CommonModule,
     TranslateModule.forRoot({
       loader: {
@@ -29,13 +33,15 @@ export function LoaderFactory() {
     SharedModule
   ],
   exports: [
-    FooterComponent
+    FooterComponent,
+    HeaderComponent
   ],
   providers: [
     {
       provide: LOCALE_ID,
       useValue: environment.defaultLanguage
     },
+    BreakpointService
   ],
 })
 export class CoreModule {
