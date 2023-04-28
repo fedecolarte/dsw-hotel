@@ -13,18 +13,22 @@ export class HeaderComponent implements OnInit {
     {
       name: 'Inicio',
       icon: 'cottage',
+      link: ''
     },
     {
       name: 'Reservas',
-      icon: 'luggage'
+      icon: 'luggage',
+      link: '/reservas'
     },
     {
       name: 'Tipos de Habitación',
-      icon: 'bed'
+      icon: 'bed',
+      link: '/tipos-habitacion'
     },
     {
       name: 'Contacto',
-      icon: 'contact_support'
+      icon: 'contact_support',
+      link: '/contacto'
     },
     {
       name: 'Ingresar'
