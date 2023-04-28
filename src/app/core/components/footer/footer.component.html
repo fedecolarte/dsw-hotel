@@ -1,26 +1,25 @@
 <footer>
-  <div class="container d-flex flex-column px-4 px-lg-5 my-3">
-    <ul class="p-0 d-flex align-items-center justify-content-center">
-      <li class="list-inline-item mx-4" *ngFor="let logo of logos">
-        <a class="navbar-brand" href="">
-          <img [src]="logo" height="40px" width="40px">
-        </a>
-      </li>
-    </ul>
-    <ul class="mb-2 d-flex flex-column align-items-start align-self-center justify-content-center p-0">
-      <li class="d-flex align-items-between align-items-center">
-        <i class="material-icons me-2">phone</i>
-        <span>{{ 'FOOTER.TEL' | translate  }}</span>
-      </li>
-      <li class="d-flex align-items-between align-items-center">
-        <i class=" material-icons me-2">email</i>
-        <span>{{ 'FOOTER.EMAIL' | translate  }}</span>
-      </li>
-    </ul>
-    <ul class="list-inline d-flex flex-column align-items-center">
-      <li class="list-inline-item">
-        <div class="text-center">Copyright &copy; DSW HOTEL</div>
-      </li>
-    </ul>
+  <div class="container-fluid px-4 px-lg-5 my-3">
+    <div class="d-flex align-items-center justify-content-center flex-column">
+      <ul class="p-0">
+        <li class="list-inline-item mx-4" *ngFor="let logo of logos">
+          <a class="navbar-brand" href="">
+            <img [src]="logo" height="40px" width="40px">
+          </a>
+        </li>
+      </ul>
+      <ul class="mb-2 p-0">
+        <li class="list-inline-item d-flex align-items-between align-items-center"
+        *ngFor="let contact of contacts">
+          <i class="material-icons me-2">{{ contact.icon }}</i>
+          <span>{{ contact.description | translate  }}</span>
+        </li>
+      </ul>
+      <ul class="p-0">
+        <li class="list-inline-item">
+          <div class="text-center">Copyright &copy; DSW HOTEL</div>
+        </li>
+      </ul>
+    </div>
   </div>
 </footer>

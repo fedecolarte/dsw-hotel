@@ -7,11 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  logos = [
+  logos: string[] = [
      '../../../../assets/images/instagram_icon.png',
      '../../../../assets/images/facebook_icon.png',
      '../../../../assets/images/twitter_icon.png',
      '../../../../assets/images/youtube_icon.png'
+  ]
+
+  contacts : { icon: string, description: string }[] = [
+    {
+      icon: "phone",
+      description: "FOOTER.TEL"
+    },
+    {
+      icon: "email",
+      description: "FOOTER.EMAIL"
+    },
   ]
   
 
