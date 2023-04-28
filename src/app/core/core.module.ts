@@ -9,6 +9,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { BreakpointService } from './services/breakpoint.service';
+import { RouterModule } from '@angular/router';
 
 registerLocaleData(localeEsAR, environment.defaultLanguage);
 
@@ -30,7 +31,8 @@ export function LoaderFactory() {
         useFactory: LoaderFactory,
       },
     }),
-    SharedModule
+    SharedModule,
+    RouterModule
   ],
   exports: [
     FooterComponent,
