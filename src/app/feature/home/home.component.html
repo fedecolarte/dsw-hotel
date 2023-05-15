@@ -1,1 +1,15 @@
-<p>home works!</p>
+<ngb-carousel
+	#carousel
+	[interval]="1000"
+	[pauseOnHover]="pauseOnHover"
+	[pauseOnFocus]="pauseOnFocus"
+	(slide)="onSlide($event)"
+>
+	<ng-template ngbSlide *ngFor="let img of imagesCarousel">
+		<a href="#" target="_blank" rel="nofollow noopener noreferrer" class="carousel">
+			<div class="picsum-img-wrapper">
+				<img [src]="img" class="carousel"/>
+			</div>
+		</a>
+	</ng-template>
+</ngb-carousel>
