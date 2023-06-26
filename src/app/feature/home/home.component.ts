@@ -8,19 +8,19 @@ import { NgbCarousel, NgbSlideEvent, NgbSlideEventSource } from '@ng-bootstrap/n
 })
 export class HomeComponent implements OnInit {
 
-  imagesCarousel: string[] = [
-    "../../../../assets/images/home/hotel1.jpg",
-    "../../../../assets/images/home/hotel2.jpg",
-    "../../../../assets/images/home/hotel3.png"
-  ]
+	imagesCarousel: string[] = [
+		"../../../../assets/images/home/hotel.jpg",
+		"../../../../assets/images/home/hotel4.jpg",
+		"../../../../assets/images/home/hotel3.png"
+	]
 
-  constructor() { }
-
-  paused = false;
+  	paused = false;
 	unpauseOnArrow = false;
 	pauseOnIndicator = false;
 	pauseOnHover = true;
 	pauseOnFocus = true;
+
+  constructor() { }
 
 	@ViewChild('carousel', { static: true }) carousel: NgbCarousel;
 
