@@ -9,9 +9,10 @@ import { NgbCarousel, NgbSlideEvent, NgbSlideEventSource } from '@ng-bootstrap/n
 export class HomeComponent implements OnInit {
 
 	imagesCarousel: string[] = [
-		"../../../../assets/images/home/hotel.jpg",
-		"../../../../assets/images/home/hotel4.jpg",
-		"../../../../assets/images/home/hotel3.png"
+		"../../../../assets/images/home/hotel-slide-00.jpg",
+		"../../../../assets/images/home/hotel-slide-01.jpg",
+		"../../../../assets/images/home/hotel-slide-02.jpg",
+		"../../../../assets/images/home/hotel-slide-03.jpg"
 	]
 
   	paused = false;
