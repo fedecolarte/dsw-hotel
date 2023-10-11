@@ -10,6 +10,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { BreakpointService } from './services/breakpoint.service';
 import { RouterModule } from '@angular/router';
+import { LoginComponent } from './components/login/login.component';
 
 registerLocaleData(localeEsAR, environment.defaultLanguage);
 
@@ -21,6 +22,7 @@ export function LoaderFactory() {
   declarations: [
     FooterComponent,
     HeaderComponent,
+    LoginComponent,
   ],
   imports: [
     LayoutModule,

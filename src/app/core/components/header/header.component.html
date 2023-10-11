@@ -12,7 +12,7 @@
             <a class="nav-link" [routerLink]="tab.link" [ngClass]="{'selected': rla.isActive}">{{ tab.name }}</a>
           </div>
           <ng-template #signIn>
-            <a  class="nav-link sign-in bg-white my-3 my-md-0 ms-lg-4">{{ tab.name }}</a>
+            <a  class="nav-link sign-in bg-white my-3 my-md-0 ms-lg-4" (click)="openLogin()" role="button">{{ tab.name }}</a>
           </ng-template>
         </li>
       </ul>

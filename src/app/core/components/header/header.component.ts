@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BreakpointService } from '@app/core/services/breakpoint.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { LoginComponent } from '../login/login.component';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -35,7 +37,10 @@ export class HeaderComponent implements OnInit {
     }
   ]
   
-  constructor(public breakpointService: BreakpointService) { }
+  constructor(
+    public breakpointService: BreakpointService,
+    private modalService: NgbModal
+    ) { }
 
   ngOnInit(): void {
   }
@@ -43,4 +48,15 @@ export class HeaderComponent implements OnInit {
   collapseMenu(): void{
     this.isMenuCollapsed = !this.isMenuCollapsed;
   }
+
+  openLogin(): void {
+    const modalOptions = {
+      size: 'md',
+      centered: true,
+      scrollable: false,
+      backdropClass: 'modal-backdrop-transparent'
+    }
+
+    this.modalService.open(LoginComponent, modalOptions);
+  } 
 }
