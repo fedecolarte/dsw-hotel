@@ -54,6 +54,7 @@ export class HeaderComponent implements OnInit {
       size: 'md',
       centered: true,
       scrollable: false,
+      fullscreen: 'sm',
       backdropClass: 'modal-backdrop-transparent'
     }
 
