@@ -6,10 +6,10 @@
     </div>
     <form [formGroup]="registerForm" class="pt-3 px-4 row row-cols-2">
       <div class="form-group my-3 col">
-        <input type="text" class="w-100 text custom-input" id="name" formControlName="name" placeholder="Nombre" required>
+        <input type="text" class="text custom-input" id="name" formControlName="name" placeholder="Nombre" required>
       </div>
       <div class="form-group my-3 col">
-        <input type="text" class="w-100 text custom-input" id="suranme" formControlName="suranme" placeholder="Apellido" required>
+        <input type="text" class="text custom-input" id="suranme" formControlName="suranme" placeholder="Apellido" required>
       </div>
       <div class="form-group my-3 col">
         <select class="form-select custom-input custom-select" id="documentType" formControlName="documentType" required>
@@ -17,13 +17,13 @@
         </select>
       </div>
       <div class="form-group my-3 col">
-        <input type="text" class="w-100 text custom-input" id="email" formControlName="email" placeholder="example@hotel.com" required>
+        <input type="text" class="text custom-input" id="email" formControlName="email" placeholder="example@hotel.com" required>
       </div>
       <div class="form-group my-3 col">
-        <input type="password" class="w-100 text custom-input" id="password" formControlName="password" placeholder="Contraseña" required>
+        <input type="password" class="text custom-input" id="password" formControlName="password" placeholder="Contraseña" required>
       </div>
       <div class="form-group my-3 col">
-        <input type="password" class="w-100 text custom-input" id="password" formControlName="password" placeholder="Contraseña" required>
+        <input type="password" class="text custom-input" id="validatePassword" formControlName="validatePassword" placeholder="Contraseña" required>
       </div>
   </form>
   <button class="d-block btn btn-primary ms-auto me-3 mt-4 px-4" type="submit" [disabled]="registerForm.invalid">Registrar</button>
@@ -37,15 +37,25 @@
       <span class="text fs-22 fw-bold">Ingrese a su cuenta</span>
       <i class="ms-auto material-symbols-rounded" (click)="close()" role="button">close</i>
     </div>
-    <form [formGroup]="loginForm" class="pt-3 px-4">
+    <form [formGroup]="loginForm" class="pt-3 px-4" (ngSubmit)="loginValidator()">
         <div class="form-group py-3">
-          <input type="text" class="w-100 text custom-input" id="username" formControlName="username" placeholder="Usuario" required>
+          <input type="text" class="w-100 text custom-input" id="username" formControlName="username" placeholder="Usuario" required
+          [ngClass]="{'is-invalid': loginFormStatus === 'INVALID' && (loginForm.get('username')?.dirty && loginForm.get('password')?.dirty) }">
         </div>
         <div class="form-group py-3">
-          <input type="password" class="w-100 text custom-input" id="password" formControlName="password" placeholder="Contraseña" required>
+          <input type="password" class="w-100 text custom-input" id="password" formControlName="password" placeholder="Contraseña" required
+          [ngClass]="{'is-invalid': loginFormStatus === 'INVALID' && (loginForm.get('password')?.dirty && loginForm.get('username')?.dirty) }">
+        </div>
+        <div class="d-flex align-items-center justify-content-between mt-4">
+          <span class="text text-error fs-14" *ngIf="loginFormStatus === 'INVALID'">{{ userValidation.message }}</span>
+          <button class="d-block btn btn-primary ms-auto btn-width" type="submit" [disabled]="loginForm.invalid">
+            <span *ngIf="!(userService.validateUserLoading$ | async); else spinner">Iniciar sesión</span>
+            <ng-template #spinner>
+              <app-spinner [relative]="true" height="21px" width="21px"></app-spinner>
+            </ng-template>
+          </button>
         </div>
     </form>
-    <button class="d-block btn btn-primary ms-auto me-3 mt-4" type="submit" [disabled]="loginForm.invalid">Iniciar sesión</button>
     <div class="d-flex justify-content-center text text-cello fs-14 mt-4">
       <span>¿Aún no tienes cuenta?</span>
       <a (click)="openRegister()" class="text-decoration-none ms-1" role="button">Registrate</a>

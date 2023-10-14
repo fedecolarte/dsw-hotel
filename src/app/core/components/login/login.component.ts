@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ValidateUserView } from '@app/core/entities/views/validate-user.view';
 import { UserService } from '@app/core/services/user.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -11,6 +12,9 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   registerForm: FormGroup;
+  userValidation: ValidateUserView = {
+    isValid: true,
+  };
 
   constructor(
     private formBuilder: FormBuilder,
@@ -31,7 +35,21 @@ export class LoginComponent implements OnInit {
     })
    }
 
+  
+  get loginFormValue() {
+    return this.loginForm.value;
+  }
+
+  get loginFormStatus() {
+    return this.loginForm.status;
+  }
+
+  get loginFormControls() {
+    return this.loginForm.controls;
+  }
+
   ngOnInit(): void {
+    console.log(this.loginForm);
   }
 
   openRegister(): void {
@@ -40,6 +58,15 @@ export class LoginComponent implements OnInit {
 
   openLogin(): void {
     this.userService.setRegisterMode(false);
+  }
+
+  loginValidator(): void {
+    this.userService.validateUser(this.loginFormValue).subscribe(validationResponse => {
+      this.userValidation = validationResponse;
+      this.loginForm.setErrors({ 'loginValidator': !this.userValidation.isValid });
+
+      if(this.userValidation.isValid) this.modalService.close();
+    });
   }
 
   close(): void {

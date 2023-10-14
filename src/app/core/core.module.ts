@@ -11,6 +11,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { BreakpointService } from './services/breakpoint.service';
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
+import { UserAdapter } from './entities/adapters/user.adapter';
 
 registerLocaleData(localeEsAR, environment.defaultLanguage);
 
@@ -45,7 +46,8 @@ export function LoaderFactory() {
       provide: LOCALE_ID,
       useValue: environment.defaultLanguage
     },
-    BreakpointService
+    BreakpointService,
+    UserAdapter
   ],
 })
 export class CoreModule {

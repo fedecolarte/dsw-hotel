@@ -31,9 +31,27 @@
 }
 
 .btn-primary:focus {
-    outline: 2px solid white;
+    outline: none;
+    box-shadow: none;
 }
 
 .text-gray {
     color: #20292B;
+}
+
+.text-error {
+    color: red;
+}
+
+.is-valid {
+    border-color: green;
+}
+
+.is-invalid {
+    border-color: red;
+}
+
+.btn-width {
+    width: 120px;
+    height: 40px;
 }
