@@ -1,0 +1,18 @@
+<div [ngClass]="{ 'position-absolute': inside }">
+    <div class="d-flex flex-column justify-content-center align-items-center w-100"
+    [class]="className"
+    [ngClass]="{
+        'position-absolute': !relative,
+        'position-relative': relative,
+        'middle-inside': inside,
+        'h-100': !inside,
+        'center': center
+    }">
+        <div class="order-1">
+            <img [src]="imgSource" alt="Loading" class="spinner" [style.height]="height" [style.width]="width">
+        </div>
+        <div *ngIf="message" class="text fw-bold order-2 text-center">
+            <span> {{ message }} </span>
+        </div>
+    </div>
+</div>
