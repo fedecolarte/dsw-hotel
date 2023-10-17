@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   userValidation: ValidateUserView = {
     isValid: true,
   };
+  isValid: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -63,9 +64,13 @@ export class LoginComponent implements OnInit {
   loginValidator(): void {
     this.userService.validateUser(this.loginFormValue).subscribe(validationResponse => {
       this.userValidation = validationResponse;
-      this.loginForm.setErrors({ 'loginValidator': !this.userValidation.isValid });
-
-      if(this.userValidation.isValid) this.modalService.close();
+      if(!this.userValidation.isValid) this.loginForm.setErrors({ 'loginValidator': !this.userValidation.isValid });
+      else {
+        this.isValid = true;
+        this.userService.setUserLogged(this.loginFormValue.username, true);
+        setTimeout(() => {
+        },600)
+      }
     });
   }
 

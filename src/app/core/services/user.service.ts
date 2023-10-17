@@ -5,7 +5,6 @@ import * as validateUserResponseMock from '../../../assets/mocks/validate-user.r
 import { ValidateUserResponse } from '../entities/responses/validate-user.response';
 import { ValidateUserView } from '../entities/views/validate-user.view';
 import { UserAdapter } from '../entities/adapters/user.adapter';
-import { AsyncPipe } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -13,9 +12,14 @@ import { AsyncPipe } from '@angular/common';
 export class UserService {
 
   private isRegisterMode = new BehaviorSubject<boolean>(false);
-  isRegisterMode$ = this.isRegisterMode.asObservable(); 
   private validateUserLoading = new BehaviorSubject<boolean>(false);
+  private userLogged = new BehaviorSubject<string | null>(null);
+  private isLogged = new BehaviorSubject<boolean>(false);
+
+  isRegisterMode$ = this.isRegisterMode.asObservable(); 
   validateUserLoading$ = this.validateUserLoading.asObservable(); 
+  userLogged$ = this.userLogged.asObservable();
+  isLogged$ = this.isLogged.asObservable();
 
   constructor(private userAdapter: UserAdapter) { }
 
@@ -23,11 +27,18 @@ export class UserService {
     this.isRegisterMode.next(value);
   }
 
+  setUserLogged(user: string, isLogin: boolean): void {
+    if(isLogin) this.userLogged.next(user);
+    else this.userLogged.next(null);
+
+    this.isLogged.next(isLogin);
+  }
+
   validateUser(userCredentials: ValidateUserRequest): Observable<ValidateUserView> {
     const response: ValidateUserResponse = validateUserResponseMock;
     this.validateUserLoading.next(true);
     return of(response).pipe(
-      delay(10000),
+      delay(2000),
       map((validationResponse) => {
         this.validateUserLoading.next(false);
         return this.userAdapter.validateUserResponseToValidateUserView(validationResponse);

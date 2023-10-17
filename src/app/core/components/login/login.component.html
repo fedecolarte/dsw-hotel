@@ -40,19 +40,25 @@
     <form [formGroup]="loginForm" class="pt-3 px-4" (ngSubmit)="loginValidator()">
         <div class="form-group py-3">
           <input type="text" class="w-100 text custom-input" id="username" formControlName="username" placeholder="Usuario" required
-          [ngClass]="{'is-invalid': loginFormStatus === 'INVALID' && (loginForm.get('username')?.dirty && loginForm.get('password')?.dirty) }">
+          [ngClass]="{
+            'is-invalid': loginFormStatus === 'INVALID' && (loginForm.get('username')?.dirty && loginForm.get('password')?.dirty),
+            'is-valid': isValid }">
         </div>
         <div class="form-group py-3">
           <input type="password" class="w-100 text custom-input" id="password" formControlName="password" placeholder="Contraseña" required
-          [ngClass]="{'is-invalid': loginFormStatus === 'INVALID' && (loginForm.get('password')?.dirty && loginForm.get('username')?.dirty) }">
+          [ngClass]="{
+            'is-invalid': loginFormStatus === 'INVALID' && (loginForm.get('password')?.dirty && loginForm.get('username')?.dirty),
+            'is-valid': isValid }">
         </div>
         <div class="d-flex align-items-center justify-content-between mt-4">
           <span class="text text-error fs-14" *ngIf="loginFormStatus === 'INVALID'">{{ userValidation.message }}</span>
-          <button class="d-block btn btn-primary ms-auto btn-width" type="submit" [disabled]="loginForm.invalid">
-            <span *ngIf="!(userService.validateUserLoading$ | async); else spinner">Iniciar sesión</span>
-            <ng-template #spinner>
+          <button class="d-block btn btn-primary ms-auto btn-width" type="submit" [disabled]="loginForm.invalid"
+          [ngClass]="isValid ? 'botton-valid' : 'transition'">
+            <span *ngIf="!(userService.validateUserLoading$ | async) && !(userService.isLogged$ | async)">Iniciar sesión</span>
+            <span *ngIf="(userService.isLogged$ | async)" class="material-symbols-outlined valid-check">check_circle</span>
+            <ng-container *ngIf="(userService.validateUserLoading$ | async)">
               <app-spinner [relative]="true" height="21px" width="21px"></app-spinner>
-            </ng-template>
+            </ng-container>
           </button>
         </div>
     </form>
