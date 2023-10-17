@@ -68,3 +68,11 @@
     height: 40px;
 }
 
+.text-green {
+    color: lawngreen;
+}
+
+.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}

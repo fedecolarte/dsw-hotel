@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BreakpointService } from '@app/core/services/breakpoint.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from '../login/login.component';
+import { UserService } from '@app/core/services/user.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -15,22 +16,26 @@ export class HeaderComponent implements OnInit {
     {
       name: 'Inicio',
       icon: 'cottage',
-      link: ''
+      link: '',
+      disabled: false
     },
     {
       name: 'Reservas',
       icon: 'luggage',
-      link: '/reservas'
+      link: '/reservas',
+      disabled: false
     },
     {
       name: 'Tipos de Habitación',
       icon: 'bed',
-      link: '/tipos-habitacion'
+      link: '/tipos-habitacion',
+      disabled: true
     },
     {
       name: 'Contacto',
       icon: 'contact_support',
-      link: '/contacto'
+      link: '/contacto',
+      disabled: true
     },
     {
       name: 'Ingresar'
@@ -39,6 +44,7 @@ export class HeaderComponent implements OnInit {
   
   constructor(
     public breakpointService: BreakpointService,
+    public userService: UserService,
     private modalService: NgbModal
     ) { }
 

@@ -7,12 +7,18 @@
       [ngClass]="(isMenuCollapsed && (breakpointService.isMobile$ | async)) ? 'opacity-0' : 'opacity-1'">
         <li class="nav-item mx-0 mx-md-2" *ngFor="let tab of tabs; let i = index" [routerLinkActiveOptions]="{ exact: true }"
         routerLinkActive #rla='routerLinkActive'>
-          <div class="d-flex align-items-center h-40 box-sizing" *ngIf="i !== 4; else signIn">
+          <div class="d-flex align-items-center h-40 box-sizing" *ngIf="i !== 4; else logIn" [ngClass]="{'disabled': tab.disabled}">
             <i class="d-inline d-md-none material-symbols-rounded me-2">{{ tab.icon }}</i>
             <a class="nav-link" [routerLink]="tab.link" [ngClass]="{'selected': rla.isActive}">{{ tab.name }}</a>
           </div>
-          <ng-template #signIn>
-            <a  class="nav-link sign-in bg-white my-3 my-md-0 ms-lg-4" (click)="openLogin()" role="button">{{ tab.name }}</a>
+          <ng-template #logIn>
+            <a *ngIf="!(userService.isLogged$ | async) else logged" class="nav-link sign-in bg-white my-3 my-md-0 ms-lg-4" (click)="openLogin()" role="button">{{ tab.name }}</a>
+          </ng-template>
+          <ng-template #logged>
+            <div class="d-flex align-items-center justify-content-center ms-4 mt-2">
+              <span class="material-symbols-outlined text-green me-2">contactless</span>
+              <span class="text-green text">Conectado</span>
+            </div>
           </ng-template>
         </li>
       </ul>

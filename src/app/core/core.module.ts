@@ -12,6 +12,7 @@ import { BreakpointService } from './services/breakpoint.service';
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { UserAdapter } from './entities/adapters/user.adapter';
+import { NgxMaskDirective, NgxMaskModule, NgxMaskPipe } from 'ngx-mask';
 
 registerLocaleData(localeEsAR, environment.defaultLanguage);
 
@@ -26,6 +27,7 @@ export function LoaderFactory() {
     LoginComponent,
   ],
   imports: [
+    NgxMaskModule.forRoot(),
     LayoutModule,
     CommonModule,
     TranslateModule.forRoot({
@@ -35,7 +37,7 @@ export function LoaderFactory() {
       },
     }),
     SharedModule,
-    RouterModule
+    RouterModule,
   ],
   exports: [
     FooterComponent,
@@ -47,7 +49,7 @@ export function LoaderFactory() {
       useValue: environment.defaultLanguage
     },
     BreakpointService,
-    UserAdapter
+    UserAdapter,
   ],
 })
 export class CoreModule {

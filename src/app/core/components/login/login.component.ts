@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
       name: ['', Validators.required],
       suranme: ['', Validators.required],
-      documentType: ['', Validators.required],
+      telNumber: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', Validators.required],
       validatePassword: ['', Validators.required]
@@ -69,6 +69,7 @@ export class LoginComponent implements OnInit {
         this.isValid = true;
         this.userService.setUserLogged(this.loginFormValue.username, true);
         setTimeout(() => {
+          this.modalService.close();
         },600)
       }
     });
