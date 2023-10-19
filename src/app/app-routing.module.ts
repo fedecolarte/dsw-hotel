@@ -11,9 +11,14 @@ const routes: Routes = [
     redirectTo: '',
     pathMatch: 'full',
   },
+  {
+    path: 'reserva',
+    loadChildren: () => import('./reserve/reserve.module').then((m) => m.ReserveModule),
+  }
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
+
