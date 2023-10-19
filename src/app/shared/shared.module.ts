@@ -3,10 +3,13 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    SpinnerComponent
+  ],
   imports: [
     CommonModule,
     ReactiveFormsModule
@@ -15,6 +18,7 @@ import { TranslateModule } from '@ngx-translate/core';
     ReactiveFormsModule,
     NgbModule,
     TranslateModule,
+    SpinnerComponent
   ],
 })
 export class SharedModule {}

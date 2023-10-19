@@ -6,6 +6,7 @@ import { ReservationComponent } from './reservation/reservation.component';
 import { RoomTypesComponent } from './room-types/room-types.component';
 import { ContactComponent } from './contact/contact.component';
 import { HomeComponent } from './home/home.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { HomeComponent } from './home/home.component';
     CommonModule,
     FeatureRoutingModule,
     SharedModule,
+    FormsModule
   ],
 })
 export class FeatureModule {}
