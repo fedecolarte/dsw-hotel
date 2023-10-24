@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   registerForm: FormGroup;
   userValidation: ValidateUserView = {
     isValid: true,
+    message: ''
   };
   isValid: boolean = false;
 

@@ -1,4 +1,4 @@
 export interface ValidateUserResponse {
-    esValido: boolean;
-    mensaje: string;
+    token?: string;
+    message?: string;
 }
