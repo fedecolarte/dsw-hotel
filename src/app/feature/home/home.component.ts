@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbCarousel, NgbSlideEvent, NgbSlideEventSource } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -21,7 +22,7 @@ export class HomeComponent implements OnInit {
 	pauseOnHover = true;
 	pauseOnFocus = true;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
 	@ViewChild('carousel', { static: true }) carousel: NgbCarousel;
 
@@ -47,7 +48,11 @@ export class HomeComponent implements OnInit {
 		}
 	}
 
-  ngOnInit(): void {
-  }
+	openReserve(): void {
+		this.router.navigate(['/reserva'])
+	}
+
+	ngOnInit(): void {
+	}
 
 }
