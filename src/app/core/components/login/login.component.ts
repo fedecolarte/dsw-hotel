@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { RegisterUserRequest } from '@app/core/entities/requests/register-user.request';
 import { ValidateUserView } from '@app/core/entities/views/validate-user.view';
 import { UserService } from '@app/core/services/user.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -16,7 +17,15 @@ export class LoginComponent implements OnInit {
     isValid: true,
     message: ''
   };
+
+  registerValidation: ValidateUserView = {
+    isValid: true,
+    message: ''
+  }
+
   isValid: boolean = false;
+
+  isRegistered: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -28,16 +37,25 @@ export class LoginComponent implements OnInit {
     });
 
     this.registerForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      suranme: ['', Validators.required],
-      telNumber: ['', Validators.required],
+      username: ['', Validators.required],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', Validators.required],
       validatePassword: ['', Validators.required]
     })
    }
-
   
+
+  get registerFormValue() {
+    return this.registerForm.value;
+  }
+
+  get registerFormStatus() {
+    return this.registerForm.status;
+  }
+
+
   get loginFormValue() {
     return this.loginForm.value;
   }
@@ -50,9 +68,7 @@ export class LoginComponent implements OnInit {
     return this.loginForm.controls;
   }
 
-  ngOnInit(): void {
-    console.log(this.loginForm);
-  }
+  ngOnInit(): void { }
 
   openRegister(): void {
     this.userService.setRegisterMode(true);
@@ -74,6 +90,58 @@ export class LoginComponent implements OnInit {
         },600)
       }
     });
+  }
+
+  registerPerson(): void {
+    const pwSame: boolean = this.isPasswordSame();
+    if(pwSame) {
+      const payload: RegisterUserRequest = {
+        username: this.registerFormValue.username,
+        password: this.registerFormValue.password,
+        firstName: this.registerFormValue.firstName, 
+        lastName: this.registerFormValue.lastName,
+        email: this.registerFormValue.email
+      }
+      this.userService.registerUser(payload).subscribe(response => {
+        if(response) {
+          this.isRegistered = true;
+          this.registerValidation = {
+            isValid: true,
+            message: ''
+          };
+
+          setTimeout(() => {
+            this.openLogin();
+          }, 500);
+        } 
+        else {
+          this.registerForm.setErrors({ 'passwordValidation': true });
+          this.registerValidation = {
+            isValid: false,
+            message: 'Los campos son invalidos'
+          };
+        }
+      })
+    }
+  }
+
+  isPasswordSame(): boolean {
+    if(this.registerFormValue.password !== this.registerFormValue.validatePassword) {
+      this.registerForm.setErrors({ 'passwordValidation': true });
+      this.registerValidation = {
+        isValid: false,
+        message: 'Las contraseñas no coinciden'
+      };
+
+      return false;
+    }
+    else {
+      this.registerValidation = {
+        isValid: true,
+        message: ''
+      };
+      return true;
+    } 
   }
 
   close(): void {
