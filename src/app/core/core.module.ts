@@ -13,6 +13,7 @@ import { RouterModule } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { UserAdapter } from './entities/adapters/user.adapter';
 import { NgxMaskDirective, NgxMaskModule, NgxMaskPipe } from 'ngx-mask';
+import { RoomAdapter } from './entities/adapters/room.adapter';
 
 registerLocaleData(localeEsAR, environment.defaultLanguage);
 
@@ -50,6 +51,7 @@ export function LoaderFactory() {
     },
     BreakpointService,
     UserAdapter,
+    RoomAdapter
   ],
 })
 export class CoreModule {

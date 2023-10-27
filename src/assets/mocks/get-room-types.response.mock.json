@@ -1,0 +1,36 @@
+{
+    "data" : [
+        {
+            "idHabitacion": 5,
+            "idTipoHabitacion": 1,
+            "tipoHabitacion": "Dúplex",
+            "estado": "Disponible",
+            "capacidadPersonas": 4,
+            "precio": 18500
+        },
+        {
+            "idHabitacion": 8,
+            "idTipoHabitacion": 4,
+            "tipoHabitacion": "Suite Junior",
+            "estado": "Disponible",
+            "capacidadPersonas": 6,
+            "precio": 20300
+        },
+        {
+            "idHabitacion": 9,
+            "idTipoHabitacion": 2,
+            "tipoHabitacion": "Suite",
+            "estado": "Disponible",
+            "capacidadPersonas": 2,
+            "precio": 27000
+        },
+        {
+            "idHabitacion": 12,
+            "idTipoHabitacion": 3,
+            "tipoHabitacion": "De Lujo",
+            "estado": "Disponible",
+            "capacidadPersonas": 2,
+            "precio": 30800
+        }
+    ]
+}
