@@ -18,7 +18,6 @@ export class DatepickerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
   }
   
   onDateSelection(date: NgbDate) {

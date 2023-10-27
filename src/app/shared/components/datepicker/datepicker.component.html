@@ -34,7 +34,7 @@
 				disabled
 				#dpFromDate
 				class="form-control custom-input"
-				placeholder="dd/mm/yyyy"
+				placeholder="Desde"
 				name="dpFromDate"
 				[value]="formatter.format(fromDate)"
 				(input)="fromDate = validateInput(fromDate, dpFromDate.value)"
@@ -52,7 +52,7 @@
 				disabled
 				#dpToDate
 				class="form-control custom-input"
-				placeholder="dd/mm/yyyy"
+				placeholder="Hasta"
 				name="dpToDate"
 				[value]="formatter.format(toDate)"
 				(input)="toDate = validateInput(toDate, dpToDate.value)"
