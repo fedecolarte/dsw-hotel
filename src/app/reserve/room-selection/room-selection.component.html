@@ -1,2 +1,62 @@
-<a class="text" href="/reserva/paso-formulario">abrir paso 2</a>
- 
+<div class="d-flex justify-content-center mb-5">
+    <div class="card w-75 mt-4">
+        <div class="d-flex justify-content-around flex-wrap mt-5">
+            <div class="d-flex flex-column box-custom px-3 py-2 mb-3">
+                <label class="text text-white mb-1 me-3">Check In/Out</label>
+                <app-datepicker></app-datepicker>
+            </div>
+            <div class="d-flex flex-column box-custom px-3 py-2 mb-3">
+                <label class="text text-white mb-1 me-3">Tipo de habitación</label>
+                <select class="form-control text custom-select h-custom" aria-label="Default select example">
+                    <option selected>Todos</option>
+                    <option value="1">Dúplex</option>
+                    <option value="2">De Lujo</option>
+                    <option value="3">Suite</option>
+                    <option value="4">Suite Junior</option>
+                    <option value="5">Suite Presidencial</option>
+                </select>
+            </div>
+            <div class="d-flex flex-column box-custom px-3 py-2 mb-3">
+                <label class="text text-white mb-1 me-3">Personas</label>
+                <div class="input-group h-custom">
+                    <button class="btn btn-outline-secondary custom-select" type="button">
+                        <span class="material-symbols-outlined text-white mt-1">
+                            person_add
+                        </span>
+                    </button>
+                    <input type="text" class="form-control text-center" placeholder="2">
+                    <button class="btn btn-outline-secondary custom-select" type="button">
+                        <span class="material-symbols-outlined text-white mt-1">
+                            person_remove
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>
+<div class="d-flex flex-wrap align-items-center justify-content-center pb-5">
+    <div *ngFor="let room of rooms">
+        <div class="card mx-2 my-3 min-width-550">
+            <div class="card-header">
+                <div class="d-flex align-items-center justify-content-between">
+                    <span class="text text-white">Habitación N° {{ room.idRoom }}</span>
+                    <div class="badge text">
+                        {{ room.status | uppercase }}
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title text text-white d-flex align-items-center">
+                <span class="material-symbols-outlined circled p-1 me-2">king_bed</span>
+                <span>{{ room.roomType.description }}</span>
+            </h5>
+              <p class="card-text text text-white fs-12">Hasta {{ room.peopleCapacity }} personas</p>
+              <div class="d-flex align-items-center justify-content-between">
+                <span class="text text-limegreen">${{ room.price }}</span>
+                <button class="btn btn-primary custom-button text">Ver detalle</button>
+              </div>
+            </div>
+          </div>
+    </div>
+</div>
