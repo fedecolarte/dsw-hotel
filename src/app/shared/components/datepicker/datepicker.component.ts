@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgbDate, NgbCalendar, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -8,13 +8,11 @@ import { NgbDate, NgbCalendar, NgbDateParserFormatter } from '@ng-bootstrap/ng-b
 })
 export class DatepickerComponent implements OnInit {
   hoveredDate: NgbDate | null = null;
-
   fromDate: NgbDate | null;
   toDate: NgbDate | null;
+  @Output() emitValues = new EventEmitter<any>();
 
   constructor(private calendar: NgbCalendar, public formatter: NgbDateParserFormatter) {
-    this.fromDate = calendar.getToday();
-    this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
   }
 
   ngOnInit(): void {
@@ -28,6 +26,10 @@ export class DatepickerComponent implements OnInit {
     } else {
       this.toDate = null;
       this.fromDate = date;
+    }
+
+    if(this.fromDate != null && this.toDate != null){
+      this.emitValues.emit({fromDate: this.fromDate, toDate: this.toDate});
     }
   }
 

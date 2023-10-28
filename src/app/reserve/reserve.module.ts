@@ -6,6 +6,7 @@ import { SharedModule } from '@app/shared/shared.module';
 import { RoomSelectionComponent } from './room-selection/room-selection.component';
 import { RoomAdapter } from '@app/core/entities/adapters/room.adapter';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -19,6 +20,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReserveRoutingModule,
     SharedModule,
     ReactiveFormsModule,
+    FormsModule
   ],
   providers: [
     RoomAdapter
