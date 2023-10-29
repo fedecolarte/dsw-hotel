@@ -1,4 +1,4 @@
 export interface ValidateUserView {
     isValid: boolean;
-    message?: string;
+    message: string;
 }

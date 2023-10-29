@@ -12,7 +12,9 @@ import { BreakpointService } from './services/breakpoint.service';
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { UserAdapter } from './entities/adapters/user.adapter';
-import { NgxMaskDirective, NgxMaskModule, NgxMaskPipe } from 'ngx-mask';
+import {  NgxMaskModule } from 'ngx-mask';
+import { HttpClient } from '@angular/common/http';
+import { StoreService } from './services/store.service';
 import { RoomAdapter } from './entities/adapters/room.adapter';
 
 registerLocaleData(localeEsAR, environment.defaultLanguage);
@@ -50,8 +52,10 @@ export function LoaderFactory() {
       useValue: environment.defaultLanguage
     },
     BreakpointService,
+    HttpClient,
     UserAdapter,
-    RoomAdapter
+    RoomAdapter,
+    StoreService
   ],
 })
 export class CoreModule {
