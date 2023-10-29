@@ -1,0 +1,91 @@
+.card {
+    min-height: 170px;
+    background-color: #403C46;
+    border-radius: 15px;
+    box-shadow: 0px 10px 13px -7px #000000, 0px 7px 28px -5px rgba(0,0,0,0);
+}
+
+.w-50 {
+    width: 50%;
+}
+
+.custom-select {
+    background-color: #312e38;
+    color: white;
+    border: 2px solid white;
+}
+
+.h-custom {
+    height: 48.8px;
+}
+
+.mw-50 {
+    max-width: 50px!important;
+}
+
+.btn-primary {
+    background-color: white;
+    color: white;
+    border: 2px solid white;
+}
+
+.btn-primary:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.box-custom {
+    min-width: 350px;
+    background-color: #312e38;
+    border-radius: 8px;
+}
+
+.badge {
+    font-size: 12px;
+    font-weight: 600;
+    color: cornflowerblue;
+    border: 2px solid cornflowerblue;
+}
+
+.circled {
+    border: 2px solid white;
+    border-radius: 20px;
+    background-color: #312e38;
+}
+
+.min-width-550 {
+    min-width: 550px;
+}
+
+.fs-12 {
+    font-size: 12px;
+}
+
+.fs-14 {
+    font-size: 14px;
+}
+
+.fs-19 {
+    font-size: 19px;
+}
+
+.text-limegreen {
+    color: limegreen;
+}
+
+.margin-custom {
+    margin-top: 80px;
+}
+
+.custom-button {
+    background-color: #312e38;
+    border: 1px solid white;
+    color: white;
+}
+
+.center-absolute {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}

@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit {
     {
       name: 'Reservas',
       icon: 'luggage',
-      link: '/reservas',
+      link: '/reserva',
       disabled: false
     },
     {

@@ -15,6 +15,7 @@ import { UserAdapter } from './entities/adapters/user.adapter';
 import {  NgxMaskModule } from 'ngx-mask';
 import { HttpClient } from '@angular/common/http';
 import { StoreService } from './services/store.service';
+import { RoomAdapter } from './entities/adapters/room.adapter';
 
 registerLocaleData(localeEsAR, environment.defaultLanguage);
 
@@ -53,6 +54,7 @@ export function LoaderFactory() {
     BreakpointService,
     HttpClient,
     UserAdapter,
+    RoomAdapter,
     StoreService
   ],
 })
