@@ -9,9 +9,6 @@ import { ValidateUserView } from '@app/core/entities/views/validate-user.view';
 })
 export class StepFormComponent implements OnInit {
   formulario: FormGroup;
-  userValidation: ValidateUserView = {
-    isValid: true,
-  };
   isValid: boolean = false;
 
   constructor(private fb: FormBuilder) {
