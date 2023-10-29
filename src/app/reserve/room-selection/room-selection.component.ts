@@ -12,13 +12,15 @@ import { concatMap, take } from 'rxjs';
 })
 export class RoomSelectionComponent implements OnInit {
 
-  rooms: RoomView[];
+  rooms: RoomView[] | null;
   filters: RoomFilters;
   selectedRoomType: RoomTypeView;
   countPeople: number = 6;
+  emptyState: string;
 
   constructor(
     public roomService: RoomService) { 
+      this.emptyState = '../../../assets/images/reserve/empty-state.svg'
   }
 
   ngOnInit(): void {
@@ -29,7 +31,7 @@ export class RoomSelectionComponent implements OnInit {
       concatMap((filters) => this.roomService.searchRooms(filters)),
       take(1)
     ).subscribe((rooms) => {
-      this.rooms = rooms;
+        this.rooms = rooms;
     })
   }
 

@@ -23,7 +23,7 @@ export class RoomService {
     this.roomFilters.next(roomFilters);
   }
 
-  searchRooms(filters: RoomFilters | null): Observable<any> {
+  searchRooms(filters: RoomFilters | null): Observable<RoomView[] | null> {
     console.log(filters);
     const mock = searchRoomsResponseMock;
     const response: RoomResponse[] = mock.data;

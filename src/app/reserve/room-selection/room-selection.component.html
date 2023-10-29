@@ -37,7 +37,7 @@
 </div>
 <div class="d-flex flex-wrap align-items-center justify-content-center pb-5 position-relative">
     <ng-container *ngIf="(roomService.searchRoomsLoading$ | async); else searchRooms">
-        <div class="position-absolute center-absolute mt-5">
+        <div class="position-absolute center-absolute margin-custom">
             <app-spinner [relative]="true" height="72px" width="72px"></app-spinner>
         </div>
     </ng-container>
@@ -66,4 +66,11 @@
         </div>
     </div>
     </ng-template>
+    <div *ngIf="!rooms && !(roomService.searchRoomsLoading$ | async)">
+        <div class="empty-state d-flex flex-column justify-content-center align-items-center">
+            <img [src]="emptyState" height="300px" width="300px" class="filter">
+            <p class="mb-0 mt-3 text text-center fs-19 text-white fw-bold">No hay resultados</p>
+            <p class="text text-center text-white fs-14 mt-2">Modifique los filtros para visualizar habitaciones disponibles</p>
+        </div>
+    </div>
 </div>
