@@ -7,6 +7,7 @@ import { RoomSelectionComponent } from './room-selection/room-selection.componen
 import { RoomAdapter } from '@app/core/entities/adapters/room.adapter';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
+import { StepperComponent } from './stepper/stepper.component';
 
 
 
@@ -14,6 +15,7 @@ import { FormsModule } from '@angular/forms';
   declarations: [
     StepFormComponent,
     RoomSelectionComponent,
+    StepperComponent,
   ],
   imports: [
     CommonModule,
