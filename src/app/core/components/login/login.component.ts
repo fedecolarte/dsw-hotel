@@ -37,10 +37,11 @@ export class LoginComponent implements OnInit {
     });
 
     this.registerForm = this.formBuilder.group({
-      username: ['', Validators.required],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
+      documentNumber: ['', Validators.required],
       email: ['', Validators.required],
+      username: ['', Validators.required],
       password: ['', Validators.required],
       validatePassword: ['', Validators.required]
     })
@@ -100,7 +101,8 @@ export class LoginComponent implements OnInit {
         password: this.registerFormValue.password,
         firstName: this.registerFormValue.firstName, 
         lastName: this.registerFormValue.lastName,
-        email: this.registerFormValue.email
+        email: this.registerFormValue.email,
+        documento: this.registerFormValue.documentNumber
       }
       this.userService.registerUser(payload).subscribe(response => {
         if(response) {
