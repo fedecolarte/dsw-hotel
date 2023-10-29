@@ -1,4 +1,4 @@
 {
-    "esValido": false,
-    "mensaje": "Contraseña invalida" 
+    "esValido": true,
+    "mensaje": "" 
 }

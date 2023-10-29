@@ -8,8 +8,8 @@ export class UserAdapter {
 
   validateUserResponseToValidateUserView(validateUserResponse: ValidateUserResponse): ValidateUserView {
     return {
-        isValid: validateUserResponse.esValido,
-        message: validateUserResponse.mensaje ?? null
+        isValid: validateUserResponse.token ? true : false,
+        message: validateUserResponse.message ?? ''
     };
   }
 }

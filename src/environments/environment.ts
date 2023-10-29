@@ -5,7 +5,16 @@
 export const environment = {
   production: false,
   defaultLanguage: 'es-AR',
+  baseUrl: 'http://localhost:3000/api/',
+  apis: {
+    loginValidator: 'auth/login',
+    userApis: {
+      registerUser: 'usuario'
+    }
+  }
 };
+
+
 
 /*
  * For easier debugging in development mode, you can import the following file
