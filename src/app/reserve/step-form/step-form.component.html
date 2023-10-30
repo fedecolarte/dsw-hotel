@@ -1,7 +1,7 @@
-<a class="btn btn-link p-0 text-decoration-none d-flex flex-row align-items-center gap-2 back-hover mb-5"
+<a class="btn btn-link p-0 text-decoration-none d-flex flex-row align-items-center gap-2 back-hover mb-5 mt-4"
 (click)="goBack()">
     <span class="material-icons align-top">navigate_before</span>
-    <span>Ir a reservas</span>
+    <span>Volver al paso 1</span>
 </a>
 <h2 class="text fs-29 my-5">Formulario de contacto</h2>
 <form [formGroup]="formulario" class="formu py-4 px-5" (ngSubmit)="onSubmit()">
@@ -19,11 +19,11 @@
       <input type="number" class="text custom-input " id="dni" formControlName="dni">
     </div>
     <div class=" col px-4 py-3 ">
-      <span class="text  col-form-span" for="nacimiento">Nacimiento: </span>
+      <span class="text  col-form-span" for="nacimiento">Fecha de nacimiento: </span>
       <input type="date" class="text custom-input " id="nacimiento" formControlName="nacimiento">
     </div>      
     <div class=" col px-4 py-3">
-      <span class="text  col-form-span" for="pais">Pais: </span>
+      <span class="text  col-form-span" for="pais">País de residencia: </span>
       <input type="text" class="text custom-input " id="pais" formControlName="pais">
     </div>
     <div class=" col px-4 py-3">
@@ -32,7 +32,7 @@
     </div>
     <div class="row row-cols-sm-3 row-cols-1 justify-content-between px-0 mx-0 py-3">
       <div class=" col-sm-6 col-12 px-4 ">
-        <span class="text  col-form-span" for="direccion">Direccion: </span>
+        <span class="text  col-form-span" for="direccion">Dirección: </span>
         <input type="text" class="text custom-input " id="direccion" formControlName="direccion">
       </div>
       <div class=" col-sm-3 col-6 px-4">
@@ -46,7 +46,7 @@
     </div>
     
     <div class=" col px-4 py-3  ">
-      <span class="text " for="genero">Genero:</span>
+      <span class="text " for="genero">Género:</span>
       <div class="w-100 pt-4 row row-cols-sm-3 row-cols-1 px-2 ">
         <div class="form-check col d-flex justify-content-center">
           <input class="form-check-input bg-transparent border me-2" type="radio" id="genero1" formControlName="genero" value="Masculino">
@@ -63,16 +63,16 @@
     </div>
   </div>
     <div class="col px-4 py-3">
-      <span class="text" for="email">Email: </span>
+      <span class="text" for="email">E-mail: </span>
       <input type="text" class="text custom-input " id="email" formControlName="email">
     </div>
     <div class=" col px-4 py-3">
-      <span class="text " for="telefono">Telefono: </span>
+      <span class="text " for="telefono">Teléfono: </span>
       <input type="number" class="text custom-input " id="telefono" formControlName="telefono">
     </div>
   </div>
-  <div class="row justify-content-center">
-  <button class="btn custom-button text boton my-3" type="submit" [disabled]="!formulario.valid">Continuar</button>
+  <div class="row justify-content-end pt-4 pe-4">
+  <button class="btn custom-button text boton my-3 py-2 px-4" type="submit" [disabled]="!formulario.valid">Continuar</button>
   <!-- <div class="titulo text" *ngIf="!formulario.valid">Por favor, completar el formulario</div> -->
   <div class="titulo text" *ngIf="formulario.get('email')?.hasError('email')">El correo no es válido</div>
   </div>
