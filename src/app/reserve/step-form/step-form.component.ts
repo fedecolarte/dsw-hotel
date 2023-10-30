@@ -23,6 +23,7 @@ export class StepFormComponent implements OnInit {
       telefono: ['', Validators.required],
       nacimiento: ['', Validators.required],
       pais: ['', Validators.required],
+      localidad: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]]
     });
   }
@@ -37,6 +38,10 @@ export class StepFormComponent implements OnInit {
     } else {
       console.log('Formulario inválido, por favor, corrija los errores.');
     }
+  }
+
+  goBack(): void {
+    
   }
   
 }

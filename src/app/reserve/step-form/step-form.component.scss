@@ -1,5 +1,21 @@
-.fs-26 {
-    font-size: 26px;
+a {
+    &.back-hover {
+      transition: gap 0.2s ease;
+      width: 120px;
+  
+      &:hover {
+        gap: 0px !important;
+      }
+  
+      span.go-back {
+        font-size: 14px;
+        font-family: Poppins;
+      }
+    }
+}
+
+.fs-29 {
+    font-size: 29px;
 }
 
 .titulo {

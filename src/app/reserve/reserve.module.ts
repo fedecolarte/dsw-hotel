@@ -8,6 +8,7 @@ import { RoomAdapter } from '@app/core/entities/adapters/room.adapter';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { StepperComponent } from './stepper/stepper.component';
+import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -22,7 +23,8 @@ import { StepperComponent } from './stepper/stepper.component';
     ReserveRoutingModule,
     SharedModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgbNavModule
   ],
   providers: [
     RoomAdapter

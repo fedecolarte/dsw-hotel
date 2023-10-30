@@ -1,1 +1,70 @@
-<p>stepper works!</p>
+<div class="d-flex p-5">
+	<ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-pills fw-bold  text text-center px-4 py-4 background-box fs-22" orientation="vertical">
+		<li [ngbNavItem]="1">
+			<a ngbNavLink class="py-4" [ngClass]="{ 'is-active': active === 1 }">
+				<span class="material-symbols-outlined fs-29">
+					king_bed
+				</span>
+			</a>
+			<ng-template ngbNavContent>
+				<p>
+					Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth
+					master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro
+					keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat
+					salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.
+				</p>
+			</ng-template>
+		</li>
+		<div class="vertical-bar"><ngb-progressbar type="success" [height]="'10px'" [value]="100"></ngb-progressbar></div>
+		<li [ngbNavItem]="2">
+			<a ngbNavLink class="py-4" [ngClass]="{ 'is-active': active === 2 }">
+				<span class="material-symbols-outlined fs-29">
+					person
+				</span>
+			</a>
+			<ng-template ngbNavContent>
+				<app-step-form></app-step-form>
+			</ng-template>
+		</li>
+		<div class="vertical-bar"><ngb-progressbar type="success" [height]="'10px'" [value]="100"></ngb-progressbar></div>
+		<li [ngbNavItem]="3">
+			<a ngbNavLink class="py-4" [ngClass]="{ 'is-active': active === 3 }">
+				<span class="material-symbols-outlined fs-29">
+					door_sliding
+				</span>
+			</a>
+			<ng-template ngbNavContent>
+				<p>
+					Sed commodo, leo at suscipit dictum, quam est porttitor sapien, eget sodales nibh elit id diam. Nulla
+					facilisi. Donec egestas ligula vitae odio interdum aliquet. Duis lectus turpis, luctus eget tincidunt eu,
+					congue et odio. Duis pharetra et nisl at faucibus. Quisque luctus pulvinar arcu, et molestie lectus ultrices
+					et. Sed diam urna, egestas ut ipsum vel, volutpat volutpat neque. Praesent fringilla tortor arcu. Vivamus
+					faucibus nisl enim, nec tristique ipsum euismod facilisis. Morbi ut bibendum est, eu tincidunt odio. Orci
+					varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris aliquet odio ac lorem
+					aliquet ultricies in eget neque. Phasellus nec tortor vel tellus pulvinar feugiat.
+				</p>
+			</ng-template>
+		</li>
+		<div class="vertical-bar"><ngb-progressbar type="success" [height]="'10px'" [value]="100"></ngb-progressbar></div>
+		<li [ngbNavItem]="4">
+			<a ngbNavLink class="py-4" [ngClass]="{ 'is-active': active === 4 }">
+				<span class="material-symbols-outlined fs-29">
+					check
+				</span>
+			</a>
+			<ng-template ngbNavContent>
+				<p>
+					Sed commodo, leo at suscipit dictum, quam est porttitor sapien, eget sodales nibh elit id diam. Nulla
+					facilisi. Donec egestas ligula vitae odio interdum aliquet. Duis lectus turpis, luctus eget tincidunt eu,
+					congue et odio. Duis pharetra et nisl at faucibus. Quisque luctus pulvinar arcu, et molestie lectus ultrices
+					et. Sed diam urna, egestas ut ipsum vel, volutpat volutpat neque. Praesent fringilla tortor arcu. Vivamus
+					faucibus nisl enim, nec tristique ipsum euismod facilisis. Morbi ut bibendum est, eu tincidunt odio. Orci
+					varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris aliquet odio ac lorem
+					aliquet ultricies in eget neque. Phasellus nec tortor vel tellus pulvinar feugiat.
+				</p>
+			</ng-template>
+		</li>
+	</ul>
+
+	<div [ngbNavOutlet]="nav" class="ms-5 w-100"></div>
+</div>
