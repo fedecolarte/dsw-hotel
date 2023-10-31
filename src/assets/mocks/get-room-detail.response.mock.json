@@ -1,0 +1,9 @@
+{
+    "idHabitacion": 5,
+    "idTipoHabitacion": 1,
+    "tipoHabitacion": "Dúplex",
+    "estado": "Disponible",
+    "caracteristicas": "WiFi 5.4Hz, Smart TV 4K, Baño privado, Caja fuerte, Secador de pelo, Puertos de carga USB",
+    "capacidadPersonas": 4,
+    "precio": 18500
+}

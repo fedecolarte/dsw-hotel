@@ -1,18 +1,21 @@
 <div class="d-flex p-5">
 	<ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-pills fw-bold  text text-center px-4 py-4 background-box fs-22" orientation="vertical">
 		<li [ngbNavItem]="1">
-			<a ngbNavLink class="py-4" [ngClass]="{ 'is-active': active === 1 }">
+			<a ngbNavLink class="py-4" (click)="changeStep()"
+			[ngClass]="{ 'is-active': active === 1 || (stepperService.stepOne$ | async) }"> 
 				<span class="material-symbols-outlined fs-29">
 					king_bed
 				</span>
 			</a>
 			<ng-template ngbNavContent>
-				<app-step-detail-room></app-step-detail-room>
+				<app-step-detail-room (goNextStep)="goNextStep()"></app-step-detail-room>
 			</ng-template>
 		</li>
-		<div class="vertical-bar"><ngb-progressbar type="success" [height]="'10px'" [value]="100"></ngb-progressbar></div>
-		<li [ngbNavItem]="2">
-			<a ngbNavLink class="py-4" [ngClass]="{ 'is-active': active === 2 }">
+		<div class="vertical-bar"><ngb-progressbar type="success" [height]="'10px'" [value]="pb1"></ngb-progressbar></div>
+		<li [ngbNavItem]="2" [disabled]="!(stepperService.stepOne$ | async)">
+			<a ngbNavLink class="py-4" (click)="changeStep()"
+			[ngClass]="{
+				'is-active': active === 2}">
 				<span class="material-symbols-outlined fs-29">
 					person
 				</span>
@@ -21,9 +24,9 @@
 				<app-step-form></app-step-form>
 			</ng-template>
 		</li>
-		<div class="vertical-bar"><ngb-progressbar type="success" [height]="'10px'" [value]="100"></ngb-progressbar></div>
-		<li [ngbNavItem]="3">
-			<a ngbNavLink class="py-4" [ngClass]="{ 'is-active': active === 3 }">
+		<div class="vertical-bar"><ngb-progressbar type="success" [height]="'10px'" [value]="pb2"></ngb-progressbar></div>
+		<li [ngbNavItem]="3" [disabled]="!(stepperService.stepOne$ | async)">
+			<a ngbNavLink class="py-4" [ngClass]="{ 'is-active': active === 3 }" (click)="changeStep()">
 				<span class="material-symbols-outlined fs-29">
 					door_sliding
 				</span>
@@ -40,9 +43,9 @@
 				</p>
 			</ng-template>
 		</li>
-		<div class="vertical-bar"><ngb-progressbar type="success" [height]="'10px'" [value]="100"></ngb-progressbar></div>
-		<li [ngbNavItem]="4">
-			<a ngbNavLink class="py-4" [ngClass]="{ 'is-active': active === 4 }">
+		<div class="vertical-bar"><ngb-progressbar type="success" [height]="'10px'" [value]="pb3"></ngb-progressbar></div>
+		<li [ngbNavItem]="4" [disabled]="!(stepperService.stepOne$ | async)">
+			<a ngbNavLink class="py-4" [ngClass]="{ 'is-active': active === 4 }" (click)="changeStep()">
 				<span class="material-symbols-outlined fs-29">
 					check
 				</span>
