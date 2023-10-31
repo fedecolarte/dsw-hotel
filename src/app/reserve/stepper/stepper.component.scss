@@ -20,12 +20,11 @@
 
 .progress {
     border-radius: 0px!important;
-
-  
+    background-color: #312e38;
 }
 
 ::ng-deep ngb-progressbar .bg-success {
-    background-color: #312e38!important;
+    background-color: white!important;
 }
 
 .background-box {
