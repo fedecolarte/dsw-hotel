@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { StepperComponent } from './stepper/stepper.component';
 import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
+import { SuccessComponent } from './success/success.component';
 
 
 
@@ -17,6 +18,7 @@ import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
     StepFormComponent,
     RoomSelectionComponent,
     StepperComponent,
+    SuccessComponent,
   ],
   imports: [
     CommonModule,
