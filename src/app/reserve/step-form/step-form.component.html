@@ -4,7 +4,7 @@
     <span>Volver al paso 1</span>
 </a>
 <h2 class="text fs-29 my-5">Formulario de contacto</h2>
-<form [formGroup]="formulario" class="formu py-4 px-5" (ngSubmit)="onSubmit()">
+<form [formGroup]="formulario" class="formu p-5" (ngSubmit)="onSubmit()">
   <div class="row gx-5 row-cols-1 row-cols-md-2 align-items-center text-start px-4 ">
     <div class=" col px-4 py-3">
       <span class="text" for="nombre">Nombre: </span>
@@ -71,9 +71,7 @@
       <input type="number" class="text custom-input " id="telefono" formControlName="telefono">
     </div>
   </div>
-  <div class="row justify-content-end pt-4 pe-4">
-  <button class="btn custom-button text boton my-3 py-2 px-4" type="submit" [disabled]="!formulario.valid">Continuar</button>
-  <!-- <div class="titulo text" *ngIf="!formulario.valid">Por favor, completar el formulario</div> -->
-  <div class="titulo text" *ngIf="formulario.get('email')?.hasError('email')">El correo no es válido</div>
+  <div class="d-flex justify-content-end pt-4 pe-4">
+  <button class="btn btn-outline-secondary px-5 py-2 text text-white border-button" type="submit" [disabled]="!formulario.valid">Avanzar</button>
   </div>
 </form>
