@@ -44,7 +44,11 @@ a {
 }
 
 .mw-450 {
-  max-width: 450px;
+  max-width: 65vw;
+
+  @media (min-width: 992px) {
+    max-width: 450px;
+  }
 }
 
 .border {
@@ -57,6 +61,10 @@ a {
 
 .fs-10 {
   font-size: 10px;
+}
+
+.fs-12 {
+  font-size: 12px;
 }
 
 .fs-14 {
@@ -88,8 +96,21 @@ a {
   font-weight: 600;
   color: cornflowerblue;
   border: 2px solid cornflowerblue;
+  width: 105px;
 }
 
 .border-left {
   border-left: 2px solid white;
+}
+
+.mobile-title {
+  @media (max-width: 991.98px) {
+    font-size: 19px!important;
+  } 
+}
+
+.btn-mb {
+  @media (max-width: 767.98px) {
+    width: 100%;
+  }
 }
