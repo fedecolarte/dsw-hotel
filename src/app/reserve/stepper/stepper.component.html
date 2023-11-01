@@ -1,5 +1,7 @@
-<div class="d-flex p-5">
-	<ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-pills fw-bold  text text-center px-4 py-4 background-box fs-22" orientation="vertical">
+<div class="d-flex flex-xl-row flex-column p-2 p-xl-5">
+	<ul ngbNav #nav="ngbNav" [(activeId)]="active" 
+	class="d-flex flex-row nav-pills fw-bold justify-content-center justify-content-xl-start text text-center
+	p-4 background-box fs-22 flex-xl-column flex-nowrap">
 		<li [ngbNavItem]="1">
 			<a ngbNavLink class="py-4" (click)="changeStep()"
 			[ngClass]="{ 'is-active': active === 1 || (stepperService.stepOne$ | async) }"> 
@@ -56,5 +58,5 @@
 		</li>
 	</ul>
 
-	<div [ngbNavOutlet]="nav" class="ms-5 w-100"></div>
+	<div [ngbNavOutlet]="nav" class="ms-xl-5 w-100"></div>
 </div>

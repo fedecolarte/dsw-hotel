@@ -15,7 +15,7 @@
             <a *ngIf="!(userService.isLogged$ | async) else logged" class="nav-link sign-in bg-white my-3 my-md-0 ms-lg-4" (click)="openLogin()" role="button">{{ tab.name }}</a>
           </ng-template>
           <ng-template #logged>
-            <div class="d-flex align-items-center justify-content-center ms-4 mt-2">
+            <div class="d-flex align-items-center justify-content-md-center ms-md-4 my-2 mt-md-2">
               <span class="material-symbols-outlined text-green me-2">contactless</span>
               <span class="text-green text">Conectado</span>
             </div>

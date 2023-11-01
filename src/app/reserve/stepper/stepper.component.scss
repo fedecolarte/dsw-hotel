@@ -12,10 +12,19 @@
 
 .vertical-bar {
     position: relative;
-    height: 60px;
-    width: 60px;
-    margin-left: -14px;
-    transform: rotate(90deg);
+    height: 30px;
+    width: 50px;
+    margin-top: 38px;
+    overflow: scroll;
+    
+    @media (min-width:1200px) {
+        margin-top: 0px;
+        transform: rotate(90deg);
+        height: 60px;
+        width: 60px;
+        margin-left: -14px;
+        overflow: auto;
+    }
 }
 
 .progress {
