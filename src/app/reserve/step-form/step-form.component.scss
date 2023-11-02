@@ -85,51 +85,8 @@ a {
     border: 2px solid #312e38!important;
 }
 
-.custom-input:focus {
-    outline: none;
-    box-shadow: none;
-}
-
-.custom-select {
-    border-radius: 0px;
-    padding: 0.5px 2px;
-}
-
-
-.btn-primary {
-    background-color: black;
-    color: white;
-    border: 2px solid #010412;
-}
-
-.btn-primary:focus {
-    outline: none;
-    box-shadow: none;
-}
-
-.text-gray {
-    color: #20292B;
-}
-
-.text-error {
-    color: red;
-    padding-left: 20px;
-    background-color: rgb(238, 238, 238);
-}
-
-.is-valid {
-    border-color: lawngreen;
-}
-
-.is-invalid {
-    border-color: red;
-}
-
-.btn-width {
-    width: 120px;
-    height: 40px;
-}
-
-.valid-check {
-    color: lawngreen;
-}
+.mobile-title {
+    @media (max-width: 991.98px) {
+      font-size: 19px!important;
+    } 
+  }
