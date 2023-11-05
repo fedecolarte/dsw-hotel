@@ -11,6 +11,7 @@ import { StepperComponent } from './stepper/stepper.component';
 import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { SuccessComponent } from './success/success.component';
 import { StepDetailRoomComponent } from './step-detail-room/step-detail-room.component';
+import { SummaryAndPaymentComponent } from './summary-and-payment/summary-and-payment.component';
 
 
 
@@ -21,6 +22,7 @@ import { StepDetailRoomComponent } from './step-detail-room/step-detail-room.com
     StepperComponent,
     SuccessComponent,
     StepDetailRoomComponent,
+    SummaryAndPaymentComponent,
   ],
   imports: [
     CommonModule,
@@ -28,7 +30,7 @@ import { StepDetailRoomComponent } from './step-detail-room/step-detail-room.com
     SharedModule,
     ReactiveFormsModule,
     FormsModule,
-    NgbNavModule
+    NgbNavModule,
   ],
   providers: [
     RoomAdapter
