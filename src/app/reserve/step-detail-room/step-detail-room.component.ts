@@ -72,7 +72,7 @@ export class StepDetailRoomComponent implements OnInit {
   }
 
   saveStep(): void {
-    this.stepperService.saveStepOne();
+    this.stepperService.saveStepOne(this.roomDetail);
     this.goNextStep.emit(true);
   }
 }
