@@ -60,7 +60,7 @@
                 <p class="card-text text text-white fs-12">Hasta {{ room.peopleCapacity }} personas</p>
                 <div class="d-flex align-items-center justify-content-between">
                 <span class="text text-limegreen">${{ room.price }}</span>
-                <button class="btn btn-primary custom-button text">Ver detalle</button>
+                <button class="btn btn-primary custom-button text" (click)="navigateToReserveProcess(room.idRoom)">Ver detalle</button>
                 </div>
             </div>
         </div>

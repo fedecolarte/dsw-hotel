@@ -20,7 +20,24 @@
     </div>
     <div class=" col px-4 py-3 ">
       <span class="text  col-form-span" for="nacimiento">Fecha de nacimiento: </span>
-      <input type="date" class="text custom-input " id="nacimiento" formControlName="nacimiento">
+      <div class="input-group">
+        <input
+          [minDate]="{year: 1950, month: 1, day: 1}"
+          [maxDate]="{year: 2005, month: 12, day: 31}"
+          class="form-control"
+          placeholder="dd/mm/yyyy"
+          name="d2"
+          id="nacimiento"
+          formControlName="nacimiento"
+          ngbDatepicker
+          #d2="ngbDatepicker"
+        />
+        <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d2.toggle()" type="button">
+          <span class="material-symbols-outlined mt-1 text-white">
+            calendar_month
+          </span>
+        </button>
+      </div>
     </div>      
     <div class=" col px-4 py-3">
       <span class="text  col-form-span" for="pais">País de residencia: </span>
@@ -72,6 +89,6 @@
     </div>
   </div>
   <div class="d-flex justify-content-end pt-4 pe-4">
-  <button class="btn btn-outline-secondary px-5 py-2 text text-white border-button" type="submit" [disabled]="!formulario.valid">Avanzar</button>
+  <button class="btn btn-outline-secondary px-5 py-2 text text-white border-button" type="submit" [disabled]="!formulario.valid" (click)="saveStep()">Avanzar</button>
   </div>
 </form>

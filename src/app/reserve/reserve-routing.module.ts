@@ -10,7 +10,7 @@ const routes: Routes = [
       component: RoomSelectionComponent
     },
     {
-      path: 'reserva-habitacion',
+      path: 'reserva-habitacion/:idRoom',
       component: StepperComponent
     }
   ];

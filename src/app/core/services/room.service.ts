@@ -49,6 +49,7 @@ export class RoomService {
   }
 
   getRoomDetail(roomId: number): Observable<RoomDetailView> {
+    console.log(roomId);
     const response = getRoomDetailResponseMock;
 
     this.roomDetailLoading.next(true);

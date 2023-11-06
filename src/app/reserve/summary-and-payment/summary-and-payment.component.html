@@ -7,6 +7,60 @@
 <div class="card px-1 py-md-4 px-md-5">
     <div class="row gap-5 justify-content-around">
         <div class="border col-7 p-4">
+            <div *ngIf="(reserveInfo$ | async) as reserve">
+                <h5 class="title text text-white fw-bold mb-0 mt-4">INFORMACIÓN DE LA RESERVA</h5>
+                <div class="row row-cols-1 row-cols-md-3">
+                    <div class="item d-flex flex-column col mt-4">
+                        <span class="subtitle fw-bold text">NUMERO DE HABITACIÓN</span>
+                        <span class="subtitle text">Habitación 1{{ reserve.roomId < 10 ? '0'+reserve.roomId : reserve.roomId }}</span>
+                    </div>
+                    <div class="item d-flex flex-column justify-content-center col mt-4">
+                        <span class="subtitle fw-bold text">TIPO DE HABITACIÓN</span>
+                        <span class="subtitle text">{{ reserve.roomType }}</span>
+                    </div>
+                    <div class="item d-flex flex-column col mt-4">
+                        <span class="subtitle fw-bold text">FECHA DE INGRESO</span>
+                        <span class="subtitle text">{{ reserve.checkIn }}</span>
+                    </div>
+                    <div class="item d-flex flex-column col mt-4">
+                        <span class="subtitle fw-bold text">FECHA DE SALIDA</span>
+                        <span class="subtitle text">{{ reserve.checkOut }}</span>
+                    </div>
+                    <div class="item d-flex flex-column col mt-4">
+                        <span class="subtitle fw-bold text">CANTIDAD DE PERSONAS</span>
+                        <span class="subtitle text">{{ reserve.peopleCapacity }} personas</span>
+                    </div>
+                    <div class="item d-flex flex-column col mt-4">
+                        <span class="subtitle fw-bold text">PRECIO FINAL</span>
+                        <span class="subtitle text">$ {{ reserve.price }}</span>
+                    </div>
+                </div>
+                <h5 class="title text text-white fw-bold mt-5 mb-0">INFORMACIÓN DEL CLIENTE</h5>
+                <div class="row row-cols-3">
+                    <div class="item d-flex flex-column col mt-4">
+                        <span class="subtitle fw-bold text">NOMBRE</span>
+                        <span class="subtitle text">{{ reserve.clientName }}</span>
+                    </div>
+                    <div class="item d-flex flex-column justify-content-center col mt-4">
+                        <span class="subtitle fw-bold text">APELLIDO</span>
+                        <span class="subtitle text">{{ reserve.clientSurname }}</span>
+                    </div>
+                    <div class="item d-flex flex-column col mt-4">
+                        <span class="subtitle fw-bold text">DNI</span>
+                        <span class="subtitle text">{{ reserve.documentNumber }}</span>
+                    </div>
+                    <div class="item d-flex flex-column col mt-4">
+                        <span class="subtitle fw-bold text">FECHA DE NACIMIENTO</span>
+                        <span class="subtitle text">{{ reserve.birthdate }}</span>
+                    </div>
+                    <div class="item d-flex flex-column col mt-4">
+                        <span class="subtitle fw-bold text">E-MAIL</span>
+                        <span class="subtitle text">{{ reserve.email }}</span>
+                    </div>
+                    <div class="item d-flex flex-column col mt-4">
+                        <span class="subtitle fw-bold text">CELULAR</span>
+                        <span class="subtitle text">{{ reserve.cellphone }}</span>
+                    </div>
             <h5 class="title text text-white fw-bold mb-0 mt-4">INFORMACIÓN DE LA RESERVA</h5>
             <div class="row row-cols-1 row-cols-md-3">
                 <div class="item d-flex flex-column col mt-4">

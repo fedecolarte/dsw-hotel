@@ -1,8 +1,9 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { RoomDetailView } from '@app/core/entities/views/room-detail.view';
 import { RoomService } from '@app/core/services/room.service';
 import { StepperService } from '@app/core/services/stepper.service';
-import { take } from 'rxjs';
+import { concatMap, take } from 'rxjs';
 
 @Component({
   selector: 'app-step-detail-room',
@@ -22,6 +23,7 @@ export class StepDetailRoomComponent implements OnInit {
 
   constructor(
     private stepperService: StepperService,
+    private activatedRoute: ActivatedRoute,
     public roomService: RoomService
     ) {
       this.img = '../../../assets/images/reserve/room.jpg';
@@ -62,7 +64,10 @@ export class StepDetailRoomComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    this.roomService.getRoomDetail(5).pipe(take(1)).subscribe(roomDetail => {
+    this.activatedRoute.params.pipe(
+      concatMap((params) => this.roomService.getRoomDetail(params['idRoom'])),
+      take(1)
+    ).subscribe((roomDetail) => {
       this.roomDetail = roomDetail;
     })
   }

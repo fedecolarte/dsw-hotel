@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RoomTypeView, RoomView } from '@app/core/entities/views/room.view';
 import { RoomFilters } from '@app/core/filters/room.filters';
 import { RoomService } from '@app/core/services/room.service';
@@ -19,7 +20,9 @@ export class RoomSelectionComponent implements OnInit {
   emptyState: string;
 
   constructor(
-    public roomService: RoomService) { 
+    public roomService: RoomService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router,) { 
       this.emptyState = '../../../assets/images/reserve/empty-state.svg'
   }
 
@@ -85,5 +88,11 @@ export class RoomSelectionComponent implements OnInit {
   
       this.getRooms();
     }
+  }
+
+  navigateToReserveProcess(idRoom: number): void {
+    const route = `reserva-habitacion/${idRoom}`;
+
+    this.router.navigate([route], { relativeTo: this.activatedRoute });
   }
 }

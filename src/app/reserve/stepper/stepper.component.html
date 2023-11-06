@@ -17,13 +17,13 @@
 		<li [ngbNavItem]="2" [disabled]="(stepperService.stepOne$ | async) === null">
 			<a ngbNavLink class="py-4" (click)="changeStep()"
 			[ngClass]="{
-				'is-active': active === 2}">
+				'is-active': active === 2  || (stepperService.stepTwo$ | async) !== null  }">
 				<span class="material-symbols-outlined fs-29">
 					person
 				</span>
 			</a>
 			<ng-template ngbNavContent>
-				<app-step-form></app-step-form>
+				<app-step-form (goNextStep)="goNextStep()"></app-step-form>
 			</ng-template>
 		</li>
 		<div class="vertical-bar"><ngb-progressbar type="success" [height]="'10px'" [value]="pb2"></ngb-progressbar></div>
