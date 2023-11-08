@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { InfoReserve } from '@app/core/entities/views/info-reserve.view';
 import { RoomService } from '@app/core/services/room.service';
 import { StepperService } from '@app/core/services/stepper.service';
@@ -12,8 +12,11 @@ import { format, parseISO, formatISO } from 'date-fns';
 })
 export class SummaryAndPaymentComponent implements OnInit {
 
+  @Output() goNextStep = new EventEmitter<any>();
+
   paymentImg: string;
   reserveInfo$: Observable<InfoReserve | null>;
+  reserveInfo: InfoReserve;
 
   constructor(
     private roomService: RoomService,
@@ -46,7 +49,8 @@ export class SummaryAndPaymentComponent implements OnInit {
               email: stepTwo.email,
               cellphone: stepTwo.cellphone
             }
-            console.log(infoReserve);
+
+            this.reserveInfo = infoReserve;
             return infoReserve;
           }
 
@@ -57,5 +61,10 @@ export class SummaryAndPaymentComponent implements OnInit {
   }
 
   goBack(): void {
+  }
+
+  saveStep(): void {
+    this.stepperService.createReserve(this.reserveInfo);
+    this.goNextStep.emit(true);
   }
 }

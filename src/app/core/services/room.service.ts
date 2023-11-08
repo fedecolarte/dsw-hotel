@@ -63,4 +63,8 @@ export class RoomService {
       })
     )
   }
+
+  onDestroy(): void {
+    this.roomFilters.next(null);
+  }
 }
