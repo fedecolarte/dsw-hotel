@@ -1,9 +1,10 @@
 export interface RoomDetailResponse {
-    idHabitacion: number;
+    id: number;
     idTipoHabitacion: number;
-    tipoHabitacion: string;
     estado: string;
     capacidadPersonas: number;
     precio: number;
     caracteristicas: string;
+    descuento: number;
+    deletedAt: null;
 }

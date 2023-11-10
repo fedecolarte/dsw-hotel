@@ -6,5 +6,7 @@ export interface RoomDetailView {
     status: string;
     peopleCapacity: number;
     price: number;
+    finalPrice: number;
+    discount: number;
     characteristics: string[];
 }

@@ -22,8 +22,8 @@ export class StepDetailRoomComponent implements OnInit {
   }[];
 
   constructor(
-    private stepperService: StepperService,
     private activatedRoute: ActivatedRoute,
+    public stepperService: StepperService,
     public roomService: RoomService
     ) {
       this.img = '../../../assets/images/reserve/room.jpg';

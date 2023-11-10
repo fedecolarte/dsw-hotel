@@ -9,7 +9,10 @@ export const environment = {
   apis: {
     loginValidator: 'auth/login',
     userApis: {
-      registerUser: 'usuario'
+      user: 'usuario'
+    },
+    roomApis: {
+      room: 'habitacion'
     }
   }
 };

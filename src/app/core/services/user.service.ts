@@ -86,7 +86,7 @@ export class UserService {
   }
 
   registerUser(registerRequest: RegisterUserRequest): Observable<any> {
-    const endpoint: string = environment.baseUrl + environment.apis.userApis.registerUser;
+    const endpoint: string = environment.baseUrl + environment.apis.userApis.user;
     console.log(endpoint);
     this.registerPersonLoading.next(true);
 
