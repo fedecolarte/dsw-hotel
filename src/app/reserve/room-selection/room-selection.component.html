@@ -1,11 +1,11 @@
 <div class="d-flex justify-content-center mb-5">
-    <div class="card container w-75 mt-4">
-        <div class="d-flex justify-content-around flex-wrap mt-5">
-            <div class="box-custom px-3 py-2 mb-3 col-10 col-lg-5">
+    <div class="card w-75 mt-4">
+        <div class="d-flex justify-content-around flex-wrap mt-3 mx-2 mt-md-5 mx-md-0">
+            <div class="d-flex flex-column box-custom px-3 py-2 mb-3">
                 <label class="text text-white mb-1 me-3">Check In/Out</label>
                 <app-datepicker (emitValues)="setDateFilter($event)"></app-datepicker>
             </div>
-            <div class="box-custom px-3 py-2 mb-3 col-10 col-lg-3">
+            <div class="d-flex flex-column box-custom px-3 py-2 mb-3">
                 <label class="text text-white mb-1 me-3">Tipo de habitación</label>
                 <select class="form-control text custom-select h-custom" aria-label="Default select example" name="roomType" [(ngModel)]="selectedRoomType" (ngModelChange)="onRoomTypeChange()">
                     <option [ngValue]="undefined" selected>Todos</option>
@@ -16,7 +16,7 @@
                     <option [ngValue]="{ id: 5, description: 'Suite Presidencial' }">Suite Presidencial</option>
                 </select>
             </div>
-            <div class="box-custom px-3 py-2 mb-3 col-10 col-lg-3">
+            <div class="d-flex flex-column box-custom px-3 py-2 mb-3">
                 <label class="text text-white mb-1 me-3">Personas</label>
                 <div class="input-group h-custom">
                     <button class="btn btn-outline-secondary custom-select" (click)="onCountPeopleChange(false)" type="button">
@@ -35,7 +35,7 @@
         </div>
     </div> 
 </div>
-<div class="d-flex flex-wrap align-items-center justify-content-center pb-5 position-relative">
+<div class="d-flex flex-wrap align-items-center justify-content-center pb-5 position-relative mh-200">
     <ng-container *ngIf="(roomService.searchRoomsLoading$ | async); else searchRooms">
         <div class="position-absolute center-absolute margin-custom">
             <app-spinner [relative]="true" height="72px" width="72px"></app-spinner>
@@ -59,8 +59,14 @@
             </h5>
                 <p class="card-text text text-white fs-12">Hasta {{ room.peopleCapacity }} personas</p>
                 <div class="d-flex align-items-center justify-content-between">
-                <span class="text text-limegreen">${{ room.price }}</span>
-                <button class="btn btn-primary custom-button text" (click)="navigateToReserveProcess(room.idRoom)">Ver detalle</button>
+                    <div class="d-flex align-items-center justify-content-start justify-content-lg-end">
+                        <div class="d-flex flex-column">
+                            <span class="text text-darkgray fs-12 lh-1" *ngIf="room.discount > 0"><del>$ {{ room.price }}</del></span>
+                            <span class="text text-gray fs-26 me-2">$ {{ room.finalPrice }}</span>
+                        </div>
+                        <span class="descuento text text-limegreen fs-12 align-self-end" *ngIf="room.discount > 0">{{room.discount}}% OFF</span>
+                    </div>
+                    <button class="btn btn-primary custom-button text" (click)="navigateToReserveProcess(room.idRoom)">Ver detalle</button>
                 </div>
             </div>
         </div>
@@ -68,7 +74,7 @@
     </ng-template>
     <div *ngIf="!rooms && !(roomService.searchRoomsLoading$ | async)">
         <div class="empty-state d-flex flex-column justify-content-center align-items-center">
-            <img [src]="emptyState" height="300px" width="300px" class="filter">
+            <img [src]="emptyState" height="75%" width="75%" class="filter">
             <p class="mb-0 mt-3 text text-center fs-19 text-white fw-bold">No hay resultados</p>
             <p class="text text-center text-white fs-14 mt-2">Modifique los filtros para visualizar habitaciones disponibles</p>
         </div>
