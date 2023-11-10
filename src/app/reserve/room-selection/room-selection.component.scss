@@ -5,6 +5,10 @@
     box-shadow: 0px 10px 13px -7px #000000, 0px 7px 28px -5px rgba(0,0,0,0);
 }
 
+.custom-input{
+    padding: 20px;
+}
+
 .w-50 {
     width: 50%;
 }
@@ -35,7 +39,6 @@
 }
 
 .box-custom {
-    min-width: 350px;
     background-color: #312e38;
     border-radius: 8px;
 }

@@ -19,7 +19,7 @@
       <input type="number" class="text custom-input " id="dni" formControlName="dni">
     </div>
     <div class=" col px-4 py-3 ">
-      <span class="text  col-form-span" for="nacimiento">Fecha de nacimiento: </span>
+      <span class="text col-form-span" for="nacimiento">Fecha de nacimiento: </span>
       <div class="input-group">
         <input
           [minDate]="{year: 1950, month: 1, day: 1}"
@@ -61,20 +61,19 @@
         <input type="text" class="text custom-input2 " id="depto" formControlName="depto">
       </div>
     </div>
-    
-    <div class=" col px-4 py-3  ">
+    <div class="col px-4 py-3">
       <span class="text " for="genero">Género:</span>
       <div class="w-100 pt-4 row row-cols-sm-3 row-cols-1 px-2 ">
-        <div class="form-check col d-flex justify-content-center">
-          <input class="form-check-input bg-transparent border me-2" type="radio" id="genero1" formControlName="genero" value="Masculino">
+        <div class="form-check col d-flex justify-content-normal">
+          <input class="form-check-input bg-transparent border me-2 mb-2 px-1" type="radio" id="genero1" formControlName="genero" value="Masculino">
           <span class="form-check-span text fs-14" for="genero1">Masculino</span>
         </div>
-        <div class="form-check col d-flex justify-content-center">
-          <input class="form-check-input bg-transparent border me-2" type="radio" id="genero2" formControlName="genero" value="Femenino">
+        <div class="form-check col d-flex justify-content-normal">
+          <input class="form-check-input bg-transparent border me-2 mb-2 px-1" type="radio" id="genero2" formControlName="genero" value="Femenino">
           <span class="form-check-span text fs-14" for="genero2">Femenino</span>
         </div>
-        <div class="form-check col d-flex justify-content-center">
-          <input class="form-check-input bg-transparent border me-2" type="radio" id="genero3" formControlName="genero" value="Otro">
+        <div class="form-check col d-flex justify-content-normal">
+          <input class="form-check-input bg-transparent border me-2 mb-2 px-1" type="radio" id="genero3" formControlName="genero" value="Otro">
           <span class="form-check-span text fs-14" for="genero3">Otro</span>
         </div>
     </div>
