@@ -72,12 +72,12 @@
             <div class="d-flex justify-content-between align-items-center mx-4 mt-2 mb-5" *ngIf="(reserveInfo$ | async) as reserve">
                 <span class="text text-white"><em>Pagás</em></span>
                 <div class="d-flex align-items-center">
-                        <span class="text text-gray me-2"><em>{{ reserve.price }}</em></span>
+                        <span class="text text-gray me-2"><em>$ {{ reserve.price }}</em></span>
                         <span class="descuento text text-limegreen fs-10"><em>20% OFF</em></span>
                 </div>
             </div>
             <hr>
-            <button class="btn btn-outline-secondary px-5 py-2 text text-white border-button me-xl-3 my-3 btn-mb w-100">Confirmar</button>
+            <button class="btn btn-outline-secondary px-5 py-2 text text-white border-button me-xl-3 my-3 btn-mb w-100" (click)="saveStep()">Confirmar</button>
         </div>
     </div>
 </div>
