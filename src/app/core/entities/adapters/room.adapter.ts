@@ -9,6 +9,9 @@ export class RoomAdapter {
   constructor() {}
 
   roomListResponseToView(roomResponse: RoomResponse): RoomView {
+    const finalPrice: number = roomResponse.descuento ?
+                                (roomResponse.precio - ((roomResponse.precio * roomResponse.descuento) / 100)) :
+                                roomResponse.precio;
     return {
       idRoom: roomResponse.idHabitacion,
         roomType: {
@@ -17,7 +20,9 @@ export class RoomAdapter {
         },
         status: roomResponse.estado,
         peopleCapacity: roomResponse.capacidadPersonas,
-        price: roomResponse.precio
+        price: roomResponse.precio,
+        discount: roomResponse.descuento,
+        finalPrice
     };
   }
 
