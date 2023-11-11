@@ -85,7 +85,7 @@ export class LoginComponent implements OnInit {
       if(!this.userValidation.isValid) this.loginForm.setErrors({ 'loginValidator': !this.userValidation.isValid });
       else {
         this.isValid = true;
-        this.userService.setUserLogged(this.loginFormValue.username, true);
+        this.userService.setUserLogged(this.loginFormValue.username);
         setTimeout(() => {
           this.modalService.close();
         },600)

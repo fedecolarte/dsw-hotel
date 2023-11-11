@@ -22,6 +22,20 @@
     font: normal normal normal 16px/22px Poppins;
 }
 
+.bg-custom {
+    background-color: #312e38;
+
+    .close-session {
+        &:hover {
+            background-color: #1f1e21;
+        }
+    
+        &:focus {
+            background-color: #1f1e21;
+        }
+    }
+}
+
 .burger-menu{
     transition: all .25s ease-in;
     border-top: 2px solid white;
