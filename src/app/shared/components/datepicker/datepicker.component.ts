@@ -11,6 +11,8 @@ export class DatepickerComponent implements OnInit {
   hoveredDate: NgbDate | null = null;
   fromDate: NgbDate | null;
   toDate: NgbDate | null;
+  minDate: NgbDate;
+  
   @Output() emitValues = new EventEmitter<any>();
 
   constructor(
@@ -18,7 +20,7 @@ export class DatepickerComponent implements OnInit {
     public formatter: NgbDateParserFormatter,
     public breakpointService: BreakpointService) {
       const today = new Date();
-      this.fromDate = new NgbDate(today.getFullYear(), today.getMonth() + 1, today.getDate());
+      this.minDate = new NgbDate(today.getFullYear(), today.getMonth() + 1, today.getDate());
     }
 
   ngOnInit(): void {
