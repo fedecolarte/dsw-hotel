@@ -11,4 +11,5 @@ export interface InfoReserve {
     birthdate: string,
     email: string,
     cellphone: string;
+    discount: number;
 }
