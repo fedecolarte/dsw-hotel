@@ -5,6 +5,8 @@ import { NgbDatepickerModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { DatepickerComponent } from './components/datepicker/datepicker.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { CredentialsInterceptor } from '@app/core/interceptors/credentials.interceptor';
 
 
 @NgModule({
@@ -26,5 +28,12 @@ import { DatepickerComponent } from './components/datepicker/datepicker.componen
     SpinnerComponent,
     DatepickerComponent
   ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: CredentialsInterceptor,
+      multi: true
+    },
+  ]
 })
 export class SharedModule {}
