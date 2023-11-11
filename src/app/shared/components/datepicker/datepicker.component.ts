@@ -17,7 +17,9 @@ export class DatepickerComponent implements OnInit {
     private calendar: NgbCalendar,
     public formatter: NgbDateParserFormatter,
     public breakpointService: BreakpointService) {
-  }
+      const today = new Date();
+      this.fromDate = new NgbDate(today.getFullYear(), today.getMonth() + 1, today.getDate());
+    }
 
   ngOnInit(): void {
   }

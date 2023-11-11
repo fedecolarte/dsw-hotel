@@ -12,6 +12,7 @@
 					[displayMonths]="(breakpointService.isMobile$ | async) ? 1 : 2"
 					[dayTemplate]="t"
 					outsideDays="hidden"
+					[minDate]="fromDate!"
 					[startDate]="fromDate!"
 					tabindex="-1"
 				/>
