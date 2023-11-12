@@ -45,3 +45,14 @@
 .fs-29 {
     font-size: 29px;
 }
+
+.border {
+    border: 2px solid #312e38;
+    border-radius: 10px;
+}
+
+.w-md-40 {
+    @media (min-width: 768px) {
+        width: 40%!important;
+    }
+}

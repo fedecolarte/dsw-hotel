@@ -23,7 +23,9 @@
 				</span>
 			</a>
 			<ng-template ngbNavContent>
-				<app-step-form (goNextStep)="goNextStep()"></app-step-form>
+				<ng-container *ngIf="(userService.isLogged$ | async); else obligatoryLogin">
+					<app-step-form (goNextStep)="goNextStep()"></app-step-form>
+				</ng-container>
 			</ng-template>
 		</li>
 		<div class="vertical-bar"><ngb-progressbar type="success" [height]="'10px'" [value]="pb2"></ngb-progressbar></div>
@@ -34,7 +36,9 @@
 				</span>
 			</a>
 			<ng-template ngbNavContent>
-				<app-summary-and-payment (goNextStep)="goNextStep()"></app-summary-and-payment>
+				<ng-container *ngIf="(userService.isLogged$ | async); else obligatoryLogin">
+					<app-summary-and-payment (goNextStep)="goNextStep()"></app-summary-and-payment>
+				</ng-container>
 			</ng-template>
 		</li>
 		<div class="vertical-bar"><ngb-progressbar type="success" [height]="'10px'" [value]="pb3"></ngb-progressbar></div>
@@ -51,4 +55,8 @@
 	</ul>
 
 	<div [ngbNavOutlet]="nav" class="ms-xl-5 w-100"></div>
+
+	<ng-template #obligatoryLogin>
+		<app-obligatory-login [@fade]></app-obligatory-login>
+	  </ng-template>
 </div>

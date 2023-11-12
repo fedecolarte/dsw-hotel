@@ -1,18 +1,26 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { fadeAnimation } from '@app/core/animations/fade.animation';
+import { LoginComponent } from '@app/core/components/login/login.component';
 import { StepperService } from '@app/core/services/stepper.service';
+import { UserService } from '@app/core/services/user.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-stepper',
   templateUrl: './stepper.component.html',
-  styleUrls: ['./stepper.component.scss']
+  styleUrls: ['./stepper.component.scss'],
+  animations: [fadeAnimation]
 })
-export class StepperComponent implements OnInit {
+export class StepperComponent implements OnInit, OnDestroy {
 
   active = 1;
   pb1: number = 0;
   pb2: number = 0;
   pb3: number = 0;
-  constructor(public stepperService: StepperService) { }
+
+  constructor(
+    public stepperService: StepperService,
+    public userService: UserService) {}
 
   ngOnInit(): void {
   }
@@ -52,6 +60,10 @@ export class StepperComponent implements OnInit {
         break;
       }
     }
+  }
+
+  ngOnDestroy(): void {
+    this.stepperService.onDestroy();
   }
 
 }
