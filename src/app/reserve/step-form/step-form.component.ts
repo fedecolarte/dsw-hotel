@@ -1,22 +1,28 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { fadeAnimation } from '@app/core/animations/fade.animation';
 import { InfoClient } from '@app/core/entities/views/info-client.view';
-import { ValidateUserView } from '@app/core/entities/views/validate-user.view';
 import { StepperService } from '@app/core/services/stepper.service';
-import { take } from 'rxjs';
+import { UserService } from '@app/core/services/user.service';
+import { concatMap, take } from 'rxjs';
 
 @Component({
   selector: 'app-step-form',
   templateUrl: './step-form.component.html',
-  styleUrls: ['./step-form.component.scss']
+  styleUrls: ['./step-form.component.scss'],
+  animations: [fadeAnimation]
 })
 export class StepFormComponent implements OnInit {
   formulario: FormGroup;
   isValid: boolean = false;
   @Output() goNextStep = new EventEmitter<any>();
 
+  constructor(
+    private fb: FormBuilder,
+    private stepperService: StepperService,
+    public userService: UserService
+    ) {
 
-  constructor(private fb: FormBuilder, private stepperService: StepperService) {
     this.formulario = this.fb.group({
       nombre: ['', Validators.required],
       apellido: ['', Validators.required],
@@ -38,6 +44,8 @@ export class StepFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getUserInfo();
+
     this.stepperService.stepTwo$.pipe(take(1)).subscribe(infoClient => {
       if(infoClient !== null){
         this.formulario.patchValue({
@@ -55,6 +63,21 @@ export class StepFormComponent implements OnInit {
           email: infoClient.email
         })
       } 
+    })
+  }
+
+  getUserInfo(): void {
+    this.userService.userLogged$.pipe(
+      concatMap((user) => this.userService.getUserInfo(user)),
+      take(1)
+    ).subscribe((userInfo) => {
+      if(userInfo) {
+        this.formulario.patchValue({
+          nombre: userInfo.firstName,
+          apellido: userInfo.lastName,
+          email: userInfo.email
+        })
+      }
     })
   }
   
