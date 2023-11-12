@@ -12,6 +12,7 @@ import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { SuccessComponent } from './success/success.component';
 import { StepDetailRoomComponent } from './step-detail-room/step-detail-room.component';
 import { SummaryAndPaymentComponent } from './summary-and-payment/summary-and-payment.component';
+import { ObligatoryLoginComponent } from './obligatory-login/obligatory-login.component';
 
 
 
@@ -23,6 +24,7 @@ import { SummaryAndPaymentComponent } from './summary-and-payment/summary-and-pa
     SuccessComponent,
     StepDetailRoomComponent,
     SummaryAndPaymentComponent,
+    ObligatoryLoginComponent,
   ],
   imports: [
     CommonModule,
