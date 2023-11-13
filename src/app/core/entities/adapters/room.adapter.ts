@@ -13,12 +13,12 @@ export class RoomAdapter {
                                 (roomResponse.precio - ((roomResponse.precio * roomResponse.descuento) / 100)) :
                                 roomResponse.precio;
     return {
-      idRoom: roomResponse.idHabitacion,
+      idRoom: roomResponse.id,
         roomType: {
             id: roomResponse.idTipoHabitacion,
             description: roomResponse.tipoHabitacion
         },
-        status: roomResponse.estado,
+        status: 'Disponible',
         peopleCapacity: roomResponse.capacidadPersonas,
         price: roomResponse.precio,
         discount: roomResponse.descuento,

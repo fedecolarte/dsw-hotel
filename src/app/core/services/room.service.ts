@@ -10,6 +10,7 @@ import { RoomDetailResponse } from '../entities/responses/room-detail.response';
 import { RoomDetailView } from '../entities/views/room-detail.view';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '@app-env/environment';
+import { format } from 'date-fns';
 
 @Injectable({
   providedIn: 'root'
@@ -34,22 +35,52 @@ export class RoomService {
 
   searchRooms(filters: RoomFilters | null): Observable<RoomView[] | null> {
     console.log(filters);
-    const mock = searchRoomsResponseMock;
-    const response: RoomResponse[] = mock.data;
-
-    if(!filters?.fromDate || !filters?.toDate) return of(null)
-
     this.searchRoomsLoading.next(true);
-    return of(response).pipe(
-      delay(2000),
+
+    if(!filters?.fechaEntrada || !filters?.fechaSalida) return of(null);
+
+    const endpoint = environment.baseUrl + environment.apis.roomApis.searchRooms;
+    console.log(endpoint);
+    const payload = {
+      ...filters,
+      fechaEntrada: format(filters.fechaEntrada, 'yyyy-MM-dd'),
+      fechaSalida: format(filters.fechaSalida, 'yyyy-MM-dd')
+    }
+
+    return this.http.post<RoomResponse[]>(endpoint, payload).pipe(
+      retry(3),
       map((response) => {
         this.searchRoomsLoading.next(false);
+        if(!response || response.length === 0) return null;
+      
         const adaptedResponse: RoomView[] = response.map(room => {
           return this.roomAdapter.roomListResponseToView(room);
         })
+
         return adaptedResponse;
+      }),
+      catchError((e) => {
+        this.searchRoomsLoading.next(false);
+        console.log(e);
+
+        return throwError(() => new Error('Error'));
       })
     )
+
+    // const mock = searchRoomsResponseMock;
+    // const response: RoomResponse[] = mock.data;
+
+    // this.searchRoomsLoading.next(true);
+    // return of(response).pipe(
+    //   delay(2000),
+    //   map((response) => {
+    //     this.searchRoomsLoading.next(false);
+    //     const adaptedResponse: RoomView[] = response.map(room => {
+    //       return this.roomAdapter.roomListResponseToView(room);
+    //     })
+    //     return adaptedResponse;
+    //   })
+    // )
   }
 
   getRoomDetail(roomId: number): Observable<RoomDetailView> {

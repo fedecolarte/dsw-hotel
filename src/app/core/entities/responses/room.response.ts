@@ -1,5 +1,5 @@
 export interface RoomResponse {
-    idHabitacion: number;
+    id: number;
     idTipoHabitacion: number;
     tipoHabitacion: string;
     estado: string;

@@ -38,8 +38,8 @@ export class SummaryAndPaymentComponent implements OnInit {
             const infoReserve: InfoReserve = {
               roomId: stepOne.idRoom,
               roomType: stepOne.roomType.description,
-              checkIn: format(new Date(filters.fromDate.year, filters.fromDate.month - 1, filters.fromDate.day), 'dd/MM/yyyy'),
-              checkOut: format(new Date(filters.toDate.year, filters.toDate.month - 1, filters.toDate.day), 'dd/MM/yyyy'),
+              checkIn: format(filters.fechaEntrada, 'dd/MM/yyyy'),
+              checkOut: format(filters.fechaSalida, 'dd/MM/yyyy'),
               peopleCapacity: stepOne.peopleCapacity,
               price: stepOne.finalPrice,
               discount: stepOne.discount,

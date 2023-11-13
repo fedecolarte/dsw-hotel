@@ -12,7 +12,8 @@ export const environment = {
       user: 'usuario'
     },
     roomApis: {
-      room: 'habitacion'
+      room: 'habitacion',
+      searchRooms: 'habitacion/lista'
     }
   }
 };

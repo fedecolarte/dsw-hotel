@@ -42,7 +42,7 @@
         </div>
     </ng-container>
     <ng-template #searchRooms>
-    <div class="col-10 col-md-5" *ngFor="let room of rooms">
+    <div class="col-10 col-md-5" *ngFor="let room of rooms" [@fade]>
         <div class="card mx-2 my-3">
             <div class="card-header">
                 <div class="d-flex align-items-center justify-content-between">
@@ -72,7 +72,7 @@
         </div>
     </div>
     </ng-template>
-    <div *ngIf="!rooms && !(roomService.searchRoomsLoading$ | async)">
+    <div *ngIf="!rooms && !(roomService.searchRoomsLoading$ | async)" [@fade]>
         <div class="empty-state d-flex flex-column justify-content-center align-items-center">
             <img [src]="emptyState" height="75%" width="75%" class="filter">
             <p class="mb-0 mt-3 text text-center fs-19 text-white fw-bold">No hay resultados</p>
