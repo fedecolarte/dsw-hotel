@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
-import { BehaviorSubject, Observable, catchError, delay, map, of, retry, throwError } from 'rxjs';
-import { RoomView } from '../entities/views/room.view';
+import { BehaviorSubject, Observable, catchError, delay, map, of, retry, take, throwError } from 'rxjs';
+import { RoomTypeView, RoomView } from '../entities/views/room.view';
 import * as searchRoomsResponseMock from '../../../assets/mocks/get-room-types.response.mock.json';
 import * as getRoomDetailResponseMock from '../../../assets/mocks//get-room-detail.response.mock.json';
 import { RoomResponse } from '../entities/responses/room.response';
@@ -11,6 +11,7 @@ import { RoomDetailView } from '../entities/views/room-detail.view';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '@app-env/environment';
 import { format } from 'date-fns';
+import { RoomTypeResponse } from '../entities/responses/room-types.response';
 
 @Injectable({
   providedIn: 'root'
@@ -35,8 +36,6 @@ export class RoomService {
 
   searchRooms(filters: RoomFilters | null): Observable<RoomView[] | null> {
     console.log(filters);
-    this.searchRoomsLoading.next(true);
-
     if(!filters?.fechaEntrada || !filters?.fechaSalida) return of(null);
 
     const endpoint = environment.baseUrl + environment.apis.roomApis.searchRooms;
@@ -46,6 +45,7 @@ export class RoomService {
       fechaEntrada: format(filters.fechaEntrada, 'yyyy-MM-dd'),
       fechaSalida: format(filters.fechaSalida, 'yyyy-MM-dd')
     }
+    this.searchRoomsLoading.next(true);
 
     return this.http.post<RoomResponse[]>(endpoint, payload).pipe(
       retry(3),
@@ -84,12 +84,16 @@ export class RoomService {
   }
 
   getRoomDetail(roomId: number): Observable<RoomDetailView> {
+    let roomTypes: RoomTypeView[];
+    this.getRoomTypes().subscribe(tiposHabitacion => roomTypes = tiposHabitacion);
+
     const url = `${environment.baseUrl}${environment.apis.roomApis.room}/${roomId}`;
 
     return this.http.get<RoomDetailResponse>(url).pipe(
       retry(3),
       map((detailResponse: RoomDetailResponse) => {
-        const adaptedDetailResponse: RoomDetailView = this.roomAdapter.roomDetailResponseToView(detailResponse);
+        console.log(roomTypes);
+        const adaptedDetailResponse: RoomDetailView = this.roomAdapter.roomDetailResponseToView(detailResponse, roomTypes);
         this.roomDetailLoading.next(false);
 
         return adaptedDetailResponse;
@@ -114,6 +118,24 @@ export class RoomService {
     //     return adaptedResponse;
     //   })
     // )
+  }
+
+  getRoomTypes(): Observable<RoomTypeView[]> {
+    const url = `${environment.baseUrl}${environment.apis.roomApis.roomTypes}`;
+
+    return this.http.get<RoomTypeResponse[]>(url).pipe(
+      retry(3),
+      map((roomTypes: RoomTypeResponse[]) => {
+        const adaptedRoomTypes: RoomTypeView[] = this.roomAdapter.roomTypeResponseToView(roomTypes);
+
+        return adaptedRoomTypes;
+      }),
+      catchError((e) => {
+        console.log(e);
+
+        return throwError(() => new Error('Error'));
+      })
+    )
   }
 
   onDestroy(): void {

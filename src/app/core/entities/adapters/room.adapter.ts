@@ -3,6 +3,7 @@ import { RoomResponse } from '../responses/room.response';
 import { RoomTypeView, RoomView } from '../views/room.view';
 import { RoomDetailView } from '../views/room-detail.view';
 import { RoomDetailResponse } from '../responses/room-detail.response';
+import { RoomTypeResponse } from '../responses/room-types.response';
 
 @Injectable()
 export class RoomAdapter {
@@ -26,9 +27,8 @@ export class RoomAdapter {
     };
   }
 
-  roomDetailResponseToView(roomDetailResponse: RoomDetailResponse): RoomDetailView {
+  roomDetailResponseToView(roomDetailResponse: RoomDetailResponse, roomTypes: RoomTypeView[]): RoomDetailView {
     const characteristics: string[] = roomDetailResponse.caracteristicas.split(', ');
-    const roomTypes = this.getRoomTypes();
     const roomType = roomTypes.find((roomType: RoomTypeView) => roomType.id === roomDetailResponse.idTipoHabitacion);
     const finalPrice: number = roomDetailResponse.descuento ?
                                 (roomDetailResponse.precio - ((roomDetailResponse.precio * roomDetailResponse.descuento) / 100)) :
@@ -49,17 +49,18 @@ export class RoomAdapter {
     }
   }
 
-  getRoomTypes(): RoomTypeView[] {
-    const roomTypes: RoomTypeView[] = [
-      {
-        id: 1,
-        description: "Dúplex"
-      },
-      {
-        id: 2,
-        description: "De Lujo"
+  roomTypeResponseToView(roomTypeResponse: RoomTypeResponse[]): RoomTypeView[] {
+    let roomTypes: RoomTypeView[] = [];
+
+    roomTypeResponse.map(roomType => {
+      const roomTypeView: RoomTypeView = {
+          id: roomType.id,
+          description: roomType.descripcion
       }
-    ] 
+
+      roomTypes.push(roomTypeView);
+    });
+
     return roomTypes;
   }
 }

@@ -20,6 +20,7 @@ export class RoomSelectionComponent implements OnInit {
   selectedRoomType: RoomTypeView;
   countPeople: number = 2;
   emptyState: string;
+  roomTypes: RoomTypeView[];
 
   constructor(
     public roomService: RoomService,
@@ -29,6 +30,7 @@ export class RoomSelectionComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getRoomTypes();
   }
 
   getRooms(): void {
@@ -37,6 +39,12 @@ export class RoomSelectionComponent implements OnInit {
       take(1)
     ).subscribe((rooms) => {
         this.rooms = rooms;
+    })
+  }
+
+  getRoomTypes(): void {
+    this.roomService.getRoomTypes().pipe(take(1)).subscribe(roomTypes => {
+      this.roomTypes = roomTypes;
     })
   }
 

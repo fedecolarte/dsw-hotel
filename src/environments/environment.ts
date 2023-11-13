@@ -13,7 +13,8 @@ export const environment = {
     },
     roomApis: {
       room: 'habitacion',
-      searchRooms: 'habitacion/lista'
+      searchRooms: 'habitacion/lista',
+      roomTypes: 'habitacion/tipo/getTiposHabitacion'
     }
   }
 };
