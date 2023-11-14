@@ -24,7 +24,7 @@
 			</a>
 			<ng-template ngbNavContent>
 				<ng-container *ngIf="(userService.isLogged$ | async); else obligatoryLogin">
-					<app-step-form (goNextStep)="goNextStep()"></app-step-form>
+					<app-step-form (goPrevStep)="goPrevStep()" (goNextStep)="goNextStep()"></app-step-form>
 				</ng-container>
 			</ng-template>
 		</li>
@@ -37,7 +37,7 @@
 			</a>
 			<ng-template ngbNavContent>
 				<ng-container *ngIf="(userService.isLogged$ | async); else obligatoryLogin">
-					<app-summary-and-payment (goNextStep)="goNextStep()"></app-summary-and-payment>
+					<app-summary-and-payment (goPrevStep)="goPrevStep()" (goNextStep)="goNextStep()"></app-summary-and-payment>
 				</ng-container>
 			</ng-template>
 		</li>

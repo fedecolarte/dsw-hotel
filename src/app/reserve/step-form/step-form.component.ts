@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { fadeAnimation } from '@app/core/animations/fade.animation';
 import { InfoClient } from '@app/core/entities/views/info-client.view';
 import { ClientService } from '@app/core/services/client.service';
@@ -18,8 +19,11 @@ export class StepFormComponent implements OnInit {
   formulario: FormGroup;
   isValid: boolean = false;
   @Output() goNextStep = new EventEmitter<any>();
+  @Output() goPrevStep = new EventEmitter<any>();
+
 
   constructor(
+    private router: Router,
     private fb: FormBuilder,
     private stepperService: StepperService,
     public userService: UserService,
@@ -90,8 +94,9 @@ export class StepFormComponent implements OnInit {
   }
   
   goBack(): void {
-    
+    this.goPrevStep.emit(true);
   }
+
 
   saveStep(): void {
     const infoClient: InfoClient = {

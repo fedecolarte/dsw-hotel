@@ -25,6 +25,11 @@ export class StepperComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
   }
 
+  goPrevStep(): void {
+    this.active--;
+    this.changeStep();
+  }
+
   goNextStep(): void {
     this.active++;
     this.changeStep();

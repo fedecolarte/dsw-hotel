@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { fadeAnimation } from '@app/core/animations/fade.animation';
 import { RoomDetailView } from '@app/core/entities/views/room-detail.view';
 import { RoomService } from '@app/core/services/room.service';
@@ -24,6 +24,7 @@ export class StepDetailRoomComponent implements OnInit {
   }[];
 
   constructor(
+    private router: Router,
     private activatedRoute: ActivatedRoute,
     public stepperService: StepperService,
     public roomService: RoomService
@@ -74,8 +75,8 @@ export class StepDetailRoomComponent implements OnInit {
     })
   }
 
-  goBack(): void {
-    
+  goBack(){
+    this.router.navigate(['/reservas']);
   }
 
   saveStep(): void {

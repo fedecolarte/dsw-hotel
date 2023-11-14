@@ -4,6 +4,8 @@ import { RoomService } from '@app/core/services/room.service';
 import { StepperService } from '@app/core/services/stepper.service';
 import { Observable, combineLatest, concatMap, map, take } from 'rxjs';
 import { format, parseISO, formatISO } from 'date-fns';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-summary-and-payment',
@@ -13,12 +15,15 @@ import { format, parseISO, formatISO } from 'date-fns';
 export class SummaryAndPaymentComponent implements OnInit {
 
   @Output() goNextStep = new EventEmitter<any>();
+  @Output() goPrevStep = new EventEmitter<any>();
+
 
   paymentImg: string;
   reserveInfo$: Observable<InfoReserve | null>;
   reserveInfo: InfoReserve;
 
   constructor(
+    private router: Router,
     private roomService: RoomService,
     private stepperService: StepperService
   ) {
@@ -62,6 +67,7 @@ export class SummaryAndPaymentComponent implements OnInit {
   }
 
   goBack(): void {
+    this.goPrevStep.emit(true);
   }
 
   saveStep(): void {

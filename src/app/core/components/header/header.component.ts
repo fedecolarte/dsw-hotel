@@ -4,6 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from '../login/login.component';
 import { UserService } from '@app/core/services/user.service';
 import { StoreService } from '@app/core/services/store.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -46,6 +47,7 @@ export class HeaderComponent implements OnInit {
   constructor(
     public breakpointService: BreakpointService,
     public userService: UserService,
+    private router: Router,
     private modalService: NgbModal,
     private storeService: StoreService
     ) { }
@@ -73,5 +75,9 @@ export class HeaderComponent implements OnInit {
     localStorage.clear();
     this.storeService.setToken(null);
     this.userService.setUserLogged(null);
+  }
+
+  goToHome(): void {
+    this.router.navigate(['']);
   }
 }
