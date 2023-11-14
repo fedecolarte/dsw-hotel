@@ -21,7 +21,8 @@ export class UserAdapter {
       firstName: userInfoResponse.firstName,
       lastName: userInfoResponse.lastName,
       email: userInfoResponse.email,
-      estado: userInfoResponse.estado
+      estado: userInfoResponse.estado,
+      documentNumber: userInfoResponse.documento
     }
   }
 }

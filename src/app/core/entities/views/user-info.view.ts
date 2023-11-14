@@ -3,5 +3,6 @@ export interface UserInfoView {
     firstName: string;
     lastName: string;
     email: string;
+    documentNumber: string;
     estado?: string;
 }

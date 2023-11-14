@@ -21,8 +21,9 @@ export class UserService {
   
   private isRegisterMode = new BehaviorSubject<boolean>(false);
   private registerPersonLoading = new BehaviorSubject<boolean>(false);
-
   private validateUserLoading = new BehaviorSubject<boolean>(false);
+  private getUserLoading = new BehaviorSubject<boolean>(false);
+
   private userLogged = new BehaviorSubject<string | null>(null);
   private isLogged = new BehaviorSubject<boolean>(false);
 
@@ -30,6 +31,8 @@ export class UserService {
   registerPersonLoading$ = this.registerPersonLoading.asObservable();
   
   validateUserLoading$ = this.validateUserLoading.asObservable(); 
+  getUserLoading$ = this.getUserLoading.asObservable(); 
+
   userLogged$ = this.userLogged.asObservable();
   isLogged$ = this.isLogged.asObservable();
 
@@ -124,16 +127,18 @@ export class UserService {
   getUserInfo(user: string | null): Observable<UserInfoView> {
     if(user) {
       const url = `${environment.baseUrl}${environment.apis.userApis.user}/${user}`;
-  
+      this.getUserLoading.next(true);
       return this.http.get<UserInfoResponse>(url).pipe(
         retry(3),
         map((detailResponse: UserInfoResponse) => {
           const adaptedUserInfo: UserInfoView = this.userAdapter.UserInfoResponseToView(detailResponse);
-  
+          this.getUserLoading.next(false);
+          
           return adaptedUserInfo;
         }),
         catchError((e) => {
           console.log(e);
+          this.getUserLoading.next(false);
   
           return throwError(() => new Error('Error'));
         })

@@ -3,6 +3,7 @@ export interface UserInfoResponse {
     password: string;
     firstName: string;
     lastName: string;
+    documento: string;
     email: string;
     estado?: string;
     deletedAt?: Date;
