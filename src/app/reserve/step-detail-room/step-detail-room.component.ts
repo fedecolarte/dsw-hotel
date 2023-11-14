@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { fadeAnimation } from '@app/core/animations/fade.animation';
 import { RoomDetailView } from '@app/core/entities/views/room-detail.view';
 import { RoomService } from '@app/core/services/room.service';
 import { StepperService } from '@app/core/services/stepper.service';
@@ -8,7 +9,8 @@ import { concatMap, take } from 'rxjs';
 @Component({
   selector: 'app-step-detail-room',
   templateUrl: './step-detail-room.component.html',
-  styleUrls: ['./step-detail-room.component.scss']
+  styleUrls: ['./step-detail-room.component.scss'],
+  animations: [fadeAnimation]
 })
 export class StepDetailRoomComponent implements OnInit {
 
