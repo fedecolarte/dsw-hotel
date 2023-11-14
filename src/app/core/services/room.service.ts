@@ -88,6 +88,7 @@ export class RoomService {
     this.getRoomTypes().subscribe(tiposHabitacion => roomTypes = tiposHabitacion);
 
     const url = `${environment.baseUrl}${environment.apis.roomApis.room}/${roomId}`;
+    this.roomDetailLoading.next(true);
 
     return this.http.get<RoomDetailResponse>(url).pipe(
       retry(3),
