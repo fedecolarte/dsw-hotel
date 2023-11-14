@@ -36,11 +36,13 @@
         <span class="text text-error fs-14" *ngIf="registerFormStatus === 'INVALID'">{{ registerValidation.message }}</span>
         <button class="d-block btn btn-primary ms-auto btn-width" type="submit" [disabled]="registerForm.invalid"
           [ngClass]="isValid ? 'botton-valid' : 'transition'">
-          <span *ngIf="!isRegistered">Registrate</span>
+          <ng-template #text>
+            <span *ngIf="!isRegistered">Registrate</span>
             <span *ngIf="isRegistered" class="material-symbols-outlined valid-check">check_circle</span>
-            <ng-container *ngIf="(userService.registerPersonLoading$ | async)">
-              <app-spinner [relative]="true" height="21px" width="21px"></app-spinner>
-            </ng-container>
+          </ng-template>
+          <ng-container *ngIf="(userService.registerPersonLoading$ | async); else text">
+            <app-spinner [relative]="true" height="21px" width="21px"></app-spinner>
+          </ng-container>
         </button>
       </div>
   </form>
