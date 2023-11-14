@@ -16,8 +16,8 @@ export class RoomAdapter {
     return {
       idRoom: roomResponse.id,
         roomType: {
-            id: roomResponse.idTipoHabitacion,
-            description: roomResponse.tipoHabitacion
+            id: roomResponse.tipoHabitacion.id,
+            description: roomResponse.tipoHabitacion.descripcion
         },
         status: 'Disponible',
         peopleCapacity: roomResponse.capacidadPersonas,
