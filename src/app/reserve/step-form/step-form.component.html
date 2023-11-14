@@ -51,16 +51,16 @@
           <span class="text  col-form-span" for="pais">Localidad: </span>
           <input type="text" class="text custom-input " id="localidad" formControlName="localidad">
         </div>
-        <div class="row row-cols-sm-3 row-cols-1 justify-content-between px-0 mx-0 py-3">
-          <div class=" col-sm-6 col-12 px-4 ">
+        <div class="row row-cols-sm-3 row-cols-1 justify-content-between px-0 mx-0">
+          <div class=" col-sm-6 col-12 px-4 py-3">
             <span class="text  col-form-span" for="direccion">Dirección: </span>
             <input type="text" class="text custom-input " id="direccion" formControlName="direccion">
           </div>
-          <div class=" col-sm-3 col-6 px-4">
+          <div class=" col-sm-3 col-6 px-4 py-3">
             <span class="text  col-form-span" for="piso">Piso: </span>
             <input type="number" class="text custom-input2 " id="piso" formControlName="piso">
           </div>
-          <div class=" col-sm-3 col-6 px-4">
+          <div class=" col-sm-3 col-6 px-4 py-3">
             <span class="text  col-form-span" for="depto">Depto: </span>
             <input type="text" class="text custom-input2 " id="depto" formControlName="depto">
           </div>
@@ -91,13 +91,13 @@
           <input type="number" class="text custom-input " id="telefono" formControlName="telefono">
         </div>
       </div>
-      <div class="d-flex justify-content-end pt-4 pe-4">
-      <button class="btn btn-outline-secondary px-5 py-2 text text-white border-button" type="submit" [disabled]="!formulario.valid" (click)="saveStep()">Avanzar</button>
+      <div class="d-flex justify-content-end pt-4 pe-4 ps-4 ps-md-0">
+      <button class="btn btn-outline-secondary px-5 py-2 text text-white border-button w-100 w-md-40" type="submit" [disabled]="!formulario.valid" (click)="saveStep()">Avanzar</button>
       </div>
     </form>
   </ng-container>
 
   <ng-template #spinner>
-    <app-spinner height="100px" width="100px" className="pb-5"></app-spinner>
+    <app-spinner [center]="true" height="100px" width="100px" [className]="'pb-5'"></app-spinner>
   </ng-template>  
 </div>

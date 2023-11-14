@@ -23,6 +23,7 @@ export class StepperComponent implements OnInit, OnDestroy {
     public userService: UserService) {}
 
   ngOnInit(): void {
+    window.scroll({ top: 0 });
   }
 
   goPrevStep(): void {
@@ -33,6 +34,8 @@ export class StepperComponent implements OnInit, OnDestroy {
   goNextStep(): void {
     this.active++;
     this.changeStep();
+ 
+    window.scroll({ top: 0 });
   }
 
   changeStep(): void {
