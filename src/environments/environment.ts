@@ -11,6 +11,9 @@ export const environment = {
     userApis: {
       user: 'usuario'
     },
+    clientApis: {
+      client: 'cliente'
+    },
     roomApis: {
       room: 'habitacion',
       searchRooms: 'habitacion/lista',
