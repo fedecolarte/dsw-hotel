@@ -4,9 +4,9 @@
     <span>Volver al paso 1</span>
 </a>
 <h2 class="text fs-29 mobile-title mt-3 mb-2 my-lg-4 text-white">Formulario de contacto</h2>
-<div class="formu p-4">
-  <ng-container *ngIf="(userService.isLogged$ | async)">
-    <form [formGroup]="formulario" (ngSubmit)="onSubmit()" [@fade] autocapitalize="sentences">
+<div class="formu p-4 position-relative">
+  <ng-container *ngIf="(!(userService.getUserLoading$ | async) && !(clientService.clientInfoLoading$ | async)); else spinner">
+    <form [formGroup]="formulario" [@fade] autocapitalize="sentences">
       <div class="row gx-5 row-cols-1 row-cols-md-2 align-items-center text-start px-4">
         <div class=" col px-4 py-3">
           <span class="text" for="nombre">Nombre: </span>
@@ -14,11 +14,11 @@
         </div>
         <div class=" col px-4 py-3">
           <span class="text" for="apellido">Apellido: </span>
-          <input type="text" class="text custom-input disabled" id="apellido" formControlName="apellido"  readonly>
+          <input type="text" class="text custom-input disabled" id="apellido" formControlName="apellido" readonly>
         </div>
         <div class=" col px-4 py-3">
           <span class="text" for="dni">DNI: </span>
-          <input type="number" class="text custom-input " id="dni" formControlName="dni">
+          <input type="number" class="text custom-input disabled" id="dni" formControlName="dni" readonly>
         </div>
         <div class=" col px-4 py-3 ">
           <span class="text col-form-span" for="nacimiento">Fecha de nacimiento: </span>
@@ -33,6 +33,8 @@
               formControlName="nacimiento"
               ngbDatepicker
               #d2="ngbDatepicker"
+              readonly
+              (click)="d2.toggle()"
             />
             <button class="btn btn-outline-secondary bi bi-calendar3 border-none px-0 ms-2" (click)="d2.toggle()" type="button">
               <span class="material-symbols-outlined mt-1 text-white">
@@ -94,4 +96,8 @@
       </div>
     </form>
   </ng-container>
+
+  <ng-template #spinner>
+    <app-spinner height="100px" width="100px" className="pb-5"></app-spinner>
+  </ng-template>  
 </div>

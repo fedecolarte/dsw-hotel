@@ -2,9 +2,11 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { fadeAnimation } from '@app/core/animations/fade.animation';
 import { InfoClient } from '@app/core/entities/views/info-client.view';
+import { ClientService } from '@app/core/services/client.service';
 import { StepperService } from '@app/core/services/stepper.service';
 import { UserService } from '@app/core/services/user.service';
-import { concatMap, take } from 'rxjs';
+import { NgbDate, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { combineLatest, concatMap, switchMap, take, tap } from 'rxjs';
 
 @Component({
   selector: 'app-step-form',
@@ -20,7 +22,8 @@ export class StepFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private stepperService: StepperService,
-    public userService: UserService
+    public userService: UserService,
+    public clientService: ClientService
     ) {
 
     this.formulario = this.fb.group({
@@ -45,51 +48,47 @@ export class StepFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserInfo();
-
-    this.stepperService.stepTwo$.pipe(take(1)).subscribe(infoClient => {
-      if(infoClient !== null){
-        this.formulario.patchValue({
-          nombre: infoClient.name,
-          apellido: infoClient.surname,
-          genero: infoClient.gender,
-          dni: infoClient.documentNumber,
-          direccion: infoClient.direction,
-          piso: infoClient?.floor,
-          depto: infoClient?.departament,
-          telefono: infoClient.cellphone,
-          nacimiento: infoClient.birthdate,
-          pais: infoClient.country,
-          localidad: infoClient.location,
-          email: infoClient.email
-        })
-      } 
-    })
   }
 
   getUserInfo(): void {
     this.userService.userLogged$.pipe(
       concatMap((user) => this.userService.getUserInfo(user)),
-      take(1)
-    ).subscribe((userInfo) => {
-      if(userInfo) {
-        this.formulario.patchValue({
-          nombre: userInfo.firstName,
-          apellido: userInfo.lastName,
-          email: userInfo.email
-        })
-      }
-    })
-  }
-  
-  onSubmit() {
-    if (this.formulario.valid) {
-      console.log('Formulario válido, datos enviados:');
-      console.log(this.formulario.value);
-    } else {
-      console.log('Formulario inválido, por favor, corrija los errores.');
-    }
+       take(1)).
+       subscribe(userInfo => {
+          if(userInfo) {
+            this.formulario.patchValue({
+              nombre: userInfo.firstName,
+              apellido: userInfo.lastName,
+              email: userInfo.email,
+              dni: userInfo.documentNumber
+            })
+
+            this.getClientInfo(userInfo.documentNumber);
+          }
+        }
+       )
   }
 
+  getClientInfo(documentNumber: string): void {
+    this.clientService.GetClientInfo(documentNumber).pipe(
+      take(1),
+    ).subscribe((clientInfo => {
+      const date: Date = new Date(clientInfo.birthdate!);
+      const birthDate: NgbDate | null = new NgbDate(date.getFullYear(), date.getMonth() + 1, date.getDate() + 1)
+      
+      this.formulario.patchValue({
+        genero: clientInfo.gender ?? '',
+        direccion: clientInfo.direction ?? '',
+        piso: clientInfo.floor ?? '',
+        depto: clientInfo.department ?? '',
+        telefono: clientInfo.telphone ?? '',
+        nacimiento: birthDate ?? '',
+        pais: clientInfo.country ?? '',
+        localidad: clientInfo.locality ?? '',
+      })
+    }))
+  }
+  
   goBack(): void {
     
   }
@@ -110,6 +109,7 @@ export class StepFormComponent implements OnInit {
       email: this.formValue.email
     }
 
+    this.clientService.updateClientInfo(infoClient).subscribe();
     this.stepperService.saveStepTwo(infoClient);
     this.goNextStep.emit(true);
   }
