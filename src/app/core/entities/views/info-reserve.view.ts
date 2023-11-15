@@ -1,3 +1,4 @@
+//TO DO: DELETE THIS INTERFACE AND ADAPT NEW INTERFACE ON STEP THREE.
 export interface InfoReserve {
     roomId: number,
     roomType: string,
@@ -12,4 +13,4 @@ export interface InfoReserve {
     email: string,
     cellphone: string;
     discount: number;
-}
+} 

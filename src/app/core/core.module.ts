@@ -17,6 +17,7 @@ import { HttpClient } from '@angular/common/http';
 import { StoreService } from './services/store.service';
 import { RoomAdapter } from './entities/adapters/room.adapter';
 import { ClientAdapter } from './entities/adapters/client.adapter';
+import { ReserveAdapter } from './entities/adapters/reserve.adapter';
 
 registerLocaleData(localeEsAR, environment.defaultLanguage);
 
@@ -57,6 +58,7 @@ export function LoaderFactory() {
     UserAdapter,
     RoomAdapter,
     ClientAdapter,
+    ReserveAdapter,
     StoreService
   ],
 })
