@@ -24,8 +24,8 @@ export class SuccessComponent implements OnInit {
     this.onDestroyServices();
   }
 
-  goToHome(): void {
-    this.router.navigate(['']);
+  goToMyReserves(): void {
+    this.router.navigate(['/mis-reservas']);
     this.onDestroyServices();
   }
 

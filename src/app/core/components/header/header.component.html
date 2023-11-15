@@ -22,7 +22,11 @@
                   <span class="text-green text me-2">Conectado</span>
                 </button>
                 <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="bg-custom">
-                  <button ngbDropdownItem class="d-flex align-items-center close-session" (click)="logout()">
+                  <button ngbDropdownItem class="d-flex align-items-center justify-content-start close-session mb-2" (click)="goToMyReserves()">
+                    <span class="material-symbols-outlined me-2 text-white">room_preferences</span>
+                    <span class="text text-white">Mis reservas</span>
+                  </button>
+                  <button ngbDropdownItem class="d-flex align-items-center close-session justify-content-start" (click)="logout()">
                     <span class="material-symbols-outlined me-2 text-white">logout</span>
                     <span class="text text-white">Cerrar sesión</span>
                   </button>

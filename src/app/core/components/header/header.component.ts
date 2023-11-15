@@ -80,4 +80,8 @@ export class HeaderComponent implements OnInit {
   goToHome(): void {
     this.router.navigate(['']);
   }
+
+  goToMyReserves(): void {
+    this.router.navigate(['/mis-reservas']);
+  }
 }

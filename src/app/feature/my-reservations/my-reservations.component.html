@@ -6,7 +6,10 @@
     </a>
     <h2 class="text fs-29 mobile-title mt-3 mb-2 my-lg-4 text-white">Mis Reservas</h2>
     <div class="card box px-3 py-md-4 px-md-5">
-        <ng-container *ngIf="!(reserveService.getReservesLoading$ | async); else spinner">
+        <ng-container *ngIf="
+            (userService.userLogged$ | async) && 
+            !(reserveService.getReservesLoading$ | async) && 
+            !(userService.getUserLoading$ | async); else spinner">
             <div class="d-flex align-items-center justify-content-around flex-wrap">
                 <div class="card my-2 mx-4 bg-gray col-12 col-md-3" *ngFor="let reserve of reserves">
                     <div class="card-header d-flex align-items-center justify-content-between">

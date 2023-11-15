@@ -16,8 +16,8 @@ export class MyReservationsComponent implements OnInit {
 
   constructor(
     public reserveService: ReserveService,
+    public userService: UserService,
     private router: Router,
-    private userService: UserService
     ) { }
 
   ngOnInit(): void {
