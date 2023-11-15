@@ -5,6 +5,7 @@
     box-shadow: 0px 10px 13px -7px #000000, 0px 7px 28px -5px rgba(0,0,0,0);
 }
 
+
 .w-50 {
     width: 50%;
 }
@@ -23,6 +24,10 @@
     max-width: 50px!important;
 }
 
+.mh-200 {
+    min-height: 375px;
+}
+
 .btn-primary {
     background-color: white;
     color: white;
@@ -35,9 +40,16 @@
 }
 
 .box-custom {
-    min-width: 350px;
+    max-width: 350px;
+    width: 100%;
     background-color: #312e38;
     border-radius: 8px;
+
+    @media (min-width: 576px) {
+        min-width: 350px;
+        width: 100%;
+        max-width: 430px;
+    }
 }
 
 .badge {
@@ -69,6 +81,14 @@
     font-size: 19px;
 }
 
+.text-gray {
+color: #b1b1b1;
+}
+
+.text-darkgray {
+color: #898989;
+}
+  
 .text-limegreen {
     color: limegreen;
 }

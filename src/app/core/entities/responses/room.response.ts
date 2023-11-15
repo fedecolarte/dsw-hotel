@@ -1,8 +1,10 @@
+import { RoomTypeResponse } from "./room-types.response";
+
 export interface RoomResponse {
-    idHabitacion: number;
-    idTipoHabitacion: number;
-    tipoHabitacion: string;
+    id: number;
+    tipoHabitacion: RoomTypeResponse;
     estado: string;
     capacidadPersonas: number;
+    descuento: number;
     precio: number;
 }

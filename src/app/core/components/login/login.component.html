@@ -7,16 +7,19 @@
     <form [formGroup]="registerForm" (ngSubmit)="registerPerson()">
       <div class="row row-cols-2 pt-3 ps-3 pe-4">
         <div class="form-group my-3 col">
-          <input type="text" class="text custom-input" id="user" formControlName="username" placeholder="Usuario" required>
+          <input type="text" class="text custom-input" id="firstName" formControlName="firstName" placeholder="Nombre" required>
+        </div>
+        <div class="form-group my-3 col">
+          <input type="text" class="text custom-input" id="lastName" formControlName="lastName" placeholder="Apellido" required>
         </div>
         <div class="form-group my-3 col">
           <input type="text" class="text custom-input" id="email" formControlName="email" placeholder="example@hotel.com" required>
         </div>
         <div class="form-group my-3 col">
-          <input type="text" class="text custom-input" id="firstName" formControlName="firstName" placeholder="Nombre" required>
+          <input type="text" class="text custom-input" id="documentNumber" formControlName="documentNumber" placeholder="D.N.I." required>
         </div>
-        <div class="form-group my-3 col">
-          <input type="text" class="text custom-input" id="lastName" formControlName="lastName" placeholder="Apellido" required>
+        <div class="form-group my-3 col-12 d-flex justify-content-center mt-4">
+          <input type="text" class="text custom-input" id="user" formControlName="username" placeholder="Usuario" required>
         </div>
         <div class="form-group my-3 col">
           <input type="password" class="text custom-input" id="password" formControlName="password" placeholder="Contraseña" required
@@ -33,11 +36,13 @@
         <span class="text text-error fs-14" *ngIf="registerFormStatus === 'INVALID'">{{ registerValidation.message }}</span>
         <button class="d-block btn btn-primary ms-auto btn-width" type="submit" [disabled]="registerForm.invalid"
           [ngClass]="isValid ? 'botton-valid' : 'transition'">
-          <span *ngIf="!isRegistered">Registrate</span>
+          <ng-template #text>
+            <span *ngIf="!isRegistered">Registrate</span>
             <span *ngIf="isRegistered" class="material-symbols-outlined valid-check">check_circle</span>
-            <ng-container *ngIf="(userService.registerPersonLoading$ | async)">
-              <app-spinner [relative]="true" height="21px" width="21px"></app-spinner>
-            </ng-container>
+          </ng-template>
+          <ng-container *ngIf="(userService.registerPersonLoading$ | async); else text">
+            <app-spinner [relative]="true" height="21px" width="21px"></app-spinner>
+          </ng-container>
         </button>
       </div>
   </form>
@@ -65,7 +70,7 @@
           'is-valid': isValid }">
       </div>
       <div class="d-flex align-items-center justify-content-between mt-4">
-        <span class="text text-error fs-14" *ngIf="loginFormStatus === 'INVALID'">{{ userValidation.message }}</span>
+        <span class="text text-error fs-14 w-65" *ngIf="loginFormStatus === 'INVALID'">{{ userValidation.message }}</span>
         <button class="d-block btn btn-primary ms-auto btn-width" type="submit" [disabled]="loginForm.invalid"
         [ngClass]="isValid ? 'botton-valid' : 'transition'">
           <span *ngIf="!(userService.validateUserLoading$ | async) && !(userService.isLogged$ | async)">Iniciar sesión</span>

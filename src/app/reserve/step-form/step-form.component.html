@@ -1,71 +1,103 @@
-<div class="container cont w-75">
-  <form [formGroup]="formulario" class="formu" (ngSubmit)="onSubmit()">
-    <h2 class="titulo text fs-26 fw-bold mb-4">Formulario de contacto</h2>
-    <div class="row gx-5 row-cols-1 row-cols-md-2 align-items-center text-start px-4 ">
-      <div class=" col px-4 py-2">
-        <span class="text" for="nombre">Nombre: </span>
-        <input type="text" class="text custom-input " id="nombre" formControlName="nombre">
-      </div>
-      <div class=" col px-4 py-2">
-        <span class="text" for="apellido">Apellido: </span>
-        <input type="text" class="text custom-input" id="apellido" formControlName="apellido">
-      </div>
-      <div class=" col px-4 py-2">
-        <span class="text" for="dni">DNI: </span>
-        <input type="number" class="text custom-input " id="dni" formControlName="dni">
-      </div>
-      <div class=" col px-4 py-2 ">
-        <span class="text  col-form-span" for="nacimiento">Nacimiento: </span>
-        <input type="date" class="text custom-input " id="nacimiento" formControlName="nacimiento">
-      </div>      
-      <div class="row row-cols-sm-3 row-cols-1 justify-content-between px-0 mx-0 py-2">
-        <div class=" col-sm-6 col-12 px-4 ">
-          <span class="text  col-form-span" for="direccion">Direccion: </span>
-          <input type="text" class="text custom-input " id="direccion" formControlName="direccion">
+<a class="d-none d-lg-flex btn btn-link p-0 text-decoration-none flex-row align-items-center gap-2 back-hover my-2 mb-lg-4 mt-lg-4"
+(click)="goBack()">
+    <span class="material-icons align-top">navigate_before</span>
+    <span>Volver al paso 1</span>
+</a>
+<h2 class="text fs-29 mobile-title mt-3 mb-2 my-lg-4 text-white">Formulario de contacto</h2>
+<div class="formu p-4 position-relative">
+  <ng-container *ngIf="(!(userService.getUserLoading$ | async) && !(clientService.clientInfoLoading$ | async)); else spinner">
+    <form [formGroup]="formulario" [@fade] autocapitalize="sentences">
+      <div class="row gx-5 row-cols-1 row-cols-md-2 align-items-center text-start px-4">
+        <div class=" col px-4 py-3">
+          <span class="text" for="nombre">Nombre: </span>
+          <input type="text" class="text custom-input disabled" id="nombre" formControlName="nombre" readonly>
         </div>
-        <div class=" col-sm-3 col-6 px-4">
-          <span class="text  col-form-span" for="piso">Piso: </span>
-          <input type="number" class="text custom-input2 " id="piso" formControlName="piso">
+        <div class=" col px-4 py-3">
+          <span class="text" for="apellido">Apellido: </span>
+          <input type="text" class="text custom-input disabled" id="apellido" formControlName="apellido" readonly>
         </div>
-        <div class=" col-sm-3 col-6 px-4">
-          <span class="text  col-form-span" for="depto">Depto: </span>
-          <input type="text" class="text custom-input2 " id="depto" formControlName="depto">
+        <div class=" col px-4 py-3">
+          <span class="text" for="dni">DNI: </span>
+          <input type="number" class="text custom-input disabled" id="dni" formControlName="dni" readonly>
+        </div>
+        <div class=" col px-4 py-3 ">
+          <span class="text col-form-span" for="nacimiento">Fecha de nacimiento: </span>
+          <div class="input-group">
+            <input
+              [minDate]="{year: 1950, month: 1, day: 1}"
+              [maxDate]="{year: 2005, month: 12, day: 31}"
+              class="form-control text custom-input w-75"
+              placeholder="yyyy-mm-dd"
+              name="d2"
+              id="nacimiento"
+              formControlName="nacimiento"
+              ngbDatepicker
+              #d2="ngbDatepicker"
+              readonly
+              (click)="d2.toggle()"
+            />
+            <button class="btn btn-outline-secondary bi bi-calendar3 border-none px-0 ms-2" (click)="d2.toggle()" type="button">
+              <span class="material-symbols-outlined mt-1 text-white">
+                calendar_month
+              </span>
+            </button>
+          </div>
+        </div>      
+        <div class=" col px-4 py-3">
+          <span class="text  col-form-span" for="pais">País de residencia: </span>
+          <input type="text" class="text custom-input " id="pais" formControlName="pais">
+        </div>
+        <div class=" col px-4 py-3">
+          <span class="text  col-form-span" for="pais">Localidad: </span>
+          <input type="text" class="text custom-input " id="localidad" formControlName="localidad">
+        </div>
+        <div class="row row-cols-sm-3 row-cols-1 justify-content-between px-0 mx-0">
+          <div class=" col-sm-6 col-12 px-4 py-3">
+            <span class="text  col-form-span" for="direccion">Dirección: </span>
+            <input type="text" class="text custom-input " id="direccion" formControlName="direccion">
+          </div>
+          <div class=" col-sm-3 col-6 px-4 py-3">
+            <span class="text  col-form-span" for="piso">Piso: </span>
+            <input type="number" class="text custom-input2 " id="piso" formControlName="piso">
+          </div>
+          <div class=" col-sm-3 col-6 px-4 py-3">
+            <span class="text  col-form-span" for="depto">Depto: </span>
+            <input type="text" class="text custom-input2 " id="depto" formControlName="depto">
+          </div>
+        </div>
+        <div class="col px-4 py-3">
+          <span class="text " for="genero">Género:</span>
+          <div class="w-100 pt-4 row row-cols-sm-3 row-cols-1 px-2 ">
+            <div class="form-check col d-flex justify-content-normal">
+              <input class="form-check-input bg-transparent border me-2 mb-2 px-1" type="radio" id="genero1" formControlName="genero" value="Masculino">
+              <span class="form-check-span text fs-14" for="genero1">Masculino</span>
+            </div>
+            <div class="form-check col d-flex justify-content-normal">
+              <input class="form-check-input bg-transparent border me-2 mb-2 px-1" type="radio" id="genero2" formControlName="genero" value="Femenino">
+              <span class="form-check-span text fs-14" for="genero2">Femenino</span>
+            </div>
+            <div class="form-check col d-flex justify-content-normal">
+              <input class="form-check-input bg-transparent border me-2 mb-2 px-1" type="radio" id="genero3" formControlName="genero" value="Otro">
+              <span class="form-check-span text fs-14" for="genero3">Otro</span>
+            </div>
         </div>
       </div>
-      <div class=" col px-4 py-2">
-        <span class="text  col-form-span" for="pais">Pais: </span>
-        <input type="text" class="text custom-input " id="pais" formControlName="pais">
+        <div class="col px-4 py-3">
+          <span class="text" for="email">E-mail: </span>
+          <input type="text" class="text custom-input disabled" id="email" formControlName="email" readonly>
+        </div>
+        <div class=" col px-4 py-3">
+          <span class="text " for="telefono">Teléfono: </span>
+          <input type="number" class="text custom-input " id="telefono" formControlName="telefono">
+        </div>
       </div>
-      <div class=" col px-4 py-2  ">
-        <span class="text " for="genero">Genero:</span>
-        <div class="w-100 pt-4 row row-cols-sm-3 row-cols-1 px-2 ">
-          <div class="form-check col d-flex justify-content-center">
-            <input class="form-check-input bg-transparent border me-2" type="radio" id="genero1" formControlName="genero" value="Masculino">
-            <span class="form-check-span text fs-14" for="genero1">Masculino</span>
-          </div>
-          <div class="form-check col d-flex justify-content-center">
-            <input class="form-check-input bg-transparent border me-2" type="radio" id="genero2" formControlName="genero" value="Femenino">
-            <span class="form-check-span text fs-14" for="genero2">Femenino</span>
-          </div>
-          <div class="form-check col d-flex justify-content-center">
-            <input class="form-check-input bg-transparent border me-2" type="radio" id="genero3" formControlName="genero" value="Otro">
-            <span class="form-check-span text fs-14" for="genero3">Otro</span>
-          </div>
+      <div class="d-flex justify-content-end pt-4 pe-4 ps-4 ps-md-0">
+      <button class="btn btn-outline-secondary px-5 py-2 text text-white border-button w-100 w-md-40" type="submit" [disabled]="!formulario.valid" (click)="saveStep()">Avanzar</button>
       </div>
-    </div>
-    <div class="col px-4 py-2">
-      <span class="text" for="email">Email: </span>
-      <input type="text" class="text custom-input " id="email" formControlName="email">
-    </div>
-    <div class=" col px-4 py-2">
-      <span class="text " for="telefono">Telefono: </span>
-      <input type="number" class="text custom-input " id="telefono" formControlName="telefono">
-    </div>
-</div>
-<div class="row justify-content-center">
-  <button class="btn custom-button text boton my-3" type="submit" [disabled]="!formulario.valid">Continuar</button>
-  <!-- <div class="titulo text" *ngIf="!formulario.valid">Por favor, completar el formulario</div> -->
-  <div class="titulo text" *ngIf="formulario.get('email')?.hasError('email')">El correo no es válido</div>
-</div>
-</form>
+    </form>
+  </ng-container>
+
+  <ng-template #spinner>
+    <app-spinner [center]="true" height="100px" width="100px" [className]="'pb-5'"></app-spinner>
+  </ng-template>  
 </div>

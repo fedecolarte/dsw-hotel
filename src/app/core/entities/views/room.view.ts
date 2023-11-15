@@ -4,6 +4,8 @@ export interface RoomView {
     status: string;
     peopleCapacity: number;
     price: number;
+    discount: number;
+    finalPrice: number;
 }
 
 

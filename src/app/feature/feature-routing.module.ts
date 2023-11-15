@@ -11,7 +11,7 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: 'reserva',
+    path: 'reservas',
     loadChildren: () => import('../reserve/reserve.module').then((m) => m.ReserveModule),
   },
   {

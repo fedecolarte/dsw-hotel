@@ -1,0 +1,64 @@
+<a class="d-none d-lg-flex btn btn-link p-0 text-decoration-none flex-row align-items-center gap-2 back-hover my-2 mb-lg-4 mt-lg-4"
+(click)="goBack()">
+    <span class="material-icons align-top">navigate_before</span>
+    <span>Ir a reservas</span>
+</a>
+<h2 class="text fs-29 mobile-title mt-3 mb-2 my-lg-4 text-white">Detalle de habitación</h2>
+<div class="card px-3 pt-md-4 pb-0 px-md-5">
+    <ng-container *ngIf="!(roomService.roomDetailLoading$ | async) && roomDetail else spinner">
+        <div class="d-flex flex-column flex-lg-row mb-4" [@fade]>
+            <div class="d-flex justify-content-center justify-content-lg-between flex-column pt-5 pb-4 bg-img px-3 mx-xs-1 mx-md-5 mx-lg-0 ms-lg-3">
+                <img [src]="img" alt="Loading" class="radius-15 mw-450 mt-2 align-self-center">
+                <div class="d-flex align-items-center justify-content-start justify-content-lg-end mt-5">
+                    <div class="d-flex flex-column">
+                        <span class="text text-darkgray fs-14" *ngIf="roomDetail.discount > 0"><del>$ {{ roomDetail.price }}</del></span>
+                        <span class="text text-gray fs-26 me-2">$ {{ roomDetail.finalPrice }}</span>
+                    </div>
+                    <span class="descuento text text-limegreen fs-14 align-self-end" *ngIf="roomDetail.discount > 0">{{roomDetail.discount}}% OFF</span>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between flex-column ps-lg-5 pt-3 mx-md-5 mx-lg-0">
+                <div class="container-fluid px-2">
+                    <div class="d-flex flex-column flex-sm-row flex-lg-column justify-content-between">
+                        <div class="d-flex align-items-center title mb-3">
+                            <span class="material-symbols-outlined circled p-1 me-2">king_bed</span>
+                            <div class="text d-flex flex-column">
+                                <span class="text-white fs-22">Habitación N° 1{{ roomDetail.idRoom < 10 ? '0'+roomDetail.idRoom : roomDetail.idRoom }}</span>
+                                <span class="subtitle text-gray">{{ roomDetail.roomType.description }}</span>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-column flex-lg-row my-lg-3">
+                            <div class="badge text">
+                                {{ roomDetail.status | uppercase }}
+                            </div>
+                            <span class="d-none d-lg-inline text text-white border-left ms-2 ps-2 fs-14"> Hasta {{roomDetail.peopleCapacity}} personas</span>
+                            <span class="d-lg-none text text-white fs-12"> Hasta {{roomDetail.peopleCapacity}} personas</span>
+                        </div>
+                    </div>
+                    <div class="body my-3">
+                        <span class="title text text-white fw-semibold mb-2">Características de la habitación</span>
+                        <ul>
+                            <li *ngFor="let characteristic of roomDetail.characteristics">
+                                <span class="text text-white fs-14">{{ characteristic }}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <span class="title text text-white fw-semibold px-2 mb-2">Características del hotel</span>
+                <div class="border d-flex row row-cols-4 row-cols-xxl-4 row-cols-lg-2 row-cols-1 py-3 px-2 px-lg-3 px-xl-5 justify-content-between radius-10 mx-0 mx-xl-3">
+                    <div *ngFor="let card of cardsHotel">
+                        <div class="col d-flex flex-column align-items-center justify-content-around my-2 mx-0 mx-xl-3 text-center">
+                            <span class="material-symbols-outlined text-white fs-29">{{ card.icon }}</span>
+                            <span class="text text-white fs-10 mt-1 d-none d-xl-block lh-1">{{ card.description | uppercase }}</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-outline-secondary px-5 py-2 text text-white align-self-end border me-xl-3 mt-3 btn-mb" (click)="saveStep()">Avanzar</button>
+            </div>
+        </div>
+    </ng-container>
+
+    <ng-template #spinner>
+        <app-spinner [center]="true" height="100px" width="100px" className="pb-5"></app-spinner>
+    </ng-template>
+</div>

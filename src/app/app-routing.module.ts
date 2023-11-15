@@ -12,7 +12,7 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'reserva',
+    path: 'reservas',
     loadChildren: () => import('./reserve/reserve.module').then((m) => m.ReserveModule),
   }
 ];

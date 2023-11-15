@@ -1,0 +1,120 @@
+a {
+    color: #4a8bff;
+    &.back-hover {
+      transition: gap 0.2s ease;
+      width: 150px;
+  
+      &:hover {
+        gap: 0px !important;
+      }
+  
+      span.go-back {
+        font-size: 14px;
+        font-family: Poppins;
+      }
+    }
+}
+
+.fs-29 {
+    font-size: 29px;
+}
+
+.fs-22 {
+  font-size: 22px;
+}
+
+.card {
+    min-height: 60vh;
+    background-color: #403C46;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.bg-img {
+  background-color: #312e38;
+  border-radius: 15px;
+}
+
+.radius-15 {
+  border-radius: 15px;
+}
+
+.radius-10 {
+  border-radius: 10px;
+}
+
+.mw-450 {
+  max-width: 65vw;
+
+  @media (min-width: 992px) {
+    max-width: 450px;
+  }
+}
+
+.border {
+  border: 2px solid #312e38!important;
+}
+
+.fs-29 {
+  font-size: 29px;
+}
+
+.fs-10 {
+  font-size: 10px;
+}
+
+.fs-12 {
+  font-size: 12px;
+}
+
+.fs-14 {
+  font-size: 14px;
+}
+
+.fs-26 {
+  font-size: 26px;
+}
+
+.text-gray {
+  color: #b1b1b1;
+}
+
+.text-darkgray {
+  color: #898989;
+}
+
+.text-limegreen {
+  color: limegreen;
+}
+
+.circled {
+  border: 2px solid white;
+  border-radius: 25px;
+  background-color: #312e38;
+  color: white;
+  font-size: 32px;
+}
+
+.badge {
+  font-size: 12px;
+  font-weight: 600;
+  color: cornflowerblue;
+  border: 2px solid cornflowerblue;
+  width: 105px;
+}
+
+.border-left {
+  border-left: 2px solid white;
+}
+
+.mobile-title {
+  @media (max-width: 991.98px) {
+    font-size: 19px!important;
+  } 
+}
+
+.btn-mb {
+  @media (max-width: 767.98px) {
+    width: 100%;
+  }
+}

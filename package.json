@@ -24,6 +24,7 @@
     "@ngx-translate/core": "^14.0.0",
     "@popperjs/core": "^2.10.2",
     "bootstrap": "^5.2.0",
+    "date-fns": "^2.30.0",
     "material-icons": "^1.12.0",
     "material-symbols": "^0.2.13",
     "ngx-mask": "^14.3.2",

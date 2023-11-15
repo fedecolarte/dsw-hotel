@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { BehaviorSubject, Observable, async, catchError, delay, map, of, retry, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, async, catchError, delay, map, of, retry, take, throwError } from 'rxjs';
 import { ValidateUserRequest } from '../entities/requests/validate-user.request';
 import * as validateUserResponseMock from '../../../assets/mocks/validate-user.response.mock.json';
 import { ValidateUserResponse } from '../entities/responses/validate-user.response';
@@ -9,6 +9,8 @@ import { environment } from '@app-env/environment';
 import { HttpClient } from '@angular/common/http';
 import { StoreService } from './store.service';
 import { RegisterUserRequest } from '../entities/requests/register-user.request';
+import { UserInfoView } from '../entities/views/user-info.view';
+import { UserInfoResponse } from '../entities/responses/user-info.response';
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +21,9 @@ export class UserService {
   
   private isRegisterMode = new BehaviorSubject<boolean>(false);
   private registerPersonLoading = new BehaviorSubject<boolean>(false);
-
   private validateUserLoading = new BehaviorSubject<boolean>(false);
+  private getUserLoading = new BehaviorSubject<boolean>(false);
+
   private userLogged = new BehaviorSubject<string | null>(null);
   private isLogged = new BehaviorSubject<boolean>(false);
 
@@ -28,6 +31,8 @@ export class UserService {
   registerPersonLoading$ = this.registerPersonLoading.asObservable();
   
   validateUserLoading$ = this.validateUserLoading.asObservable(); 
+  getUserLoading$ = this.getUserLoading.asObservable(); 
+
   userLogged$ = this.userLogged.asObservable();
   isLogged$ = this.isLogged.asObservable();
 
@@ -43,11 +48,16 @@ export class UserService {
     this.isRegisterMode.next(value);
   }
 
-  setUserLogged(user: string, isLogin: boolean): void {
-    if(isLogin) this.userLogged.next(user);
-    else this.userLogged.next(null);
+  setUserLogged(user: string | null): void {
+    if(user) {
+      this.userLogged.next(user);
+      this.isLogged.next(true);
+    }
+    else {
+      this.userLogged.next(null);
+      this.isLogged.next(false);
+    }
 
-    this.isLogged.next(isLogin);
   }
 
   validateUser(userCredentials: ValidateUserRequest): Observable<ValidateUserView> {
@@ -86,7 +96,7 @@ export class UserService {
   }
 
   registerUser(registerRequest: RegisterUserRequest): Observable<any> {
-    const endpoint: string = environment.baseUrl + environment.apis.userApis.registerUser;
+    const endpoint: string = environment.baseUrl + environment.apis.userApis.user;
     console.log(endpoint);
     this.registerPersonLoading.next(true);
 
@@ -112,5 +122,28 @@ export class UserService {
     //     return this.userAdapter.validateUserResponseToValidateUserView(validationResponse);
     //   })
     // )
+  }
+
+  getUserInfo(user: string | null): Observable<UserInfoView> {
+    if(user) {
+      const url = `${environment.baseUrl}${environment.apis.userApis.user}/${user}`;
+      this.getUserLoading.next(true);
+      return this.http.get<UserInfoResponse>(url).pipe(
+        retry(3),
+        map((detailResponse: UserInfoResponse) => {
+          const adaptedUserInfo: UserInfoView = this.userAdapter.UserInfoResponseToView(detailResponse);
+          this.getUserLoading.next(false);
+          
+          return adaptedUserInfo;
+        }),
+        catchError((e) => {
+          console.log(e);
+          this.getUserLoading.next(false);
+  
+          return throwError(() => new Error('Error'));
+        })
+      )
+    }
+    else return throwError(() => new Error('Error'));
   }
 }

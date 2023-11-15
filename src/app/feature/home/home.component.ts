@@ -49,7 +49,7 @@ export class HomeComponent implements OnInit {
 	}
 
 	openReserve(): void {
-		this.router.navigate(['/reserva'])
+		this.router.navigate(['/reservas'])
 	}
 
 	ngOnInit(): void {

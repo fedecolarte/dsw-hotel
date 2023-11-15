@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { BreakpointService } from '@app/core/services/breakpoint.service';
 import { NgbDate, NgbCalendar, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -10,10 +11,17 @@ export class DatepickerComponent implements OnInit {
   hoveredDate: NgbDate | null = null;
   fromDate: NgbDate | null;
   toDate: NgbDate | null;
+  minDate: NgbDate;
+  
   @Output() emitValues = new EventEmitter<any>();
 
-  constructor(private calendar: NgbCalendar, public formatter: NgbDateParserFormatter) {
-  }
+  constructor(
+    private calendar: NgbCalendar,
+    public formatter: NgbDateParserFormatter,
+    public breakpointService: BreakpointService) {
+      const today = new Date();
+      this.minDate = new NgbDate(today.getFullYear(), today.getMonth() + 1, today.getDate());
+    }
 
   ngOnInit(): void {
   }
