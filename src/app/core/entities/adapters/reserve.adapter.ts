@@ -8,7 +8,7 @@ export class ReserveAdapter {
 
   reserveInfoResponseToView(reserveInfoResponse: ReserveInfoResponse): ReserveInfoView {
     return {
-        idReseve: reserveInfoResponse.id,
+        idReserve: reserveInfoResponse.id,
         idRoom: reserveInfoResponse.idHabitacion,
         documentNumber: reserveInfoResponse.documentoCliente,
         checkIn: reserveInfoResponse.fechaEntrada,
@@ -25,7 +25,7 @@ export class ReserveAdapter {
 
     reserveInfoResponse.map(reserveInfoResponse => {
       const reserveInfoView: ReserveInfoView = {
-        idReseve: reserveInfoResponse.id,
+        idReserve: reserveInfoResponse.id,
         idRoom: reserveInfoResponse.idHabitacion,
         documentNumber: reserveInfoResponse.documentoCliente,
         checkIn: reserveInfoResponse.fechaEntrada,

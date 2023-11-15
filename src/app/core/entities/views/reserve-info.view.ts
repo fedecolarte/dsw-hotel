@@ -1,5 +1,5 @@
 export interface ReserveInfoView {
-    idReseve: number;
+    idReserve: number;
     idRoom: number;
     documentNumber: string;
     checkIn: string;
