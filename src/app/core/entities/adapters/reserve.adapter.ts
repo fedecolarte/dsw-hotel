@@ -18,4 +18,26 @@ export class ReserveAdapter {
         finalPrice: reserveInfoResponse.precioFinal,
     }
   }
+
+  getReservesResponseToView(reserveInfoResponse: ReserveInfoResponse[]): ReserveInfoView[] {
+
+    let adaptedResponse: ReserveInfoView[] = [];
+
+    reserveInfoResponse.map(reserveInfoResponse => {
+      const reserveInfoView: ReserveInfoView = {
+        idReseve: reserveInfoResponse.id,
+        idRoom: reserveInfoResponse.idHabitacion,
+        documentNumber: reserveInfoResponse.documentoCliente,
+        checkIn: reserveInfoResponse.fechaEntrada,
+        checkOut: reserveInfoResponse.fechaSalida,
+        peopleCapacity: reserveInfoResponse.cantidadPersonas,
+        paid: reserveInfoResponse.pagada,
+        finalPrice: reserveInfoResponse.precioFinal,
+      }
+
+      adaptedResponse.push(reserveInfoView);
+    })
+
+    return adaptedResponse;
+  }
 }

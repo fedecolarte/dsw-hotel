@@ -6,12 +6,14 @@ import { RoomTypesComponent } from './room-types/room-types.component';
 import { ContactComponent } from './contact/contact.component';
 import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms';
+import { MyReservationsComponent } from './my-reservations/my-reservations.component';
 
 @NgModule({
   declarations: [
     RoomTypesComponent,
     ContactComponent,
-    HomeComponent
+    HomeComponent,
+    MyReservationsComponent
   ],
   imports: [
     CommonModule,

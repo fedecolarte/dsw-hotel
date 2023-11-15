@@ -6,6 +6,7 @@ import { Observable, combineLatest, concatMap, map, take } from 'rxjs';
 import { format, parseISO, formatISO } from 'date-fns';
 import { Router } from '@angular/router';
 import { CreateReserveRequest } from '@app/core/entities/requests/create-reserve.request';
+import { ReserveService } from '@app/core/services/reserve.service';
 
 
 @Component({
@@ -33,7 +34,8 @@ export class SummaryAndPaymentComponent implements OnInit {
 
   constructor(
     private roomService: RoomService,
-    private stepperService: StepperService
+    private stepperService: StepperService,
+    private reserveService: ReserveService
   ) {
     this.paymentImg = '../../../assets/images/reserve/payment.svg';
     this.mercadoPagoImg = '../../../assets/icons/mercado-pago.icon.png';
@@ -94,7 +96,8 @@ export class SummaryAndPaymentComponent implements OnInit {
       pagada: false,
       cantidadPersonas: this.reserveInfo.peopleCapacity
     }
-    this.stepperService.createReserve(payload).pipe(take(1)).subscribe(reserve => {
+    
+    this.reserveService.createReserve(payload).pipe(take(1)).subscribe(reserve => {
       console.log(reserve);
     });
     this.goNextStep.emit(true);

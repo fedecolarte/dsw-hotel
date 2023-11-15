@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { RoomTypesComponent } from './room-types/room-types.component';
 import { ContactComponent } from './contact/contact.component';
+import { MyReservationsComponent } from './my-reservations/my-reservations.component';
+import { AuthGuard } from '@app/auth.guard';
 
 const routes: Routes = [
   {
@@ -21,6 +23,11 @@ const routes: Routes = [
     path: 'contacto',
     component: ContactComponent
   },
+  {
+    path: 'mis-reservas',
+    component: MyReservationsComponent,
+    canActivate: [AuthGuard]
+  }
 ];
 
 @NgModule({
