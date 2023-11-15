@@ -66,18 +66,45 @@
         </div>
         <div class="border col-12 col-md-4">
             <div class="d-flex flex-column align-items-center">
-                <img [src]="paymentImg" alt="payment" [height]="300" [width]="300">
+                <img [src]="paymentImg" alt="payment" [height]="250" [width]="250">
             </div>
             <hr>
             <div class="d-flex justify-content-between align-items-center mx-4 mt-2 mb-5" *ngIf="(reserveInfo$ | async) as reserve">
                 <span class="text text-white"><em>Pagás</em></span>
                 <div class="d-flex align-items-center">
-                        <span class="text text-gray me-2"><em>$ {{ reserve.price }}</em></span>
-                        <span class="descuento text text-limegreen fs-10"><em>{{ reserve.discount }}% OFF</em></span>
+                    <span class="text text-gray me-2"><em>$ {{ reserve.price }}</em></span>
+                    <span class="descuento text text-limegreen fs-10" *ngIf="reserve.discount > 0"><em>{{ reserve.discount }}% OFF</em></span>
                 </div>
             </div>
             <hr>
-            <button class="btn btn-outline-secondary px-5 py-2 text text-white border-button me-xl-3 my-3 btn-mb w-100" (click)="saveStep()">Confirmar</button>
+            <div class="form-check d-flex align-items-center ms-4">
+                <input 
+                class="form-check-input me-2" 
+                type="radio"
+                id="Efectivo" 
+                [(ngModel)]="paymentMethod" 
+                name="options" 
+                value="Efectivo">
+                <label class="form-check-label d-flex align-items-center" for="Efectivo">
+                    <img [src]="cashImg" height="40px" width="48px" alt="Efectivo">
+                    <span class="text ms-2 text-white">Efectivo en puerta</span>
+                </label>
+            </div>
+            <div class="form-check d-flex align-items-center ms-4">
+                <input 
+                class="form-check-input me-2" 
+                type="radio" 
+                id="Mercado pago" 
+                name="options" 
+                [(ngModel)]="paymentMethod" 
+                value="Mercado pago"
+                disabled>
+                <label class="form-check-label d-flex align-items-center" for="Mercado pago">
+                    <img [src]="mercadoPagoImg" height="48px" width="48px" alt="mercadoPago">
+                    <span class="text ms-2 text-white">Mercado pago</span>
+                </label>
+            </div>
+            <button class="btn btn-outline-secondary px-5 py-2 text text-white border-button me-xl-3 my-3 btn-mb w-100" (click)="saveStep()" [disabled]="!paymentMethod">Confirmar</button>
         </div>
     </div>
 </div>

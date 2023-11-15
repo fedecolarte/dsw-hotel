@@ -18,6 +18,9 @@ export const environment = {
       room: 'habitacion',
       searchRooms: 'habitacion/lista',
       roomTypes: 'habitacion/tipo/getTiposHabitacion'
+    },
+    reserveApis: {
+      reserve: 'reserva'
     }
   }
 };

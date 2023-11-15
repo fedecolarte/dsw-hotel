@@ -5,6 +5,7 @@ import { StepperService } from '@app/core/services/stepper.service';
 import { Observable, combineLatest, concatMap, map, take } from 'rxjs';
 import { format, parseISO, formatISO } from 'date-fns';
 import { Router } from '@angular/router';
+import { CreateReserveRequest } from '@app/core/entities/requests/create-reserve.request';
 
 
 @Component({
@@ -19,15 +20,24 @@ export class SummaryAndPaymentComponent implements OnInit {
 
 
   paymentImg: string;
+  mercadoPagoImg: string;
+  cashImg: string;
+
+
+
   reserveInfo$: Observable<InfoReserve | null>;
   reserveInfo: InfoReserve;
+  checkIn: Date;
+  checkOut: Date;
+  paymentMethod: string;
 
   constructor(
-    private router: Router,
     private roomService: RoomService,
     private stepperService: StepperService
   ) {
-    this.paymentImg = '../../../assets/images/reserve/payment.svg'
+    this.paymentImg = '../../../assets/images/reserve/payment.svg';
+    this.mercadoPagoImg = '../../../assets/icons/mercado-pago.icon.png';
+    this.cashImg = '../../../assets/icons/cash.icon.png';
   }
 
 
@@ -57,6 +67,10 @@ export class SummaryAndPaymentComponent implements OnInit {
             }
 
             this.reserveInfo = infoReserve;
+
+            this.checkIn = filters.fechaEntrada;
+            this.checkOut = filters.fechaSalida;
+
             return infoReserve;
           }
 
@@ -71,7 +85,18 @@ export class SummaryAndPaymentComponent implements OnInit {
   }
 
   saveStep(): void {
-    this.stepperService.createReserve(this.reserveInfo);
+    const payload: CreateReserveRequest = {
+      fechaEntrada: format(this.checkIn, 'yyyy-MM-dd'),
+      fechaSalida: format(this.checkOut, 'yyyy-MM-dd'),
+      idHabitacion: this.reserveInfo.roomId,
+      documentoCliente: this.reserveInfo.documentNumber,
+      precioFinal: this.reserveInfo.price,
+      pagada: false,
+      cantidadPersonas: this.reserveInfo.peopleCapacity
+    }
+    this.stepperService.createReserve(payload).pipe(take(1)).subscribe(reserve => {
+      console.log(reserve);
+    });
     this.goNextStep.emit(true);
   }
 }
