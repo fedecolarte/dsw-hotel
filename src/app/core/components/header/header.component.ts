@@ -37,7 +37,7 @@ export class HeaderComponent implements OnInit {
       name: 'Contacto',
       icon: 'contact_support',
       link: '/contacto',
-      disabled: true
+      disabled: false
     },
     {
       name: 'Ingresar'
