@@ -84,15 +84,7 @@ export class UserService {
         return throwError(() => new Error('Error'));
       })
     )
-    // const response: ValidateUserResponse = validateUserResponseMock;
-    // this.validateUserLoading.next(true);
-    // return of(response).pipe(
-    //   delay(2000),
-    //   map((validationResponse) => {
-    //     this.validateUserLoading.next(false);
-    //     return this.userAdapter.validateUserResponseToValidateUserView(validationResponse);
-    //   })
-    // )
+
   }
 
   registerUser(registerRequest: RegisterUserRequest): Observable<any> {
@@ -113,15 +105,7 @@ export class UserService {
          return throwError(() => new Error('Error'));
     })
   )
-    // const response: ValidateUserResponse = validateUserResponseMock;
-    // this.validateUserLoading.next(true);
-    // return of(response).pipe(
-    //   delay(2000),
-    //   map((validationResponse) => {
-    //     this.validateUserLoading.next(false);
-    //     return this.userAdapter.validateUserResponseToValidateUserView(validationResponse);
-    //   })
-    // )
+
   }
 
   getUserInfo(user: string | null): Observable<UserInfoView> {

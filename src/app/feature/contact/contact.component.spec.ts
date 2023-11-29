@@ -34,9 +34,21 @@ describe('ContactComponent', () => {
     expect(component.form.get('message')).toBeTruthy();
   });
 
-  it('should send email successfully', async () => {
+  it('should have a valid form', () => {
+    expect(component.form.valid).toBeFalsy();
+
+    component.form.setValue({
+      email: 'test@example.com',
+      message: 'Test message',
+    });
+
+    expect(component.form.valid).toBeTruthy();
+  });
+
+  it('should send email and alert successfully', async () => {
     spyOn(emailjs, 'init');
     spyOn(emailjs, 'send').and.returnValue(Promise.resolve(mockResponseStatus));
+    spyOn(window, 'alert');
 
     component.form.setValue({
       email: 'test@example.com',
@@ -50,6 +62,8 @@ describe('ContactComponent', () => {
       email: 'test@example.com',
       message: 'Test message',
     });
+    expect(window.alert).toHaveBeenCalledWith('Mensaje enviado, pronto recibiras respuesta!');
+    expect(component.form.valid).toBeFalsy();
   });
 
   it('should reset form after sending email', async () => {
