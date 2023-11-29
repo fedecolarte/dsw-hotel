@@ -28,12 +28,6 @@ export class HeaderComponent implements OnInit {
       disabled: false
     },
     {
-      name: 'Tipos de Habitación',
-      icon: 'bed',
-      link: '/tipos-habitacion',
-      disabled: true
-    },
-    {
       name: 'Contacto',
       icon: 'contact_support',
       link: '/contacto',

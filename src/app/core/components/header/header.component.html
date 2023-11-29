@@ -7,7 +7,7 @@
       [ngClass]="(isMenuCollapsed && (breakpointService.isMobile$ | async)) ? 'opacity-0' : 'opacity-1'">
         <li class="nav-item mx-0 mx-md-2" *ngFor="let tab of tabs; let i = index" [routerLinkActiveOptions]="{ exact: true }"
         routerLinkActive #rla='routerLinkActive'>
-          <div class="d-flex align-items-center h-40 box-sizing" *ngIf="i !== 4; else logIn" [ngClass]="{'disabled': tab.disabled}">
+          <div class="d-flex align-items-center h-40 box-sizing" *ngIf="i !== 3; else logIn" [ngClass]="{'disabled': tab.disabled}">
             <i class="d-inline d-md-none material-symbols-rounded me-2">{{ tab.icon }}</i>
             <a class="nav-link" [routerLink]="tab.link" [ngClass]="{'selected': rla.isActive}">{{ tab.name }}</a>
           </div>
