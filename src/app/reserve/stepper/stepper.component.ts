@@ -1,9 +1,7 @@
-import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { fadeAnimation } from '@app/core/animations/fade.animation';
-import { LoginComponent } from '@app/core/components/login/login.component';
 import { StepperService } from '@app/core/services/stepper.service';
 import { UserService } from '@app/core/services/user.service';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-stepper',

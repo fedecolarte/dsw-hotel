@@ -6,8 +6,8 @@ import { InfoClient } from '@app/core/entities/views/info-client.view';
 import { ClientService } from '@app/core/services/client.service';
 import { StepperService } from '@app/core/services/stepper.service';
 import { UserService } from '@app/core/services/user.service';
-import { NgbDate, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-import { combineLatest, concatMap, switchMap, take, tap } from 'rxjs';
+import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
+import { concatMap, take } from 'rxjs';
 
 @Component({
   selector: 'app-step-form',

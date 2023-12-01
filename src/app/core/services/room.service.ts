@@ -1,8 +1,6 @@
 import { Injectable, inject } from '@angular/core';
-import { BehaviorSubject, Observable, catchError, delay, map, of, retry, take, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, map, of, retry, throwError } from 'rxjs';
 import { RoomTypeView, RoomView } from '../entities/views/room.view';
-import * as searchRoomsResponseMock from '../../../assets/mocks/get-room-types.response.mock.json';
-import * as getRoomDetailResponseMock from '../../../assets/mocks//get-room-detail.response.mock.json';
 import { RoomResponse } from '../entities/responses/room.response';
 import { RoomAdapter } from '../entities/adapters/room.adapter';
 import { RoomFilters } from '../filters/room.filters';

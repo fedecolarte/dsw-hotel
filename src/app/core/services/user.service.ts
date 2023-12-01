@@ -1,7 +1,6 @@
 import { Injectable, inject } from '@angular/core';
-import { BehaviorSubject, Observable, async, catchError, delay, map, of, retry, take, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, map, retry, throwError } from 'rxjs';
 import { ValidateUserRequest } from '../entities/requests/validate-user.request';
-import * as validateUserResponseMock from '../../../assets/mocks/validate-user.response.mock.json';
 import { ValidateUserResponse } from '../entities/responses/validate-user.response';
 import { ValidateUserView } from '../entities/views/validate-user.view';
 import { UserAdapter } from '../entities/adapters/user.adapter';

@@ -1,7 +1,7 @@
 import { HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, from } from 'rxjs';
-import { concatMap, delay, mergeMap, take } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { concatMap, delay, take } from 'rxjs/operators';
 import { StoreService } from '../services/store.service';
 
 @Injectable()
