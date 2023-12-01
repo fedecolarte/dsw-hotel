@@ -38,7 +38,6 @@ export class ReserveService {
       }),
       catchError((e) => {
         this.createReserveLoading.next(false);
-        console.log(e);
         
         return throwError(() => new Error('Error'));
       })
@@ -48,7 +47,6 @@ export class ReserveService {
 
   getReservesByDocument(documentNumber: string): Observable<ReserveInfoView[]> {
     const endpoint: string = `${environment.baseUrl +  environment.apis.reserveApis.reserve}/${documentNumber}`; 
-    console.log(endpoint)
     this.getReservesLoading.next(true);
 
     return this.http.get<ReserveInfoResponse[]>(endpoint).pipe(
@@ -60,7 +58,6 @@ export class ReserveService {
         return adaptedReserveInfo;
       }),
       catchError((e) => {
-        console.log(e);
         this.getReservesLoading.next(false);
 
         return throwError(() => new Error('Error'));

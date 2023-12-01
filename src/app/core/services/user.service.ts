@@ -61,7 +61,6 @@ export class UserService {
 
   validateUser(userCredentials: ValidateUserRequest): Observable<ValidateUserView> {
     const endpoint: string = environment.baseUrl + environment.apis.loginValidator;
-    console.log(endpoint);
     this.validateUserLoading.next(true);
     
     return this.http.post<ValidateUserResponse>(endpoint, userCredentials).pipe(
@@ -78,7 +77,6 @@ export class UserService {
       }),
       catchError((e) => {
         this.validateUserLoading.next(false);
-        console.log(e);
 
         return throwError(() => new Error('Error'));
       })
@@ -88,7 +86,6 @@ export class UserService {
 
   registerUser(registerRequest: RegisterUserRequest): Observable<any> {
     const endpoint: string = environment.baseUrl + environment.apis.userApis.user;
-    console.log(endpoint);
     this.registerPersonLoading.next(true);
 
      return this.http.post<any>(endpoint, registerRequest).pipe(
@@ -99,7 +96,6 @@ export class UserService {
        }),
        catchError((e) => {
          this.registerPersonLoading.next(false);
-         console.log(e);
          
          return throwError(() => new Error('Error'));
     })
@@ -120,7 +116,6 @@ export class UserService {
           return adaptedUserInfo;
         }),
         catchError((e) => {
-          console.log(e);
           this.getUserLoading.next(false);
   
           return throwError(() => new Error('Error'));

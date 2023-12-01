@@ -96,9 +96,7 @@ export class SummaryAndPaymentComponent implements OnInit {
       cantidadPersonas: this.reserveInfo.peopleCapacity
     }
     
-    this.reserveService.createReserve(payload).pipe(take(1)).subscribe(reserve => {
-      console.log(reserve);
-    });
+    this.reserveService.createReserve(payload).pipe(take(1)).subscribe();
     this.goNextStep.emit(true);
   }
 }

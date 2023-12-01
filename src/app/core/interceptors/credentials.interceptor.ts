@@ -17,7 +17,6 @@ export class CredentialsInterceptor implements HttpInterceptor {
       take(1),
       delay(500),
       concatMap((token) => {
-        console.log(token)
         this.authReq = request.clone({
             headers: new HttpHeaders({
             Authorization: `Bearer ${token}`

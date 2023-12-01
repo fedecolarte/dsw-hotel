@@ -32,7 +32,6 @@ export class ClientService {
         return adaptedResponse;
       }),
       catchError((e) => {
-        console.log(e);
         this.clientInfoLoading.next(false);
 
         return throwError(() => new Error('Error'));
