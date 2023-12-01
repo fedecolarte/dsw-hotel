@@ -114,7 +114,7 @@ export class UserService {
       return this.http.get<UserInfoResponse>(url).pipe(
         retry(3),
         map((detailResponse: UserInfoResponse) => {
-          const adaptedUserInfo: UserInfoView = this.userAdapter.UserInfoResponseToView(detailResponse);
+          const adaptedUserInfo: UserInfoView = this.userAdapter.userInfoResponseToView(detailResponse);
           this.getUserLoading.next(false);
           
           return adaptedUserInfo;
