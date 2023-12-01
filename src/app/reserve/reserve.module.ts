@@ -8,7 +8,7 @@ import { RoomAdapter } from '@app/core/entities/adapters/room.adapter';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { StepperComponent } from './stepper/stepper.component';
-import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { SuccessComponent } from './success/success.component';
 import { StepDetailRoomComponent } from './step-detail-room/step-detail-room.component';
 import { SummaryAndPaymentComponent } from './summary-and-payment/summary-and-payment.component';
@@ -33,6 +33,7 @@ import { ObligatoryLoginComponent } from './obligatory-login/obligatory-login.co
     ReactiveFormsModule,
     FormsModule,
     NgbNavModule,
+    NgbModule
   ],
   providers: [
     RoomAdapter

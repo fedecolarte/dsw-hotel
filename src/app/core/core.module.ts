@@ -18,6 +18,8 @@ import { StoreService } from './services/store.service';
 import { RoomAdapter } from './entities/adapters/room.adapter';
 import { ClientAdapter } from './entities/adapters/client.adapter';
 import { ReserveAdapter } from './entities/adapters/reserve.adapter';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ReactiveFormsModule } from '@angular/forms';
 
 registerLocaleData(localeEsAR, environment.defaultLanguage);
 
@@ -43,6 +45,8 @@ export function LoaderFactory() {
     }),
     SharedModule,
     RouterModule,
+    ReactiveFormsModule,
+    NgbModule
   ],
   exports: [
     FooterComponent,

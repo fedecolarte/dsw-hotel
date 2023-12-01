@@ -5,8 +5,9 @@ import { SharedModule } from '@app-shared/shared.module';
 import { RoomTypesComponent } from './room-types/room-types.component';
 import { ContactComponent } from './contact/contact.component';
 import { HomeComponent } from './home/home.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MyReservationsComponent } from './my-reservations/my-reservations.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -18,8 +19,10 @@ import { MyReservationsComponent } from './my-reservations/my-reservations.compo
   imports: [
     CommonModule,
     FeatureRoutingModule,
+    ReactiveFormsModule,
     SharedModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ],
 })
 export class FeatureModule {}
