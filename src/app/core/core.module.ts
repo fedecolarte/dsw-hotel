@@ -18,6 +18,7 @@ import { StoreService } from './services/store.service';
 import { RoomAdapter } from './entities/adapters/room.adapter';
 import { ClientAdapter } from './entities/adapters/client.adapter';
 import { ReserveAdapter } from './entities/adapters/reserve.adapter';
+import { RegisterComponent } from './components/login/register/register.component';
 
 registerLocaleData(localeEsAR, environment.defaultLanguage);
 
@@ -30,6 +31,7 @@ export function LoaderFactory() {
     FooterComponent,
     HeaderComponent,
     LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     NgxMaskModule.forRoot(),
