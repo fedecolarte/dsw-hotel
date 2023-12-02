@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { BehaviorSubject, Observable, catchError, map, retry, take, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, map, retry, throwError } from 'rxjs';
 import { environment } from '@app-env/environment';
 import { HttpClient } from '@angular/common/http';
 import { ClientInfoView } from '../entities/views/client-info.view';
@@ -32,7 +32,6 @@ export class ClientService {
         return adaptedResponse;
       }),
       catchError((e) => {
-        console.log(e);
         this.clientInfoLoading.next(false);
 
         return throwError(() => new Error('Error'));

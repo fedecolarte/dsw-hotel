@@ -22,9 +22,6 @@ import { CredentialsInterceptor } from '@app/core/interceptors/credentials.inter
     JsonPipe
   ],
   exports: [
-    ReactiveFormsModule,
-    NgbModule,
-    TranslateModule,
     SpinnerComponent,
     DatepickerComponent
   ],

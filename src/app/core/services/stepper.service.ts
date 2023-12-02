@@ -1,14 +1,9 @@
 import { Injectable, inject } from '@angular/core';
-import { BehaviorSubject, Observable, catchError, map, retry, take, throwError } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { RoomDetailView } from '../entities/views/room-detail.view';
 import { InfoClient } from '../entities/views/info-client.view';
-import { InfoReserve } from '../entities/views/info-reserve.view';
-import { environment } from '@app-env/environment';
 import { HttpClient } from '@angular/common/http';
-import { ReserveInfoResponse } from '../entities/responses/create-reserve.response';
-import { ReserveInfoView } from '../entities/views/reserve-info.view';
 import { ReserveAdapter } from '../entities/adapters/reserve.adapter';
-import { CreateReserveRequest } from '../entities/requests/create-reserve.request';
 
 @Injectable({
   providedIn: 'root'
@@ -59,7 +54,6 @@ export class StepperService {
   //     }),
   //     catchError((e) => {
   //       this.createReserveLoading.next(false);
-  //       console.log(e);
         
   //       return throwError(() => new Error('Error'));
   //     })

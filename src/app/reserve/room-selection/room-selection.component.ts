@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { fadeAnimation } from '@app/core/animations/fade.animation';
 import { RoomTypeView, RoomView } from '@app/core/entities/views/room.view';
