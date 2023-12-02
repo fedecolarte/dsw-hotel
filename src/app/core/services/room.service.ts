@@ -1,8 +1,6 @@
 import { Injectable, inject } from '@angular/core';
-import { BehaviorSubject, Observable, catchError, delay, map, of, retry, take, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, map, of, retry, throwError } from 'rxjs';
 import { RoomTypeView, RoomView } from '../entities/views/room.view';
-import * as searchRoomsResponseMock from '../../../assets/mocks/get-room-types.response.mock.json';
-import * as getRoomDetailResponseMock from '../../../assets/mocks//get-room-detail.response.mock.json';
 import { RoomResponse } from '../entities/responses/room.response';
 import { RoomAdapter } from '../entities/adapters/room.adapter';
 import { RoomFilters } from '../filters/room.filters';
@@ -35,11 +33,9 @@ export class RoomService {
   }
 
   searchRooms(filters: RoomFilters | null): Observable<RoomView[] | null> {
-    console.log(filters);
     if(!filters?.fechaEntrada || !filters?.fechaSalida) return of(null);
 
     const endpoint = environment.baseUrl + environment.apis.roomApis.searchRooms;
-    console.log(endpoint);
     const payload = {
       ...filters,
       fechaEntrada: format(filters.fechaEntrada, 'yyyy-MM-dd'),
@@ -61,7 +57,6 @@ export class RoomService {
       }),
       catchError((e) => {
         this.searchRoomsLoading.next(false);
-        console.log(e);
 
         return throwError(() => new Error('Error'));
       })
@@ -93,7 +88,6 @@ export class RoomService {
     return this.http.get<RoomDetailResponse>(url).pipe(
       retry(3),
       map((detailResponse: RoomDetailResponse) => {
-        console.log(roomTypes);
         const adaptedDetailResponse: RoomDetailView = this.roomAdapter.roomDetailResponseToView(detailResponse, roomTypes);
         this.roomDetailLoading.next(false);
 
@@ -101,12 +95,10 @@ export class RoomService {
       }),
       catchError((e) => {
         this.roomDetailLoading.next(false);
-        console.log(e);
 
         return throwError(() => new Error('Error'));
       })
     )
-    // console.log(roomId);
     // const response = getRoomDetailResponseMock;
 
     // this.roomDetailLoading.next(true);
@@ -132,8 +124,6 @@ export class RoomService {
         return adaptedRoomTypes;
       }),
       catchError((e) => {
-        console.log(e);
-
         return throwError(() => new Error('Error'));
       })
     )

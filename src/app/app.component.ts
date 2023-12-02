@@ -20,7 +20,6 @@ export class AppComponent implements OnInit {
   @HostListener('window:beforeunload', ['$event'])
   beforeUnloadHandler(event: any) {
     this.storeService.token$.subscribe(token => {
-      console.log(token);
       const isTokenExpired = this.storeService.isTokenExpired(token);
       if(!isTokenExpired && token) localStorage.setItem('auth', token);
       else {

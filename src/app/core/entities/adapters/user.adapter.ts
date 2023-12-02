@@ -15,7 +15,7 @@ export class UserAdapter {
     };
   }
 
-  UserInfoResponseToView(userInfoResponse: UserInfoResponse): UserInfoView {
+  userInfoResponseToView(userInfoResponse: UserInfoResponse): UserInfoView {
     return {
       username: userInfoResponse.username,
       firstName: userInfoResponse.firstName,

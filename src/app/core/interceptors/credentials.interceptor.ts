@@ -1,7 +1,7 @@
 import { HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, from } from 'rxjs';
-import { concatMap, delay, mergeMap, take } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { concatMap, delay, take } from 'rxjs/operators';
 import { StoreService } from '../services/store.service';
 
 @Injectable()
@@ -17,7 +17,6 @@ export class CredentialsInterceptor implements HttpInterceptor {
       take(1),
       delay(500),
       concatMap((token) => {
-        console.log(token)
         this.authReq = request.clone({
             headers: new HttpHeaders({
             Authorization: `Bearer ${token}`

@@ -1,7 +1,6 @@
 import { Injectable, inject } from '@angular/core';
-import { BehaviorSubject, Observable, async, catchError, delay, map, of, retry, take, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, map, retry, throwError } from 'rxjs';
 import { ValidateUserRequest } from '../entities/requests/validate-user.request';
-import * as validateUserResponseMock from '../../../assets/mocks/validate-user.response.mock.json';
 import { ValidateUserResponse } from '../entities/responses/validate-user.response';
 import { ValidateUserView } from '../entities/views/validate-user.view';
 import { UserAdapter } from '../entities/adapters/user.adapter';
@@ -62,7 +61,6 @@ export class UserService {
 
   validateUser(userCredentials: ValidateUserRequest): Observable<ValidateUserView> {
     const endpoint: string = environment.baseUrl + environment.apis.loginValidator;
-    console.log(endpoint);
     this.validateUserLoading.next(true);
     
     return this.http.post<ValidateUserResponse>(endpoint, userCredentials).pipe(
@@ -79,7 +77,6 @@ export class UserService {
       }),
       catchError((e) => {
         this.validateUserLoading.next(false);
-        console.log(e);
 
         return throwError(() => new Error('Error'));
       })
@@ -89,7 +86,6 @@ export class UserService {
 
   registerUser(registerRequest: RegisterUserRequest): Observable<any> {
     const endpoint: string = environment.baseUrl + environment.apis.userApis.user;
-    console.log(endpoint);
     this.registerPersonLoading.next(true);
 
      return this.http.post<any>(endpoint, registerRequest).pipe(
@@ -100,7 +96,6 @@ export class UserService {
        }),
        catchError((e) => {
          this.registerPersonLoading.next(false);
-         console.log(e);
          
          return throwError(() => new Error('Error'));
     })
@@ -115,13 +110,12 @@ export class UserService {
       return this.http.get<UserInfoResponse>(url).pipe(
         retry(3),
         map((detailResponse: UserInfoResponse) => {
-          const adaptedUserInfo: UserInfoView = this.userAdapter.UserInfoResponseToView(detailResponse);
+          const adaptedUserInfo: UserInfoView = this.userAdapter.userInfoResponseToView(detailResponse);
           this.getUserLoading.next(false);
           
           return adaptedUserInfo;
         }),
         catchError((e) => {
-          console.log(e);
           this.getUserLoading.next(false);
   
           return throwError(() => new Error('Error'));

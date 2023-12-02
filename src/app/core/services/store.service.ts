@@ -17,10 +17,8 @@ export class StoreService {
 
   initToken(): void {
     const storedToken = localStorage.getItem('auth');
-    console.log(storedToken);
 
     if(!this.isTokenExpired(storedToken)){
-      console.log('isSetted')
       this.setToken(storedToken);
     }
     else {
@@ -37,7 +35,6 @@ export class StoreService {
     try {
       const decodedToken: any = JSON.parse(atob(token.split('.')[1]));
       const expirationDate = new Date(decodedToken.exp * 1000);
-      console.log(expirationDate);
       return expirationDate <= new Date();
     } catch (error) {
       console.error('Error al decodificar el token:', error);

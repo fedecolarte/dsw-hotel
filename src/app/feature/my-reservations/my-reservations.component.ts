@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { ReserveInfoView } from '@app/core/entities/views/reserve-info.view';
 import { ReserveService } from '@app/core/services/reserve.service';
 import { UserService } from '@app/core/services/user.service';
-import { concatMap, take } from 'rxjs';
+import { concatMap } from 'rxjs';
 
 @Component({
   selector: 'app-my-reservations',

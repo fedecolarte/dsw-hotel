@@ -2,9 +2,8 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { InfoReserve } from '@app/core/entities/views/info-reserve.view';
 import { RoomService } from '@app/core/services/room.service';
 import { StepperService } from '@app/core/services/stepper.service';
-import { Observable, combineLatest, concatMap, map, take } from 'rxjs';
-import { format, parseISO, formatISO } from 'date-fns';
-import { Router } from '@angular/router';
+import { Observable, combineLatest, map, take } from 'rxjs';
+import { format } from 'date-fns';
 import { CreateReserveRequest } from '@app/core/entities/requests/create-reserve.request';
 import { ReserveService } from '@app/core/services/reserve.service';
 
@@ -97,9 +96,7 @@ export class SummaryAndPaymentComponent implements OnInit {
       cantidadPersonas: this.reserveInfo.peopleCapacity
     }
     
-    this.reserveService.createReserve(payload).pipe(take(1)).subscribe(reserve => {
-      console.log(reserve);
-    });
+    this.reserveService.createReserve(payload).pipe(take(1)).subscribe();
     this.goNextStep.emit(true);
   }
 }
