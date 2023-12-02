@@ -20,6 +20,7 @@ import { ClientAdapter } from './entities/adapters/client.adapter';
 import { ReserveAdapter } from './entities/adapters/reserve.adapter';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RegisterComponent } from './components/login/register/register.component';
 
 registerLocaleData(localeEsAR, environment.defaultLanguage);
 
@@ -32,6 +33,7 @@ export function LoaderFactory() {
     FooterComponent,
     HeaderComponent,
     LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     NgxMaskModule.forRoot(),
