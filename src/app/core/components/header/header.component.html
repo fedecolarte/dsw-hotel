@@ -1,37 +1,41 @@
-<nav class="navbar navbar-expand-md header">
+<nav class="navbar navbar-expand-md header box-shadow">
   <div class="container-fluid p-0">
-    <img class="ms-5" [src]="hotelLogo" height="60px" width="60px">
-      <span class="d-inline d-md-none material-icons-round txt-white me-5" type="button" (click)="collapseMenu()">menu</span>
-        <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
-          <ul class="ps-2 ms-md-auto pt-3 pt-md-0 navbar-nav burger-menu px-0 px-md-4 px-lg-5 d-flex" [ngClass]="isMenuCollapsed ? 'opacity-0' : 'opacity-1'">
-            <li class="nav-item mx-0 mx-lg-2">
-              <div class="d-flex align-items-center">
-                <span class="d-inline d-md-none material-symbols-rounded me-2">cottage</span>
-                <span class="nav-link active" aria-current="page" href="#">Inicio</span>
+    <img (click)="goToHome()" class="ms-5" [src]="hotelLogo" height="55px" width="55px" role="button">
+    <i class="d-inline d-md-none material-icons-round txt-white me-5" type="button" (click)="collapseMenu()">menu</i>
+    <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
+      <ul class="px-2 ms-md-auto pt-3 pt-md-0 px-0 px-md-4 px-lg-5 navbar-nav d-flex burger-menu box-shadow align-items-md-center" 
+      [ngClass]="(isMenuCollapsed && (breakpointService.isMobile$ | async)) ? 'opacity-0' : 'opacity-1'">
+        <li class="nav-item mx-0 mx-md-2" *ngFor="let tab of tabs; let i = index" [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive #rla='routerLinkActive'>
+          <div class="d-flex align-items-center h-40 box-sizing" *ngIf="i !== 3; else logIn" [ngClass]="{'disabled': tab.disabled}">
+            <i class="d-inline d-md-none material-symbols-rounded me-2">{{ tab.icon }}</i>
+            <a class="nav-link" [routerLink]="tab.link" [ngClass]="{'selected': rla.isActive}">{{ tab.name }}</a>
+          </div>
+          <ng-template #logIn>
+            <a *ngIf="!(userService.isLogged$ | async) else logged" class="nav-link sign-in bg-white my-3 my-md-0 ms-lg-4" (click)="openLogin()" role="button">{{ tab.name }}</a>
+          </ng-template>
+          <ng-template #logged>
+            <div class="col">
+              <div ngbDropdown class="d-inline-block">
+                <button type="button" class="btn btn-outline-secondary d-flex align-items-center justify-content-md-center my-2 mt-md-2" id="dropdownBasic1" ngbDropdownToggle>
+                  <span class="material-symbols-outlined text-green me-2">contactless</span>
+                  <span class="text-green text me-2">Conectado</span>
+                </button>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="bg-custom">
+                  <button ngbDropdownItem class="d-flex align-items-center justify-content-start close-session mb-2" (click)="goToMyReserves()">
+                    <span class="material-symbols-outlined me-2 text-white">room_preferences</span>
+                    <span class="text text-white">Mis reservas</span>
+                  </button>
+                  <button ngbDropdownItem class="d-flex align-items-center close-session justify-content-start" (click)="logout()">
+                    <span class="material-symbols-outlined me-2 text-white">logout</span>
+                    <span class="text text-white">Cerrar sesión</span>
+                  </button>
+                </div>
               </div>
-            </li>
-            <li class="nav-item mx-0 mx-lg-2">
-              <div class="d-flex align-items-center">
-                <span class="d-inline d-md-none material-symbols-rounded me-2">luggage</span>
-                <a class="nav-link" href="#">Reservas</a>
-              </div>
-            </li>
-            <li class="nav-item mx-0 mx-lg-2">
-              <div class="d-flex align-items-center">
-                <span class="d-inline d-md-none material-symbols-rounded me-2">bed</span>
-                <a class="nav-link" href="#">Tipos de Habitación</a>
-              </div>
-            </li>
-            <li class="nav-item mx-0 mx-lg-2">
-              <div class="d-flex align-items-center">
-                <span class="d-inline d-md-none material-symbols-rounded me-2">contact_support</span>
-                <a class="nav-link" href="#">Contacto</a>
             </div>
-            </li>
-            <li class="nav-item ms-0 ms-md-5 py-2 py-md-0"> 
-              <a class="nav-link sign-in bg-white" href="#">Ingresar</a>
-            </li>
-          </ul>
-        </div>
+          </ng-template>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>

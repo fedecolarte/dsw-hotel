@@ -1,0 +1,13 @@
+<div class="container-fluid p-0">
+	<ngb-carousel [interval]="2000">
+		<ng-template ngbSlide *ngFor="let images of imagesCarousel; let i = index">
+			<div class="picsum-img-wrapper">
+				<img [src]="images"/>
+			</div>
+			<div class="carousel-caption mb-4">
+				<h3 class="f-poppins">Bienvenido al Hotel DSW</h3>
+				<button class="text btn btn-primary py-2 px-4" (click)="openReserve()">¡Reserva ya!</button>
+			</div>
+		</ng-template>
+	</ngb-carousel>
+</div>

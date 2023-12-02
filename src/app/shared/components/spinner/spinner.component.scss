@@ -1,0 +1,14 @@
+.inset-0 {
+    inset: 0;
+}
+
+.middle-inside {
+    bottom: 50%;
+    transform: translateY(-50%);
+}
+
+.center {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+}

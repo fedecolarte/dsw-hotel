@@ -1,0 +1,49 @@
+<div class="px-3 pb-3">
+  <ng-container *ngIf="(userService.isRegisterMode$ | async); else login">
+    <div class="pt-4 p-3 d-flex align-items-center justify-content-between">
+      <span class="text fs-22 fw-bold">Cree su cuenta</span>
+      <i class="ms-auto material-symbols-rounded" (click)="close()" role="button">close</i>
+    </div>
+    <app-register></app-register>
+  </ng-container>
+  <ng-template #login>
+    <div class="pt-4 p-3 d-flex align-items-center justify-content-between">
+      <span class="text fs-22 fw-bold">Ingrese a su cuenta</span>
+      <i class="ms-auto material-symbols-rounded" (click)="close()" role="button">close</i>
+    </div>
+    <form [formGroup]="loginForm" class="pt-3 px-4" (ngSubmit)="loginValidator()">
+      <div class="form-group py-3">
+        <input type="text" class="w-100 text custom-input" id="username" formControlName="username" placeholder="Usuario" required
+        [ngClass]="{
+          'is-invalid': loginFormStatus === 'INVALID' && (loginForm.get('username')?.dirty && loginForm.get('password')?.dirty),
+          'is-valid': isValid }">
+      </div>
+      <div class="form-group py-3">
+        <input type="password" class="w-100 text custom-input" id="password" formControlName="password" placeholder="Contraseña" required
+        [ngClass]="{
+          'is-invalid': loginFormStatus === 'INVALID' && (loginForm.get('password')?.dirty && loginForm.get('username')?.dirty),
+          'is-valid': isValid }">
+      </div>
+      <div class="d-flex align-items-center justify-content-between mt-4">
+        <span class="text text-error fs-14 w-65" *ngIf="loginFormStatus === 'INVALID'">{{ userValidation.message }}</span>
+        <button class="d-block btn btn-primary ms-auto btn-width" type="submit" [disabled]="loginForm.invalid"
+        [ngClass]="isValid ? 'botton-valid' : 'transition'">
+          <span *ngIf="!(userService.validateUserLoading$ | async) && !(userService.isLogged$ | async)">Iniciar sesión</span>
+          <span *ngIf="(userService.isLogged$ | async)" class="material-symbols-outlined valid-check">check_circle</span>
+          <ng-container *ngIf="(userService.validateUserLoading$ | async)">
+            <app-spinner [relative]="true" height="21px" width="21px"></app-spinner>
+          </ng-container>
+        </button>
+      </div>
+    </form>
+    <div class="d-flex justify-content-center text text-cello fs-14 mt-4">
+      <span>¿Aún no tienes cuenta?</span>
+      <a (click)="openRegister()" class="text-decoration-none ms-1" role="button">Registrate</a>
+    </div>
+  </ng-template>
+</div>
+ 
+
+    <!-- <div class="form-group my-3 col">
+        <input type="text" class="text custom-input" id="telNumber" formControlName="telNumber" required prefix="+54 " mask="(000) 0000000" [showMaskTyped]="true">
+      </div> -->

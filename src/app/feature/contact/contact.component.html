@@ -1,0 +1,17 @@
+<div class="d-flex justify-content-center pt-3">
+    <div class="card w-75 p-3 px-sm-5 px-0 mt-4">
+        <div class="container text-center align-self-center">
+            <h2 class="text text-white m-2 pb-2 fs-29">Contacto</h2>
+            <h2 class="text text-white">Por cualquier consulta, no dudes en escribirnos un mensaje</h2>
+            <form [formGroup]="form" (ngSubmit)="send()">
+                <div class="form-group my-1 pt-3 py-2">
+                  <input formControlName="email" type="email" class="form-control my-1" id="email" placeholder="Email" name="email">
+                </div>
+                <div class="form-group my-1 py-1">
+                  <textarea formControlName="message" type="text" class="form-control my-1" id="message" placeholder="Mensaje" rows="5" name="message"></textarea>
+                </div>
+                <button class="btn custom-button btn-outline-secondary px-5 py-2 mt-2 my-2 text text-white border-button" [disabled]="!form.valid" type="submit">Enviar</button>
+              </form>
+        </div>
+    </div> 
+</div>

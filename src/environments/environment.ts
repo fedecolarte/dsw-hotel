@@ -5,7 +5,27 @@
 export const environment = {
   production: false,
   defaultLanguage: 'es-AR',
+  baseUrl: 'http://localhost:3000/api/',
+  apis: {
+    loginValidator: 'auth/login',
+    userApis: {
+      user: 'usuario'
+    },
+    clientApis: {
+      client: 'cliente'
+    },
+    roomApis: {
+      room: 'habitacion',
+      searchRooms: 'habitacion/lista',
+      roomTypes: 'habitacion/tipo/getTiposHabitacion'
+    },
+    reserveApis: {
+      reserve: 'reserva'
+    }
+  }
 };
+
+
 
 /*
  * For easier debugging in development mode, you can import the following file

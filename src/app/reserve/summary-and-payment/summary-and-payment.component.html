@@ -1,0 +1,110 @@
+<a class="d-none d-lg-flex btn btn-link p-0 text-decoration-none flex-row align-items-center gap-2 back-hover my-2 mb-lg-4 mt-lg-4"
+(click)="goBack()">
+    <span class="material-icons align-top">navigate_before</span>
+    <span>Volver al paso 2</span>
+</a>
+<h2 class="text fs-29 mobile-title mt-3 mb-2 my-lg-4 text-white">Resumen y pago de la reserva</h2>
+<div class="card px-3 py-md-4 px-md-5">
+    <div class="row gy-3 gap-md-5 justify-content-md-around">
+        <div class="border col-12 col-md-7 p-4">
+            <div *ngIf="(reserveInfo$ | async) as reserve">
+                <h5 class="title text text-white fw-bold mb-0 mt-4">INFORMACIÓN DE LA RESERVA</h5>
+                <div class="row row-cols-1 row-cols-md-3">
+                    <div class="item d-flex flex-column col mt-4">
+                        <span class="subtitle fw-bold text">NUMERO DE HABITACIÓN</span>
+                        <span class="subtitle text">Habitación 1{{ reserve.roomId < 10 ? '0'+reserve.roomId : reserve.roomId }}</span>
+                    </div>
+                    <div class="item d-flex flex-column justify-content-center col mt-4">
+                        <span class="subtitle fw-bold text">TIPO DE HABITACIÓN</span>
+                        <span class="subtitle text">{{ reserve.roomType }}</span>
+                    </div>
+                    <div class="item d-flex flex-column col mt-4">
+                        <span class="subtitle fw-bold text">FECHA DE INGRESO</span>
+                        <span class="subtitle text">{{ reserve.checkIn }}</span>
+                    </div>
+                    <div class="item d-flex flex-column col mt-4">
+                        <span class="subtitle fw-bold text">FECHA DE SALIDA</span>
+                        <span class="subtitle text">{{ reserve.checkOut }}</span>
+                    </div>
+                    <div class="item d-flex flex-column col mt-4">
+                        <span class="subtitle fw-bold text">CANTIDAD DE PERSONAS</span>
+                        <span class="subtitle text">{{ reserve.peopleCapacity }} personas</span>
+                    </div>
+                    <div class="item d-flex flex-column col mt-4">
+                        <span class="subtitle fw-bold text">PRECIO FINAL</span>
+                        <span class="subtitle text">$ {{ reserve.price }}</span>
+                    </div>
+                </div>
+                <h5 class="title text text-white fw-bold mt-5 mb-0">INFORMACIÓN DEL CLIENTE</h5>
+                <div class="row row-cols-1 row-cols-md-3">
+                    <div class="item d-flex flex-column col mt-4">
+                        <span class="subtitle fw-bold text">NOMBRE</span>
+                        <span class="subtitle text">{{ reserve.clientName }}</span>
+                    </div>
+                    <div class="item d-flex flex-column justify-content-center col mt-4">
+                        <span class="subtitle fw-bold text">APELLIDO</span>
+                        <span class="subtitle text">{{ reserve.clientSurname }}</span>
+                    </div>
+                    <div class="item d-flex flex-column col mt-4">
+                        <span class="subtitle fw-bold text">DNI</span>
+                        <span class="subtitle text">{{ reserve.documentNumber }}</span>
+                    </div>
+                    <div class="item d-flex flex-column col mt-4">
+                        <span class="subtitle fw-bold text">FECHA DE NACIMIENTO</span>
+                        <span class="subtitle text">{{ reserve.birthdate }}</span>
+                    </div>
+                    <div class="item d-flex flex-column col mt-4">
+                        <span class="subtitle fw-bold text">E-MAIL</span>
+                        <span class="subtitle text">{{ reserve.email }}</span>
+                    </div>
+                    <div class="item d-flex flex-column col mt-4">
+                        <span class="subtitle fw-bold text">CELULAR</span>
+                        <span class="subtitle text">{{ reserve.cellphone }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="border col-12 col-md-4">
+            <div class="d-flex flex-column align-items-center">
+                <img [src]="paymentImg" alt="payment" [height]="250" [width]="250">
+            </div>
+            <hr>
+            <div class="d-flex justify-content-between align-items-center mx-4 mt-2 mb-5" *ngIf="(reserveInfo$ | async) as reserve">
+                <span class="text text-white"><em>Pagás</em></span>
+                <div class="d-flex align-items-center">
+                    <span class="text text-gray me-2"><em>$ {{ reserve.price }}</em></span>
+                    <span class="descuento text text-limegreen fs-10" *ngIf="reserve.discount > 0"><em>{{ reserve.discount }}% OFF</em></span>
+                </div>
+            </div>
+            <hr>
+            <div class="form-check d-flex align-items-center ms-4">
+                <input 
+                class="form-check-input me-2" 
+                type="radio"
+                id="Efectivo" 
+                [(ngModel)]="paymentMethod" 
+                name="options" 
+                value="Efectivo">
+                <label class="form-check-label d-flex align-items-center" for="Efectivo">
+                    <img [src]="cashImg" height="40px" width="48px" alt="Efectivo">
+                    <span class="text ms-2 text-white">Efectivo en puerta</span>
+                </label>
+            </div>
+            <div class="form-check d-flex align-items-center ms-4">
+                <input 
+                class="form-check-input me-2" 
+                type="radio" 
+                id="Mercado pago" 
+                name="options" 
+                [(ngModel)]="paymentMethod" 
+                value="Mercado pago"
+                disabled>
+                <label class="form-check-label d-flex align-items-center" for="Mercado pago">
+                    <img [src]="mercadoPagoImg" height="48px" width="48px" alt="mercadoPago">
+                    <span class="text ms-2 text-white">Mercado pago</span>
+                </label>
+            </div>
+            <button class="btn btn-outline-secondary px-5 py-2 text text-white border-button me-xl-3 my-3 btn-mb w-100" (click)="saveStep()" [disabled]="!paymentMethod">Confirmar</button>
+        </div>
+    </div>
+</div>

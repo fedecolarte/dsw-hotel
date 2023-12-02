@@ -1,0 +1,55 @@
+.fs-22 {
+    font-size: 22px;
+}
+
+.fs-14 {
+    font-size: 14px;
+}
+
+.custom-input {
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: 2px solid black;
+}
+
+.custom-input:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.btn-primary {
+    background-color: black;
+    color: white;
+    border: 2px solid #010412;
+}
+
+.btn-primary:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.text-error {
+    color: red;
+}
+
+.is-valid {
+    border-color: lawngreen;
+}
+
+.is-invalid {
+    border-color: red;
+}
+
+.btn-width {
+    width: 120px;
+    height: 40px;
+}
+
+.valid-check {
+    color: lawngreen;
+}
+
+.w-65 {
+    width: 65%;
+}

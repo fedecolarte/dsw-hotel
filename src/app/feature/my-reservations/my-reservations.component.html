@@ -1,0 +1,53 @@
+<div class="container-fluid py-3 px-2 p-md-5">
+    <a class="d-none d-lg-flex btn btn-link p-0 text-decoration-none flex-row align-items-center gap-2 back-hover py-4"
+    (click)="goBack()">
+        <span class="material-icons align-top">navigate_before</span>
+        <span>Ir a reservas</span>
+    </a>
+    <h2 class="text fs-29 mobile-title mt-3 mb-2 my-lg-4 text-white">Mis Reservas</h2>
+    <div class="card box px-3 py-md-4 px-md-5">
+        <ng-container *ngIf="
+            (userService.userLogged$ | async) && 
+            !(reserveService.getReservesLoading$ | async) && 
+            !(userService.getUserLoading$ | async); else spinner">
+            <div class="d-flex align-items-center justify-content-around flex-wrap">
+                <div class="card my-2 mx-4 bg-gray col-12 col-md-3" *ngFor="let reserve of reserves">
+                    <div class="card-header d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center justify-content-start">
+                            <span class="material-symbols-outlined circled p-2 me-2 text-white text-center">article</span>
+                            <span class="text text-white fs-header">Reserva #{{ reserve.idReserve }}</span>
+                        </div>
+                        <div class="badge text">
+                            {{ 'reservado' | uppercase }}
+                        </div>
+                    </div>
+                    <div class="card-body mx-4">
+                        <div class="d-flex align-items-center justify-content-start my-2">
+                            <span class="material-symbols-outlined me-2 text-white text-center">date_range</span>
+                            <span class="text text-white">{{ reserve.checkIn }} // {{ reserve.checkOut }}</span>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-start my-2">
+                            <span class="material-symbols-outlined me-2 text-white text-center">door_front</span>
+                            <span class="text text-white">N° 1{{ reserve.idRoom < 10 ? '0'+reserve.idRoom : reserve.idRoom }}</span>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-start my-2">
+                            <span class="material-symbols-outlined me-2 text-white text-center">group</span>
+                            <span class="text text-white">{{ reserve.peopleCapacity }}</span>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-start mt-2">
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        <span class="text text-limegreen fs-header">${{ reserve.finalPrice }}</span>
+                        <div class="text badge" [ngClass]="reserve.paid ? 'badge-paid' : 'badge-not-paid'">
+                            {{ reserve.paid ? 'Pagado' : 'A pagar' | uppercase }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+        <ng-template #spinner>
+            <app-spinner [center]="true" height="100px" width="100px" className="pb-5"></app-spinner>
+        </ng-template>
+    </div>
+</div>

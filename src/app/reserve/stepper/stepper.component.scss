@@ -1,0 +1,58 @@
+.nav-pills .nav-link {
+    background-color: #312e38;
+    color: white;
+    border-radius: 40px;
+    width: 80px;
+}
+
+.is-active {
+    background-color: white!important;
+    color: #312e38!important;
+}
+
+.vertical-bar {
+    position: relative;
+    height: 30px;
+    width: 50px;
+    margin-top: 38px;
+    overflow: scroll;
+    display: table;
+    
+    @media (min-width:1200px) {
+        margin-top: 0px;
+        transform: rotate(90deg);
+        height: 60px;
+        width: 60px;
+        margin-left: -14px;
+        overflow: auto;
+    }
+}
+
+.progress {
+    border-radius: 0px!important;
+    background-color: #312e38;
+}
+
+::ng-deep ngb-progressbar .bg-success {
+    background-color: white!important;
+}
+
+.background-box {
+    background-color: #403C46;
+    border-radius: 10px;
+}
+
+.fs-29 {
+    font-size: 29px;
+}
+
+.border {
+    border: 2px solid #312e38;
+    border-radius: 10px;
+}
+
+.w-md-40 {
+    @media (min-width: 768px) {
+        width: 40%!important;
+    }
+}

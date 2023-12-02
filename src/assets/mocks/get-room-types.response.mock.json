@@ -1,0 +1,40 @@
+{
+    "data" : [
+        {
+            "idHabitacion": 4,
+            "idTipoHabitacion": 2,
+            "tipoHabitacion": "De Lujo",
+            "estado": "Disponible",
+            "capacidadPersonas": 4,
+            "descuento": 40,
+            "precio": 16000
+        },
+        {
+            "idHabitacion": 8,
+            "idTipoHabitacion": 4,
+            "tipoHabitacion": "Suite Junior",
+            "estado": "Disponible",
+            "capacidadPersonas": 6,
+            "descuento": 0,
+            "precio": 20300
+        },
+        {
+            "idHabitacion": 9,
+            "idTipoHabitacion": 2,
+            "tipoHabitacion": "Suite",
+            "estado": "Disponible",
+            "capacidadPersonas": 2,
+            "descuento": 0,
+            "precio": 27000
+        },
+        {
+            "idHabitacion": 12,
+            "idTipoHabitacion": 3,
+            "tipoHabitacion": "De Lujo",
+            "estado": "Disponible",
+            "capacidadPersonas": 2,
+            "descuento": 0,
+            "precio": 30800
+        }
+    ]
+}

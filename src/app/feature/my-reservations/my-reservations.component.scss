@@ -1,0 +1,79 @@
+a {
+    color: #4a8bff;
+    &.back-hover {
+        transition: gap 0.2s ease;
+        width: 150px;
+
+        &:hover {
+        gap: 0px !important;
+        }
+
+        span.go-back {
+        font-size: 14px;
+        font-family: Poppins;
+        }
+    }
+}
+
+.fs-29 {
+    font-size: 29px;
+}
+
+.mobile-title {
+    @media (max-width: 991.98px) {
+        font-size: 19px!important;
+    } 
+}
+
+.card {
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.box {
+    min-height: 40vh;
+    background-color: #403C46;
+}
+
+.border {
+    border: 2px solid #312e38!important;
+    border-radius: 15px;
+}
+
+.bg-gray {
+    background-color: #312e38;
+}
+
+.circled {
+    border: 2px solid white;
+    border-radius: 30px;
+    background-color: #312e38;
+}
+
+.badge {
+    border: 2px solid #f9af54;
+    color: #f9af54;
+}
+
+.fs-header {
+    font-weight: 500;
+    font-size: 19px;
+}
+
+.text-limegreen {
+    color: limegreen;
+}
+
+.card-footer {
+    height: 50px;
+}
+
+.badge-paid {
+    border: 2px solid limegreen;
+    color: limegreen;
+}
+
+.badge-not-paid {
+    border: 2px solid #bf5e5e;
+    color: #bf5e5e;
+}
